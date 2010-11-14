@@ -12,10 +12,5 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-    	<groupId>net.sf.kerner-commons</groupId>
-    	<artifactId>kerner-commons</artifactId>
-    	<version>0.10.1-SNAPSHOT</version>
-    </dependency>
   </dependencies>
 </project>

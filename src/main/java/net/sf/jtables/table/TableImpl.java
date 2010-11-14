@@ -7,10 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import net.sf.kerner.commons.collection.ListFactory;
-import net.sf.kerner.commons.collection.impl.ArrayListFactory;
-import net.sf.kerner.commons.io.IOUtils;
-
 public class TableImpl<T> implements Table<T> {
 
 	// Field //
@@ -20,11 +16,6 @@ public class TableImpl<T> implements Table<T> {
 	 */
 	protected final List<List<? extends T>> rows = new ArrayList<List<? extends T>>();
 
-	protected ListFactory<T> listFactory;
-
-	protected final ListFactory<T> DEFAULT_LIST_FACTORY = new ArrayListFactory<T>();
-
-
 	// Constructor //
 
 	/**
@@ -33,23 +24,10 @@ public class TableImpl<T> implements Table<T> {
 	 * 
 	 */
 	public TableImpl() {
-		this.listFactory = DEFAULT_LIST_FACTORY;
-	}
-	
-	public TableImpl(ListFactory<T> factory) {
-		this.listFactory = factory;
 	}
 
 	public TableImpl(List<? extends List<? extends T>> rows) {
 		synchronized (rows) {
-			this.listFactory = DEFAULT_LIST_FACTORY;
-			this.rows.addAll(rows);
-		}
-	}
-	
-	public TableImpl(List<? extends List<? extends T>> rows, ListFactory<T> factory) {
-		synchronized (rows) {
-			this.listFactory = factory;
 			this.rows.addAll(rows);
 		}
 	}
@@ -87,7 +65,7 @@ public class TableImpl<T> implements Table<T> {
 		while (it.hasNext()) {
 			sb.append(it.next());
 			if (it.hasNext())
-				sb.append(IOUtils.NEW_LINE_STRING);
+				sb.append(Utils.NEW_LINE_STRING);
 		}
 		return sb.toString();
 	}
