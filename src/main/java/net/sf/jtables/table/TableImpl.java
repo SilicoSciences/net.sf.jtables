@@ -186,18 +186,25 @@ public class TableImpl<T> implements Table<T> {
 
 	public List<T> getAllElements() {
 		final ArrayList<T> result = new ArrayList<T>();
-		for(List<? extends T> row : rows){
-			result.add(row);
+	
+		for (int i = 0; i < getNumberOfRows(); i++) {
+			
+			final List<T> row = getRow(i);
+			// defensive copying since we are immutable
+			for (T t : row) {
+				// defensive copying since we are immutable
+				result.add(t);
+			}
 		}
-		return null;
+		return result;
 	}
 
 	public Iterator<List<T>> getRowIterator() {
-		return new ArrayList<List<T>>().iterator();
+		return new ArrayList<List<T>>(getRows()).iterator();
 	}
 
 	public Iterator<List<T>> getColumnIterator() {
-		return new ArrayList<List<T>>().iterator();
+		return new ArrayList<List<T>>(getColumns()).iterator();
 	}
 
 }
