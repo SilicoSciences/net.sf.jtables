@@ -105,78 +105,99 @@ public class TableImpl<T> implements Table<T> {
 	public List<T> getRow(int index) {
 		checkRowIndex(index);
 		// defensive copying since we are immutable
-		return Collections.unmodifiableList(listFactory.createCollection(rows.get(index)));
+		return Collections.unmodifiableList(rows.get(index));
 	}
 
 	public List<List<T>> getRows() {
-		final ArrayList<List<T>> result = new ArrayList<List<T>>();
-		result.addAll(getAllElements());
-		return rows;
+		final List<List<T>> result = new ArrayList<List<T>>();
+		for (int i = 0; i < getNumberOfRows(); i++) {
+			// defensive copying since we are immutable
+			result.add(Collections
+					.unmodifiableList(new ArrayList<T>(getRow(i))));
+		}
+		return result;
 	}
 
 	public List<T> getColumn(int index) {
-		// TODO Auto-generated method stub
-		return null;
+		checkColumnIndex(index);
+		final List<T> result = new ArrayList<T>();
+		for (List<? extends T> l : rows) {
+			if (index < l.size()) {
+				result.add(l.get(index));
+			} else {
+				// log.debug("row at index [" + index + "] has no column");
+			}
+		}
+		return Collections.unmodifiableList(new ArrayList<T>(result));
 	}
 
 	public List<List<T>> getColumns() {
-		// TODO Auto-generated method stub
-		return null;
+		final List<List<T>> result = new ArrayList<List<T>>();
+		for (int i = 0; i < getNumberOfColumns(); i++) {
+			// defensive copying since we are immutable
+			result.add(Collections.unmodifiableList(new ArrayList<T>(
+					getColumn(i))));
+		}
+		return result;
 	}
 
 	public T get(int i, int j) {
-		// TODO Auto-generated method stub
-		return null;
+		checkColumnIndex(j);
+		return getRow(i).get(j);
 	}
 
 	public int getRowSize(int index) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getRow(index).size();
 	}
 
 	public int getColumnSize(int index) {
-		// TODO Auto-generated method stub
-		return 0;
+		return getColumn(index).size();
 	}
 
 	public int getMaxRowSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		for (List<?> r : rows) {
+			if (r.size() > result)
+				result = r.size();
+		}
+		return result;
 	}
 
 	public int getMaxColumnSize() {
-		// TODO Auto-generated method stub
-		return 0;
+		int result = 0;
+		for (List<? extends T> r : getColumns()) {
+			if (r.size() > result)
+				result = r.size();
+		}
+		return result;
 	}
 
 	public int getNumberOfRows() {
-		// TODO Auto-generated method stub
-		return 0;
+		return rows.size();
 	}
 
 	public int getNumberOfColumns() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getMaxRowSize();
 	}
 
 	public boolean contains(T element) {
-		// TODO Auto-generated method stub
-		return false;
+		return getAllElements().contains(element);
 	}
 
-	public Collection<T> getAllElements() {
-		// TODO Auto-generated method stub
+	public List<T> getAllElements() {
+		final ArrayList<T> result = new ArrayList<T>();
+		for(List<? extends T> row : rows){
+			result.add(row);
+		}
 		return null;
 	}
 
-	public Iterator<T> getRowIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<List<T>> getRowIterator() {
+		return new ArrayList<List<T>>().iterator();
 	}
 
-	public Iterator<T> getColumnIterator() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<List<T>> getColumnIterator() {
+		return new ArrayList<List<T>>().iterator();
 	}
 
 }

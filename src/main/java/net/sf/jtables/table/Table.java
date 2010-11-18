@@ -1,6 +1,5 @@
 package net.sf.jtables.table;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,10 +29,10 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	
 	boolean contains(T element);
 	
-	Collection<T> getAllElements();
+	List<T> getAllElements();
 	
-	Iterator<T> getRowIterator();
+	Iterator<List<T>> getRowIterator();
 	
-	Iterator<T> getColumnIterator();
+	Iterator<List<T>> getColumnIterator();
 	
 }
