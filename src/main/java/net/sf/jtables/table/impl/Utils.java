@@ -1,4 +1,4 @@
-package net.sf.jtables.table;
+package net.sf.jtables.table.impl;
 
 public class Utils {
 	

@@ -1,4 +1,4 @@
-package net.sf.jtables.table;
+package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import net.sf.jtables.table.Table;
 
 public class TableImpl<T> implements Table<T> {
 
