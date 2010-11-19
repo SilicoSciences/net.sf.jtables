@@ -154,7 +154,7 @@
 							<check>
 								<branchRate>50</branchRate>
 								<lineRate>50</lineRate>
-								<haltOnFailure>false</haltOnFailure>
+								<haltOnFailure>true</haltOnFailure>
 								<totalBranchRate>50</totalBranchRate>
 								<totalLineRate>50</totalLineRate>
 								<packageLineRate>50</packageLineRate>
@@ -162,10 +162,10 @@
 							</check>
 							<instrumentation>
 								<ignores>
-
+									<ignore>net.sf.jtables.table.impl.Utils.class</ignore>
 								</ignores>
 								<excludes>
-
+									<exclude>net/sf/jtables/table/impl/Utils.class</exclude>
 								</excludes>
 							</instrumentation>
 						</configuration>

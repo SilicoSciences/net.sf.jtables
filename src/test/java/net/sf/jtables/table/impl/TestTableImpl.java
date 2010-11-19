@@ -5,6 +5,7 @@ package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ import org.junit.Test;
 public class TestTableImpl {
 	
 	private TableImpl<String> ma;
+	
+	private TableImpl<String> ma2;
 	
 	private List<List<String>> rows;
 
@@ -78,6 +81,7 @@ public class TestTableImpl {
 			}
 		});
 		ma = new TableImpl<String>(rows);
+		ma2 = new TableImpl<String>(rows);
 	}
 
 	@After
@@ -85,6 +89,7 @@ public class TestTableImpl {
 		cols = null;
 		rows = null;
 		ma = null;
+		ma2 = null;
 	}
 
 	/**
@@ -93,7 +98,17 @@ public class TestTableImpl {
 	@Test
 	@Ignore
 	public final void testHashCode() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(ma.hashCode(), ma2.hashCode());
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#hashCode()}.
+	 */
+	@Test
+	@Ignore
+	public final void testHashCode01() {
+		ma2 = new TableImpl<String>();
+		assertNotSame(ma.hashCode(), ma2.hashCode());
 	}
 
 	/**
