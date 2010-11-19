@@ -102,12 +102,18 @@ public class TableImpl<T> implements Table<T> {
 		return getAllElements().iterator();
 	}
 
+	/**
+	 * 
+	 */
 	public List<T> getRow(int index) {
 		checkRowIndex(index);
 		// defensive copying since we are immutable
 		return Collections.unmodifiableList(rows.get(index));
 	}
 
+	/**
+	 * 
+	 */
 	public List<List<T>> getRows() {
 		final List<List<T>> result = new ArrayList<List<T>>();
 		for (int i = 0; i < getNumberOfRows(); i++) {
@@ -118,6 +124,9 @@ public class TableImpl<T> implements Table<T> {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	public List<T> getColumn(int index) {
 		checkColumnIndex(index);
 		final List<T> result = new ArrayList<T>();
@@ -131,6 +140,9 @@ public class TableImpl<T> implements Table<T> {
 		return Collections.unmodifiableList(new ArrayList<T>(result));
 	}
 
+	/**
+	 * 
+	 */
 	public List<List<T>> getColumns() {
 		final List<List<T>> result = new ArrayList<List<T>>();
 		for (int i = 0; i < getNumberOfColumns(); i++) {
@@ -141,19 +153,31 @@ public class TableImpl<T> implements Table<T> {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	public T get(int i, int j) {
 		checkColumnIndex(j);
 		return getRow(i).get(j);
 	}
 
+	/**
+	 * 
+	 */
 	public int getRowSize(int index) {
 		return getRow(index).size();
 	}
 
+	/**
+	 * 
+	 */
 	public int getColumnSize(int index) {
 		return getColumn(index).size();
 	}
 
+	/**
+	 * 
+	 */
 	public int getMaxRowSize() {
 		int result = 0;
 		for (List<?> r : rows) {
@@ -163,6 +187,9 @@ public class TableImpl<T> implements Table<T> {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	public int getMaxColumnSize() {
 		int result = 0;
 		for (List<? extends T> r : getColumns()) {
@@ -172,18 +199,30 @@ public class TableImpl<T> implements Table<T> {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	public int getNumberOfRows() {
 		return rows.size();
 	}
 
+	/**
+	 * 
+	 */
 	public int getNumberOfColumns() {
 		return getMaxRowSize();
 	}
 
+	/**
+	 * 
+	 */
 	public boolean contains(T element) {
 		return getAllElements().contains(element);
 	}
 
+	/**
+	 * 
+	 */
 	public List<T> getAllElements() {
 		final ArrayList<T> result = new ArrayList<T>();
 	
@@ -199,10 +238,16 @@ public class TableImpl<T> implements Table<T> {
 		return result;
 	}
 
+	/**
+	 * 
+	 */
 	public Iterator<List<T>> getRowIterator() {
 		return new ArrayList<List<T>>(getRows()).iterator();
 	}
 
+	/**
+	 * 
+	 */
 	public Iterator<List<T>> getColumnIterator() {
 		return new ArrayList<List<T>>(getColumns()).iterator();
 	}
