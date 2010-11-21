@@ -1,4 +1,4 @@
-package net.sf.jtables.table.impl;
+package net.sf.jtables.table;
 
 import java.util.Collection;
 import java.util.Iterator;

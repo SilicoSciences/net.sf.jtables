@@ -7,10 +7,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import net.sf.jtables.table.Table;
-<<<<<<< HEAD
+
 import net.sf.jtables.table.Utils;
-=======
->>>>>>> f6a20fbb0fa280c4f581128c3e2cf016176ac86a
 
 public class TableImpl<T> implements Table<T> {
 
