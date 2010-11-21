@@ -6,6 +6,7 @@ package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
@@ -23,16 +24,18 @@ import org.junit.Test;
  *
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-09-20
+ * @version 2010-11-19
  *
  */
 public class TestTableImpl {
 	
 	private TableImpl<String> ma;
+	
+	private TableImpl<String> ma2;
+	
+	private List<List<String>> rows;
 
-	private List<List<? extends String>> rows;
-
-	private List<List<? extends String>> cols;
+	private List<List<String>> cols;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -45,7 +48,7 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		rows = new ArrayList<List<? extends String>>();
+		rows = new ArrayList<List<String>>();
 		rows.add(new ArrayList<String>(){
 			{
 				add("eins00");
@@ -60,29 +63,27 @@ public class TestTableImpl {
 				add("zwei02");
 			}
 		});
-		cols = new ArrayList<List<? extends String>>();
+		cols = new ArrayList<List<String>>();
 		cols.add(new ArrayList<String>(){
 			{
 				add("eins00");
 				add("zwei00");
-				// add("eins02");
 			}
 		});
 		cols.add(new ArrayList<String>(){
 			{
 				add("eins01");
 				add("zwei01");
-				// add("zwei02");
 			}
 		});
 		cols.add(new ArrayList<String>(){
 			{
 				add("eins02");
 				add("zwei02");
-				// add("zwei02");
 			}
 		});
 		ma = new TableImpl<String>(rows);
+		ma2 = new TableImpl<String>(rows);
 	}
 
 	@After
@@ -90,10 +91,30 @@ public class TestTableImpl {
 		cols = null;
 		rows = null;
 		ma = null;
+		ma2 = null;
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#TableImpl()}.
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#hashCode()}.
+	 */
+	@Test
+	@Ignore
+	public final void testHashCode() {
+		assertEquals(ma.hashCode(), ma2.hashCode());
+	}
+	
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#hashCode()}.
+	 */
+	@Test
+	@Ignore
+	public final void testHashCode01() {
+		ma2 = new TableImpl<String>();
+		assertNotSame(ma.hashCode(), ma2.hashCode());
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#TableImpl()}.
 	 */
 	@Test
 	@Ignore
@@ -102,11 +123,56 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#TableImpl(java.util.List)}.
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#TableImpl(java.util.List)}.
 	 */
 	@Test
 	@Ignore
-	public final void testTableImplListOfListOfQextendsT() {
+	public final void testTableImplListOfQextendsListOfQextendsT() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#checkRowIndex(int)}.
+	 */
+	@Test
+	@Ignore
+	public final void testCheckRowIndex() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#checkColumnIndex(int)}.
+	 */
+	@Test
+	@Ignore
+	public final void testCheckColumnIndex() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#toString()}.
+	 */
+	@Test
+	@Ignore
+	public final void testToString() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#equals(java.lang.Object)}.
+	 */
+	@Test
+	@Ignore
+	public final void testEqualsObject() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#iterator()}.
+	 */
+	@Test
+	@Ignore
+	public final void testIterator() {
 		fail("Not yet implemented"); // TODO
 	}
 
@@ -142,6 +208,13 @@ public class TestTableImpl {
 		assertEquals(rows.get(1), ma.getRow(1));
 	}
 
+	/**
+	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRows()}.
+	 */
+	@Test
+	public final void testGetRows() {
+		assertArrayEquals(rows.toArray(), ma.getRows().toArray());
+	}
 
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}.
@@ -173,6 +246,14 @@ public class TestTableImpl {
 	@Test
 	public final void testGetColumn03() {
 		assertEquals(cols.get(2), ma.getColumn(2));
+	}
+
+	/**
+	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumns()}.
+	 */
+	@Test
+	public final void testGetColumns() {
+		assertArrayEquals(cols.toArray(), ma.getColumns().toArray());
 	}
 
 	/**
@@ -336,19 +417,39 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRows()}.
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#contains(java.lang.Object)}.
 	 */
 	@Test
-	public final void testGetRows() {
-		assertArrayEquals(rows.toArray(), ma.getRows().toArray());
+	@Ignore
+	public final void testContains() {
+		fail("Not yet implemented"); // TODO
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumns()}.
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getAllElements()}.
 	 */
 	@Test
-	public final void testGetColumns() {
-		assertArrayEquals(cols.toArray(), ma.getColumns().toArray());
+	@Ignore
+	public final void testGetAllElements() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getRowIterator()}.
+	 */
+	@Test
+	@Ignore
+	public final void testGetRowIterator() {
+		fail("Not yet implemented"); // TODO
+	}
+
+	/**
+	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getColumnIterator()}.
+	 */
+	@Test
+	@Ignore
+	public final void testGetColumnIterator() {
+		fail("Not yet implemented"); // TODO
 	}
 
 }
