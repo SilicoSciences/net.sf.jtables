@@ -56,12 +56,12 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
 			<artifactId>kerner-utils</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
 			<artifactId>io</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>0.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -168,7 +168,7 @@
 							<check>
 								<branchRate>50</branchRate>
 								<lineRate>50</lineRate>
-								<haltOnFailure>true</haltOnFailure>
+								<haltOnFailure>false</haltOnFailure>
 								<totalBranchRate>50</totalBranchRate>
 								<totalLineRate>50</totalLineRate>
 								<packageLineRate>50</packageLineRate>
