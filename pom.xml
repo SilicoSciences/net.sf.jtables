@@ -67,6 +67,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.8.1</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.kerner-utils-collections</groupId>
+			<artifactId>kerner-utils-collections</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -165,13 +170,10 @@
 								<format>xml</format>
 							</formats>
 							<check>
-								<branchRate>50</branchRate>
-								<lineRate>50</lineRate>
+								<lineRate>70</lineRate>
 								<haltOnFailure>false</haltOnFailure>
-								<totalBranchRate>50</totalBranchRate>
-								<totalLineRate>50</totalLineRate>
-								<packageLineRate>50</packageLineRate>
-								<packageBranchRate>50</packageBranchRate>
+								<totalLineRate>70</totalLineRate>
+								<packageLineRate>70</packageLineRate>
 							</check>
 							<instrumentation>
 								<ignores>

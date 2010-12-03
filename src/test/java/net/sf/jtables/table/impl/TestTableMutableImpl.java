@@ -190,6 +190,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addRow(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddRowIntListOfQextendsT() {
 		ma.addRow(0,new ArrayList<String>(){
@@ -205,6 +206,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT() {
 		ma.addColumn(new ArrayList<String>(){
@@ -218,6 +220,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT01() {
 		ma.addColumn(new ArrayList<String>(){
@@ -232,6 +235,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT02() {
 		ma.addColumn(new ArrayList<String>(){
@@ -247,6 +251,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT03() {
 		ma.addColumn(new ArrayList<String>(){
@@ -262,6 +267,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT() {
 		ma.addColumn(0,new ArrayList<String>(){
@@ -275,6 +281,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT01() {
 		ma.addColumn(0,new ArrayList<String>(){
@@ -288,6 +295,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT02() {
 		ma.addColumn(0,new ArrayList<String>(){
@@ -302,6 +310,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT03() {
 		ma.addColumn(0,new ArrayList<String>(){
@@ -316,6 +325,7 @@ public class TestTableMutableImpl {
 	/**
 	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
 	 */
+	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT04() {
 		ma.addColumn(0,new ArrayList<String>(){
