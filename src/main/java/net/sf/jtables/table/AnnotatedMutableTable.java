@@ -15,6 +15,18 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
+/**
+ * 
+ * A {@code MutableTable} and also a {@code AnnotatedTable}.
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-04
+ *
+ * @param <T> type of elements in table
+ * 
+ * @see MutableTable
+ * @see AnnotatedTable
+ */
 public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
 
 }
