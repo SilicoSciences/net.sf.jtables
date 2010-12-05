@@ -16,7 +16,6 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
@@ -29,6 +28,16 @@ import net.sf.jtables.table.Utils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
+/**
+ * 
+ * Default implementation for {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}.
+ * 
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ * @param <T> type of elements in this {@code AnnotatedMutableTableImpl}
+ */
 public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 AnnotatedMutableTable<T> {
 
@@ -64,14 +73,6 @@ AnnotatedMutableTable<T> {
 		} else
 			throw new NoSuchElementException("no element for row index [" + key
 					+ "]");
-	}
-
-	protected Set<Integer> createIndicesValues(Collection<? extends Object> keys) {
-		final Set<Integer> result = new LinkedHashSet<Integer>();
-		for (int i = 0; i < keys.size(); i++) {
-			result.add(Integer.valueOf(i));
-		}
-		return result;
 	}
 
 	// Public //
