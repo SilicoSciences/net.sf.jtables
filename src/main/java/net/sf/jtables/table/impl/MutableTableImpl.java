@@ -21,6 +21,16 @@ import java.util.List;
 import net.sf.jtables.table.MutableTable;
 import net.sf.kerner.utils.collections.list.ListUtils;
 
+/**
+ * 
+ * Default implementation for {@link net.sf.jtables.table.MutableTable MutableTable}.
+ * 
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ * @param <T> type of elements in this {@code MutableTable}
+ */
 public class MutableTableImpl<T> extends TableImpl<T> implements
 		MutableTable<T> {
 
