@@ -18,36 +18,156 @@ package net.sf.jtables.table;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * 
+ * A {@code Table} is a collection of elements that is organized in rows and
+ * columns which both are represented as a {@code List} of elements.<br>
+ * A {@code Table} is immutable.
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * 
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ * 
+ * @param <T> type of elements in {@code Table}
+ */
 public interface Table<T> extends Cloneable, Iterable<T> {
-	
+
+	/**
+	 * 
+	 * Get row at given index.
+	 *
+	 * @param index index of row to return
+	 * @return row at given index
+	 */
 	List<T> getRow(int index);
-	
+
+	/**
+	 * 
+	 * Get all rows.
+	 *
+	 * @return all rows
+	 */
 	List<List<T>> getRows();
-	
+
+	/**
+	 * 
+	 * Get column at given index.
+	 *
+	 * @param index index of column to return
+	 * @return column at given index
+	 */
 	List<T> getColumn(int index);
-	
+
+	/**
+	 * 
+	 * Get all columns.
+	 *
+	 * @return all columns
+	 */
 	List<List<T>> getColumns();
-	
+
+	/**
+	 * 
+	 * Get element at given coordinates.
+	 *
+	 * @param i index of row
+	 * @param j index of column
+	 * @return element at given coordinates
+	 */
 	T get(int i, int j);
-	
+
+	/**
+	 * 
+	 * Get number of elements in row at given index.
+	 *
+	 * @param index index of row
+	 * @return number of elements
+	 */
 	int getRowSize(int index);
-	
+
+	/**
+	 * 
+	 * Get number of elements in column at given index.
+	 *
+	 * @param index index of column
+	 * @return number of elements
+	 */
 	int getColumnSize(int index);
-	
+
+	/**
+	 * 
+	 * Get number of elements in row that has the most elements.
+	 *
+	 * @return number of elements
+	 */
 	int getMaxRowSize();
-	
+
+	/**
+	 * 
+	 * Get number of elements in column that has the most elements.
+	 *
+	 * @return number of elements
+	 */
 	int getMaxColumnSize();
-	
+
+	/**
+	 * 
+	 * Get the number of rows.
+	 *
+	 * @return number of rows
+	 */
 	int getNumberOfRows();
-	
+
+	/**
+	 * 
+	 * Get the number of columns.
+	 *
+	 * @return number of rows
+	 */
 	int getNumberOfColumns();
-	
+
+	/**
+	 * 
+	 * Check weather this {@code Table} contains given element.
+	 *
+	 * @param element element that is checked
+	 * @return {@code true}, if this {@code Table} contains given element; {@code false} otherwise
+	 */
 	boolean contains(T element);
-	
+
+	/**
+	 * 
+	 * Retrieve a {@code List} view of all elements contained in this {@code Table}.
+	 *
+	 * @return a {@link java.util.List List} that contains all elements
+	 */
 	List<T> getAllElements();
-	
+
+	/**
+	 * 
+	 * Retrieve an {@link java.util.Iterator Iterator} over rows of this {@code Table}.
+	 *
+	 * @return row iterator
+	 */
 	Iterator<List<T>> getRowIterator();
-	
+
+	/**
+	 * 
+	 * Retrieve an {@link java.util.Iterator Iterator} over columns of this {@code Table}.
+	 *
+	 * @return column iterator
+	 */
 	Iterator<List<T>> getColumnIterator();
-	
+
 }
