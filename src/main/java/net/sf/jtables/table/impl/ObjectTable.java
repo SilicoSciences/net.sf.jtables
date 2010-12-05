@@ -17,6 +17,15 @@ package net.sf.jtables.table.impl;
 
 import java.util.List;
 
+/**
+ * 
+ * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable} with {@link java.lang.Object Object} elements.
+ *
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ */
 public class ObjectTable extends AnnotatedMutableTableImpl<Object> {
 
 	public ObjectTable() {
