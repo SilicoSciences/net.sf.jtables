@@ -79,7 +79,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param index index of row to be replaced
 	 * @param row new row at given index 
 	 */
-	void setRow(int index, List<? extends T> elements);
+	void setRow(int index, List<? extends T> row);
 	
 	/**
 	 * 
