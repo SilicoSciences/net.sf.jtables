@@ -17,34 +17,146 @@ package net.sf.jtables.table;
 
 import java.util.List;
 
+/**
+ * 
+ * {@code MutableTable} extends {@link Table} by mutability.
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ *
+ * </p>
+ * <p>
+ * <pre>
+ * TODO example
+ * </pre>
+ * </p>
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ * @param <T> type of elements in table
+ */
 public interface MutableTable<T> extends Table<T> {
 	
-	void addRow(List<? extends T> elements);
+	/**
+	 * 
+	 * Add a row to this {@code MutableTable}.
+	 *
+	 * @param row row to add 
+	 */
+	void addRow(List<? extends T> row);
 
-	void addRow(int index, List<? extends T> elements);
+	/**
+	 * 
+	 * Add a row to this {@code MutableTable} at given index.
+	 *
+	 * @param row row to add 
+	 * @param index index at which row is added
+	 */
+	void addRow(int index, List<? extends T> row);
 
-	void addColumn(List<? extends T> elements);
+	/**
+	 * 
+	 * Add a column to this {@code MutableTable}.
+	 *
+	 * @param column column to add 
+	 */
+	void addColumn(List<? extends T> column);
 
-	void addColumn(int index, List<? extends T> elements);
+	/**
+	 * 
+	 * Add a column to this {@code MutableTable} at given index.
+	 *
+	 * @param column column to add 
+	 * @param index index at which column is added
+	 */
+	void addColumn(int index, List<? extends T> column);
 	
+	/**
+	 * 
+	 * Replace row at given index with given row.
+	 *
+	 * @param index index of row to be replaced
+	 * @param row new row at given index 
+	 */
 	void setRow(int index, List<? extends T> elements);
 	
-	void setColumn(int index, List<? extends T> elements);
+	/**
+	 * 
+	 * Replace column at given index with given column.
+	 *
+	 * @param index index of column to be replaced
+	 * @param column new column at given index 
+	 */
+	void setColumn(int index, List<? extends T> column);
 	
+	/**
+	 * 
+	 * Remove row at given index.
+	 *
+	 * @param index index of row to be removed
+	 */
 	void removeRow(int index);
 	
+	/**
+	 * 
+	 * Remove column at given index.
+	 *
+	 * @param index index of column to be removed
+	 */
 	void removeColumn(int index);
 	
+	/**
+	 * 
+	 * Set element at given coordinates.
+	 *
+	 * @param i index of row
+	 * @param j index of column
+	 * @param element element to set
+	 */
 	void set(int i, int j, T element);
 	
+	/**
+	 * 
+	 * Remove element at given coordinates.
+	 *
+	 * @param i index of row
+	 * @param j index of column
+	 */
 	void remove(int i, int j);
 	
+	/**
+	 * 
+	 * Set all elements that match {@code row index <= i} or {@code column index <= i} to {@code element}.
+	 *
+	 * @param i index to which elements are filled
+	 * @param element element that is used to fill rows and columns
+	 */
 	void fill(int i, T element);
 	
+	/**
+	 * 
+	 * Set all elements that match {@code row index <= i} to {@code element}.
+	 *
+	 * @param i index to which elements are filled
+	 * @param element element that is used to fill rows
+	 */
 	void fillRows(int i, T element);
 	
+	/**
+	 * 
+	 * Set all elements that match {@code column index <= i} to {@code element}.
+	 *
+	 * @param i index to which elements are filled
+	 * @param element element that is used to fill columns
+	 */
 	void fillColumns(int i, T element);
 
+	/**
+	 * 
+	 * Remove all elements from this {@code MutableTable}.
+	 *
+	 */
 	void clear();
 
 }
