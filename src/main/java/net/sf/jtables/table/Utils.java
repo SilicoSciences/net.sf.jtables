@@ -15,6 +15,14 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
+/**
+ * 
+ * Utility class.
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ */
 public class Utils {
 	
 	public static final String NEW_LINE_STRING = System.getProperty("line.separator");
