@@ -25,6 +25,16 @@ import net.sf.jtables.table.Table;
 
 import net.sf.jtables.table.Utils;
 
+/**
+ * 
+ * Default implementation for {@link net.sf.jtables.table.Table Table}. 
+ * 
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2010-12-05
+ *
+ * @param <T> type of elements in this {@code Table}
+ */
 public class TableImpl<T> implements Table<T> {
 
 	// Field //
@@ -36,11 +46,6 @@ public class TableImpl<T> implements Table<T> {
 
 	// Constructor //
 
-	/**
-	 * 
-	 * TODO description
-	 * 
-	 */
 	public TableImpl() {
 	}
 

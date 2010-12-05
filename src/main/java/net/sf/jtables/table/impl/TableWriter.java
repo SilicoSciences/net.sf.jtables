@@ -21,7 +21,8 @@ import net.sf.kerner.utils.io.lazy.LazyStringWriter;
 /**
  * 
  * 
- * A {@code TableWriter} will write a {@link Table} to
+ * A {@code TableWriter} will write a {@link net.sf.jtables.table.Table Table}
+ * to
  * <ul>
  * <li>
  * a {@link java.io.File}</li>
@@ -32,16 +33,17 @@ import net.sf.kerner.utils.io.lazy.LazyStringWriter;
  * </ul>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-10-26 *
+ * @version 2010-12-05
  */
 public class TableWriter extends LazyStringWriter {
 
 	/**
 	 * 
-	 * Construct a @code TableWriter} that will write given {@link Table}.
+	 * Construct a {@code TableWriter} that will write given
+	 * {@link net.sf.jtables.table.Table Table}.
 	 * 
 	 * @param table
-	 *            {@link Table} to write
+	 *            {@link net.sf.jtables.table.Table Table} to write
 	 */
 	public TableWriter(Table<?> table) {
 		super(table.toString());

@@ -19,19 +19,20 @@ import java.util.List;
 
 /**
  * 
- * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable} with {@link java.lang.String String} elements.
- *
- *
+ * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}
+ * with {@link java.lang.String String} elements.
+ * 
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-05
- *
+ * 
  */
 public class StringTable extends AnnotatedMutableTableImpl<String> {
 
 	public StringTable() {
 		super();
 	}
-	
+
 	public StringTable(List<List<? extends String>> rows) {
 		super(rows);
 	}
