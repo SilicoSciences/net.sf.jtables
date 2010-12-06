@@ -150,13 +150,104 @@ public class TestStringTableReader {
 	public final void testReadReader01() throws IOException {
 		table.setColumnIdentifier(new LinkedHashSet<String>() {
 			{
+				add("cid00");
 				add("cid01");
+				add("cid02");
 			}
 		});
-//		System.out.println(table);
-		tableReader = new StringTableReader(true, false);
+		table.setRowIdentifier(new LinkedHashSet<String>(){
+			{
+				add("rid00");
+				add("rid01");
+			}
+		});
+		tableReader = new StringTableReader(true, true);
+		stringReader = new StringReader(table.toString());
 		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
-		System.out.println(result);
+		assertEquals(table.toString(), result.toString());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("serial")
+	@Test
+	public final void testReadReader02() throws IOException {
+		table.setColumnIdentifier(new LinkedHashSet<String>() {
+			{
+				add("cid00");
+				add("cid01");
+				add("cid02");
+			}
+		});
+		tableReader = new StringTableReader(true, false);
+		stringReader = new StringReader(table.toString());
+		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		assertEquals(table.toString(), result.toString());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("serial")
+	@Test
+	public final void testReadReader03() throws IOException {
+		table.setRowIdentifier(new LinkedHashSet<String>(){
+			{
+				add("rid00");
+				add("rid01");
+			}
+		});
+		tableReader = new StringTableReader(false, true);
+		stringReader = new StringReader(table.toString());
+		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		assertEquals(table.toString(), result.toString());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("serial")
+	@Test
+	public final void testReadReader04() throws IOException {
+		table.setRowIdentifier(new LinkedHashSet<String>(){
+			{
+				add("rid00");
+			}
+		});
+		tableReader = new StringTableReader(false, true);
+		stringReader = new StringReader(table.toString());
+		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		assertEquals(table.toString(), result.toString());
+	}
+	
+	/**
+	 * Test method for
+	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * 
+	 * @throws IOException
+	 */
+	@SuppressWarnings("serial")
+	@Test
+	public final void testReadReader05() throws IOException {
+		table.setColumnIdentifier(new LinkedHashSet<String>() {
+			{
+				add("cid00");
+			}
+		});
+		tableReader = new StringTableReader(true, false);
+		stringReader = new StringReader(table.toString());
+		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		assertEquals(table.toString(), result.toString());
 	}
 
 }
