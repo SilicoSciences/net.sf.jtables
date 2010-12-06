@@ -129,6 +129,7 @@ public abstract class AbstractTableReader<T> extends
 					result.addRow(row);
 			}
 		}
+		result.setRowIdentifier(rowids);
 		return result;
 	}
 
