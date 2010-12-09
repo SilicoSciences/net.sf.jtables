@@ -131,7 +131,6 @@ public class TestStringTableReader {
 	 * 
 	 * @throws IOException
 	 */
-	@SuppressWarnings("serial")
 	@Test
 	public final void testReadReader() throws IOException {
 		tableReader = new StringTableReader(false, false);
