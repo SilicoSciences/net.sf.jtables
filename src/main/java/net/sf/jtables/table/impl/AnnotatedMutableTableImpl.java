@@ -157,8 +157,8 @@ AnnotatedMutableTable<T> {
 
 	public List<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
-		checkRowIndex(key);
-		return getRow(colIdents.get(key));
+		checkColumnIndex(key);
+		return getColumn(colIdents.get(key));
 	}
 
 }
