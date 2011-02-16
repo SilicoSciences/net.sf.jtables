@@ -43,5 +43,17 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 		rr.addAll(rows);
 		return rr;
 	}
-
+	
+	@Override
+	public TableImpl<String> clone() throws CloneNotSupportedException {
+		final List<List<String>> rows = new ArrayList<List<String>>();
+		for(List<? extends String> row : this.rows){
+			final List<String> columns = new ArrayList<String>();
+			for(String element : row){
+				columns.add(element);
+			}
+			rows.add(columns);
+		}
+		return new StringTable(rows);
+	}
 }
