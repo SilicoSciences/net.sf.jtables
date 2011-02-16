@@ -15,6 +15,7 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,14 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 		super();
 	}
 
-	public StringTable(List<List<? extends String>> rows) {
-		super(rows);
+	public StringTable(List<List<String>> rows) {
+		super(getList(rows));
 	}
+	
+	private static List<List<? extends String>> getList(List<List<String>> rows){
+		final List<List<? extends String>> rr = new ArrayList<List<? extends String>>();
+		rr.addAll(rows);
+		return rr;
+	}
+
 }
