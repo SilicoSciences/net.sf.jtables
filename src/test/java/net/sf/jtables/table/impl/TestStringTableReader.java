@@ -46,9 +46,9 @@ public class TestStringTableReader {
 
 	private StringTableReader tableReader;
 
-	private List<List<? extends String>> rows;
+	private List<List<String>> rows;
 
-	private List<List<? extends String>> cols;
+	private List<List<String>> cols;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -61,7 +61,7 @@ public class TestStringTableReader {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		rows = new ArrayList<List<? extends String>>();
+		rows = new ArrayList<List<String>>();
 		rows.add(new ArrayList<String>() {
 			{
 				add("eins00");
@@ -76,7 +76,7 @@ public class TestStringTableReader {
 				add("zwei02");
 			}
 		});
-		cols = new ArrayList<List<? extends String>>();
+		cols = new ArrayList<List<String>>();
 		cols.add(new ArrayList<String>() {
 			{
 				add("eins00");
