@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -12,6 +13,14 @@
 	<description>Simple and lightweight framework to work with tables and table based files such as CSV and other (tab)-delimited files.</description>
 	<properties>
 		<jdk.version>1.5</jdk.version>
+		<m2st-gatc-id>UA-21674458-1</m2st-gatc-id>
+		<m2st-gatc-config>_setDetectFlash(true),_setDetectTitle(false)
+		</m2st-gatc-config>
+		<m2st-syntaxHighlighter-urlBase>syntaxhighlighter</m2st-syntaxHighlighter-urlBase>
+		<m2st-syntaxHighlighter-brushFiles>shBrushPlain.js,shBrushXml.js,shBrushJava.js</m2st-syntaxHighlighter-brushFiles>
+		<m2st-syntaxHighlighter-themeCssFile>shThemeDefault.css</m2st-syntaxHighlighter-themeCssFile>
+		<m2st-syntaxHighlighter-config>config.clipboardSwf='%ROOT%/scripts/clipboard.swf',defaults['gutter']=false</m2st-syntaxHighlighter-config>
+		<m2st-renderDefaultPoweredByLogoIfNotSpecified>false</m2st-renderDefaultPoweredByLogoIfNotSpecified>
 	</properties>
 	<url>http://jtables.sourceforge.net/</url>
 	<developers>
@@ -69,6 +78,23 @@
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>2.1.1</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.anasoft.os</groupId>
+						<artifactId>m2st-doxia-macros</artifactId>
+						<version>2.0</version>
+					</dependency>
+					<dependency>
+						<groupId>org.apache.maven.doxia</groupId>
+						<artifactId>doxia-core</artifactId>
+						<version>1.1.3</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 		</plugins>
 	</build>
