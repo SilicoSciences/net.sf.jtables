@@ -23,8 +23,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import net.sf.kerner.utils.io.AbstractGenericReader;
 import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
-import net.sf.kerner.utils.io.impl.AbstractGenericReader;
 
 /**
  * 
@@ -129,6 +129,7 @@ public abstract class AbstractTableReader<T> extends
 					result.addRow(row);
 			}
 		}
+		result.setRowIdentifier(rowids);
 		return result;
 	}
 

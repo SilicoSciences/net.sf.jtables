@@ -39,7 +39,7 @@ public class StringTableReader extends AbstractTableReader<String>{
 	}
 
 	@Override
-	protected AnnotatedMutableTable<String> getInstance() {
+	protected StringTable getInstance() {
 		return new StringTable();
 	}
 
