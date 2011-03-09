@@ -125,6 +125,8 @@ public class TestStringTableReader {
 		fail("Not yet implemented"); // TODO
 	}
 
+	// START SNIPPET: example1
+	
 	/**
 	 * Test method for
 	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
@@ -138,6 +140,8 @@ public class TestStringTableReader {
 		assertEquals(table.toString(), result.toString());
 	}
 
+	// END SNIPPET: example1
+	
 	/**
 	 * Test method for
 	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
