@@ -17,6 +17,9 @@
 			<item name="JavaDoc" href="http://jtables.sourceforge.net/apidocs/index.html" />
 			<item name="Sourceforge" href="http://sourceforge.net/projects/jtables/" />
 		</menu>
+		<menu name="Examples">
+			<item name="Reading a CSV-file" href="example1.html" />
+		</menu>
 		<menu ref="reports" />
 	</body>
 </project>
