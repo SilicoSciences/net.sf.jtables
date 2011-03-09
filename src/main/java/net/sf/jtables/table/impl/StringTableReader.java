@@ -16,7 +16,6 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import net.sf.jtables.table.AbstractTableReader;
-import net.sf.jtables.table.AnnotatedMutableTable;
 
 /**
  * 
