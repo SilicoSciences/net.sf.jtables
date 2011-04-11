@@ -1,21 +1,9 @@
-/**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
- ***********************************************************************/
-
 package net.sf.jtables.table;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
@@ -23,67 +11,89 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
-import net.sf.kerner.utils.io.AbstractGenericReader;
-import net.sf.kerner.utils.io.buffered.impl.BufferedStringReader;
+import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 
 /**
  * 
- * An {@code AbstractTableReader} reads a {@link AnnotatedMutableTable} with
- * elements of type {@code T} from a
- * <ul>
- * <li>
- * {@link java.io.File File}</li>
- * <li>
- * {@link java.io.InputStream InputStream}</li>
- * <li>
- * {@link java.io.Reader Reader}</li>
- * </ul>
+ * TODO description
  * 
  * <p>
  * <b>Example:</b><br>
- * 
+ *
  * </p>
  * <p>
- * 
  * <pre>
  * TODO example
  * </pre>
- * 
  * </p>
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
- * 
+ * @version 2011-04-11
+ *
  * @param <T>
- *            type of elements in table that is read
  */
-public abstract class AbstractTableReader<T> extends
-		AbstractGenericReader<AnnotatedMutableTable<T>> {
-
+public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? extends T>>
+		implements TableReader<T> {
+	
 	public final static String DEFAULT_DELIM = "\t";
 
-	protected final boolean columnIds;
+	protected final boolean colsB;
 
-	protected final boolean rowIds;
+	protected final boolean rowsB;
 
 	protected final String delim;
 
-	private final Set<String> rowids = new LinkedHashSet<String>();
+	protected final Set<String> rowids = new LinkedHashSet<String>();
 
-	public AbstractTableReader(boolean columnIds, boolean rowIds, String delim) {
-		this.columnIds = columnIds;
-		this.rowIds = rowIds;
+	protected final Set<String> colids = new LinkedHashSet<String>();
+
+	private volatile boolean firstLine = true;
+
+	public AbstractTableReader(Reader reader, boolean columnIds,
+			boolean rowIds, String delim) throws IOException {
+		super(reader);
+		this.colsB = columnIds;
+		this.rowsB = rowIds;
 		if (delim == null)
 			this.delim = DEFAULT_DELIM;
 		else
 			this.delim = delim;
+		read();
 	}
 
-	public AbstractTableReader(boolean columnIds, boolean rowIds) {
-		this(columnIds, rowIds, null);
+	public AbstractTableReader(InputStream stream, boolean columnIds,
+			boolean rowIds, String delim) throws IOException {
+		super(stream);
+		this.colsB = columnIds;
+		this.rowsB = rowIds;
+		if (delim == null)
+			this.delim = DEFAULT_DELIM;
+		else
+			this.delim = delim;
+		read();
+	}
+
+	public AbstractTableReader(File file, boolean columnIds, boolean rowIds,
+			String delim) throws IOException {
+		this(new FileInputStream(file), columnIds, rowIds, null);
+	}
+
+	public AbstractTableReader(File file, boolean columnIds, boolean rowIds)
+			throws IOException {
+		this(file, columnIds, rowIds, null);
+	}
+
+	public AbstractTableReader(InputStream stream, boolean columnIds,
+			boolean rowIds) throws IOException {
+		this(stream, columnIds, rowIds, null);
+	}
+
+	public AbstractTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
+		this(reader, columnIds, rowIds, null);
 	}
 
 	protected Set<String> getColIds(String line) {
+//		System.err.println("extractring column identifiers");
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
 		final Set<String> list = new LinkedHashSet<String>();
@@ -91,52 +101,68 @@ public abstract class AbstractTableReader<T> extends
 			final String s = scanner.next();
 			list.add(s);
 		}
+//		System.err.println("got column identifiers: " + list);
 		return list;
 	}
+	
+	@Override
+	protected List<? extends T> doRead() throws IOException {
+		String line = reader.readLine();
+//		System.err.println("reading line [" + line + "]");
+		if (line == null)
+			return null;
+		if (colsB && firstLine) {
+			colids.addAll(getColIds(line));
+			firstLine = false;
+			// column ids read, continue to next line
+			line = reader.readLine();
+		}
 
-	protected List<T> handleLine(String line) {
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
-		final List<T> list = new ArrayList<T>();
+		final List<T> result = new ArrayList<T>();
 		boolean first = true;
+
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
-			if (rowIds && first) {
+			if (rowsB && first) {
 				rowids.add(s);
 				first = false;
-			} else
-				list.add(parse(s));
+			} else {
+				result.add(parse(s));
+			}
 		}
-		return list;
+		return result;
 	}
 
 	/**
-	 * Read a {@code AnnotatedMutableTable} from {@code reader}.
+	 * Read a {@code AnnotatedTable} at once.
 	 */
-	public AnnotatedMutableTable<T> read(Reader reader) throws IOException {
-		final BufferedStringReader reader2 = new BufferedStringReader(reader);
+	public AnnotatedTable<T> readAll() throws IOException {
+//		System.err.println("reading at once");
 		final AnnotatedMutableTable<T> result = getInstance();
-		boolean firstLine = true;
-		String line = null;
-		while ((line = reader2.nextLine()) != null) {
-			if (columnIds && firstLine) {
-				final Set<String> colids = getColIds(line);
-				result.setColumnIdentifier(colids);
-				firstLine = false;
-			} else {
-				final List<T> row = handleLine(line);
-				if (row.size() != 0)
-					result.addRow(row);
-			}
+		final AbstractIOIterator<List<? extends T>> it = getIterator();
+		while (it.hasNext()) {
+			final List<? extends T> next = it.next();
+//			System.err.println("adding row " + next);
+			result.addRow(next);
 		}
+		it.close();
 		result.setRowIdentifier(rowids);
+		result.setColumnIdentifier(colids);
+//		System.err.println("cIds:" + result.getColumnIdentifier());
+//		System.err.println("rIds:" + result.getRowIdentifier());
 		return result;
+	}
+
+	public AbstractIOIterator<List< ? extends T>> getIterator() throws IOException {
+		return this;
 	}
 
 	/**
 	 * 
 	 * Get a new instance of {@link AnnotatedMutableTable}.
-	 *
+	 * 
 	 * @return a new instance of {@link AnnotatedMutableTable}
 	 */
 	protected abstract AnnotatedMutableTable<T> getInstance();
@@ -144,10 +170,12 @@ public abstract class AbstractTableReader<T> extends
 	/**
 	 * 
 	 * Parse an object of type {@code T} from given string.
-	 *
-	 * @param s {@link java.lang.String String} to parse from
+	 * 
+	 * @param s
+	 *            {@link java.lang.String String} to parse from
 	 * @return object of type {@code T} that was parsed
-	 * @throws NumberFormatException if parsing fails
+	 * @throws NumberFormatException
+	 *             if parsing fails
 	 */
 	protected abstract T parse(String s) throws NumberFormatException;
 

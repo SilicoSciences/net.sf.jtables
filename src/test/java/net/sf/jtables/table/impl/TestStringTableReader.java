@@ -24,6 +24,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import net.sf.jtables.table.AnnotatedMutableTable;
+import net.sf.jtables.table.AnnotatedTable;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -35,7 +36,7 @@ import org.junit.Test;
 /**
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2011-04-11
  * 
  */
 public class TestStringTableReader {
@@ -124,23 +125,27 @@ public class TestStringTableReader {
 	public final void testStringTableReaderBooleanBoolean() {
 		fail("Not yet implemented"); // TODO
 	}
-
+	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
 	@Test
 	public final void testReadReader() throws IOException {
-		tableReader = new StringTableReader(false, false);
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, false, false);
+		AnnotatedTable<String> result = tableReader.readAll();
+//		System.err.println("table:" + table);
+//		System.err.println("cId:" + result.getColumnIdentifier());
+//		System.err.println("rId:" + result.getRowIdentifier());
+//		System.err.println("result:" + result);
 		assertEquals(table.toString(), result.toString());
 	}
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -160,15 +165,15 @@ public class TestStringTableReader {
 				add("rid01");
 			}
 		});
-		tableReader = new StringTableReader(true, true);
 		stringReader = new StringReader(table.toString());
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, true, true);
+		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
 	}
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -182,15 +187,15 @@ public class TestStringTableReader {
 				add("cid02");
 			}
 		});
-		tableReader = new StringTableReader(true, false);
 		stringReader = new StringReader(table.toString());
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, true, false);
+		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
 	}
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -203,15 +208,15 @@ public class TestStringTableReader {
 				add("rid01");
 			}
 		});
-		tableReader = new StringTableReader(false, true);
 		stringReader = new StringReader(table.toString());
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, false, true);
+		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
 	}
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -223,15 +228,15 @@ public class TestStringTableReader {
 				add("rid00");
 			}
 		});
-		tableReader = new StringTableReader(false, true);
 		stringReader = new StringReader(table.toString());
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, false, true);
+		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
 	}
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -243,9 +248,9 @@ public class TestStringTableReader {
 				add("cid00");
 			}
 		});
-		tableReader = new StringTableReader(true, false);
 		stringReader = new StringReader(table.toString());
-		AnnotatedMutableTable<String> result = tableReader.read(stringReader);
+		tableReader = new StringTableReader(stringReader, true, false);
+		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
 	}
 
