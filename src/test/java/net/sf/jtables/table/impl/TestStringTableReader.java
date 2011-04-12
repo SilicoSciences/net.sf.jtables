@@ -15,7 +15,8 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -23,7 +24,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.AnnotatedTable;
 
 import org.junit.After;
@@ -136,10 +136,6 @@ public class TestStringTableReader {
 	public final void testReadReader() throws IOException {
 		tableReader = new StringTableReader(stringReader, false, false);
 		AnnotatedTable<String> result = tableReader.readAll();
-//		System.err.println("table:" + table);
-//		System.err.println("cId:" + result.getColumnIdentifier());
-//		System.err.println("rId:" + result.getRowIdentifier());
-//		System.err.println("result:" + result);
 		assertEquals(table.toString(), result.toString());
 	}
 
