@@ -15,7 +15,8 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringReader;
@@ -129,7 +130,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -144,7 +145,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#read(java.io.Reader)}.
+	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
