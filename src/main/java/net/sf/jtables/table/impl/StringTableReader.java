@@ -30,7 +30,7 @@ import net.sf.jtables.table.AbstractTableReader;
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-04-11
+ * @version 2011-04-13
  * 
  */
 public class StringTableReader extends AbstractTableReader<String>{
@@ -81,7 +81,7 @@ public class StringTableReader extends AbstractTableReader<String>{
 
 	@Override
 	protected String parse(String s) {
-		return s;
+		return s.trim();
 	}
 	
 }
