@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 
 /**
@@ -125,6 +126,8 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
+			if(StringUtils.emptyString(s))
+				continue;
 			if (rowsB && first) {
 				rowids.add(s);
 				first = false;
@@ -132,6 +135,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 				result.add(parse(s));
 			}
 		}
+		
+		if(result.isEmpty())
+			return null;
 		return result;
 	}
 
