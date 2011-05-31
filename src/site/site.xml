@@ -15,6 +15,8 @@
 			<item name="Introduction" href="index.html" />
 			<item name="Download" href="http://sourceforge.net/projects/jtables/files/" />
 			<item name="JavaDoc" href="http://jtables.sourceforge.net/apidocs/index.html" />
+			<item name="Test Coverage"
+				href="http://jtables.sourceforge.net/cobertura/index.html" />
 			<item name="Sourceforge" href="http://sourceforge.net/projects/jtables/" />
 		</menu>
 		<menu name="Examples">
