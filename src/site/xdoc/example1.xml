@@ -1,31 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
-
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
 	<properties>
 		<author email="alex.kerner.24@googlemail.com">Alexander Kerner</author>
 		<title>JTables - simple and lightweight csv-like plaintext file format
 		</title>
 	</properties>
-
 	<head>
 		<meta name="keywords"
 			content="simple, lightweight, file format, csv, tab-delimited, comma-separated, csv, Comma-Separated Values" />
 	</head>
-
-
 	<body>
-
 		<section name="Example one: Reading a CSV-file">
-		<macro name="snippet">
+			<macro name="snippet">
 				<param name="id" value="example1" />
 				<param name="file"
 					value="src/test/java/net/sf/jtables/table/impl/TestStringTableReader.java" />
 			</macro>
 		</section>
-
 	</body>
-
-
 
 </document>
