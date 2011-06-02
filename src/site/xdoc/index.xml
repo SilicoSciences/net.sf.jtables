@@ -14,12 +14,17 @@
 	<body>
 
 		<section name="Introduction">
-			<p>JTables is a simple and lightweight API to write and read
-				CSV-files.</p>
+			<p>
+				<i>JTables</i>
+				is a simple and lightweight API to write and read
+				CSV-files.
+			</p>
 			<p>
 				CSV means by definition
 				<i>Comma-Separated Values</i>
-				, but JTables is really not limited to this form:
+				, but
+				<i>JTables</i>
+				is really not limited to this form:
 			</p>
 			<p>
 				In principal, any character may be used as a separator, while the
@@ -30,13 +35,17 @@
 				).
 			</p>
 		</section>
-		
+
 		<section name="Getting started">
-		<p>To get started take a look at the examples:
-		<ul>
-		<li>Example one: <a href="example1-code.html">Reading a CSV-file</a></li>
-		</ul>
-		</p>
+			<p>
+				To get started take a look at the examples:
+				<ul>
+					<li>
+						Example one:
+						<a href="example1.html">Reading a CSV-file</a>
+					</li>
+				</ul>
+			</p>
 		</section>
 
 	</body>

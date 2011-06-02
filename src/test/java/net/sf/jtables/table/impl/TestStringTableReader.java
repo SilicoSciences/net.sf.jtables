@@ -16,15 +16,18 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 import net.sf.jtables.table.AnnotatedTable;
+import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -136,9 +139,15 @@ public class TestStringTableReader {
 	 */
 	@Test
 	public final void testReadReader() throws IOException {
-		tableReader = new StringTableReader(stringReader, false, false);
-		AnnotatedTable<String> result = tableReader.readAll();
-		assertEquals(table.toString(), result.toString());
+		String tableString =
+			  "1 2 3"
+			+ IOUtils.NEW_LINE_STRING
+			+ "a b c"
+			;
+		StringReader stringReader = new StringReader(tableString);
+		StringTableReader tableReader = new StringTableReader(stringReader, false, false, " ");
+		AnnotatedTable<String> table = tableReader.readAll();
+		assertArrayEquals(new String[]{"1","2","3"}, table.getRow(0).toArray());
 	}
 
 	// END SNIPPET: example1
