@@ -15,14 +15,13 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 
@@ -39,7 +38,7 @@ import org.junit.Test;
 /**
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-04-11
+ * @version 2011-06-06
  * 
  */
 public class TestStringTableReader {
@@ -138,15 +137,27 @@ public class TestStringTableReader {
 	 * @throws IOException
 	 */
 	@Test
-	public final void testReadReader() throws IOException {
+	public final void testReadAll() throws IOException {
+		// A string that contains a table
 		String tableString =
 			  "1 2 3"
 			+ IOUtils.NEW_LINE_STRING
 			+ "a b c"
 			;
+		// A Reader to read the table
 		StringReader stringReader = new StringReader(tableString);
+		
+		// First argument is the reader (File or Stream would also work)
+		// Second and third argument is column/ row headers
+		// Forth argument is column-delimiter
 		StringTableReader tableReader = new StringTableReader(stringReader, false, false, " ");
+		
+		// Read the table (is also of type StringTable, may be casted)
 		AnnotatedTable<String> table = tableReader.readAll();
+		
+		// Close the reader
+		tableReader.close();
+		
 		assertArrayEquals(new String[]{"1","2","3"}, table.getRow(0).toArray());
 	}
 
