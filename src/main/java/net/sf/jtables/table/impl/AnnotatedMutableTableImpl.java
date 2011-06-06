@@ -24,9 +24,9 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import net.sf.jtables.table.AnnotatedMutableTable;
-import net.sf.jtables.table.Utils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
@@ -101,7 +101,7 @@ AnnotatedMutableTable<T> {
 				if (it.hasNext())
 					sb.append('\t');
 			}
-			sb.append(Utils.NEW_LINE_STRING);
+			sb.append(IOUtils.NEW_LINE_STRING);
 		}
 
 		final Iterator<List<T>> rowIt = getRowIterator();
@@ -123,7 +123,7 @@ AnnotatedMutableTable<T> {
 				
 			}
 			if (rowIt.hasNext() || identIt.hasNext())
-				sb.append(Utils.NEW_LINE_STRING);
+				sb.append(IOUtils.NEW_LINE_STRING);
 		}
 		return sb.toString();
 	}
