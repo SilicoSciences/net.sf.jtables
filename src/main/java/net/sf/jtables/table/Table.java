@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 
  * A {@code Table} is a collection of elements that is organized in rows and
- * columns which both are represented as a {@code List} of elements.<br>
+ * columns which both are represented as a {@link java.util.List List} of elements.<br>
  * A {@code Table} is immutable.
  * 
  * <p>
