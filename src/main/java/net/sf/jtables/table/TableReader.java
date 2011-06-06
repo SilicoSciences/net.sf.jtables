@@ -15,11 +15,10 @@ import net.sf.kerner.utils.io.buffered.IOIterable;
  * </p>
  * Via {@link TableReader#readAll()} it is also possible, to read in a whole table at once.
  * 
- * @see IOIterable
- * @see AnnotatedTable
- * @see StringTable
- * @see IntegerTable
- * @see DoubleTable
+ * @see net.sf.kerner.utils.io.buffered.IOIterable IOIterable
+ * @see AnnotatedTable AnnotatedTable
+ * @see net.sf.jtables.table.impl.StringTable StringTable
+ * @see net.sf.jtables.table.impl.IntegerTable IntegerTable
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2011-06-06
@@ -40,8 +39,8 @@ public interface TableReader<T> extends IOIterable<List<? extends T>> {
 	 * 
 	 * Read a {@link Table} at once.
 	 * 
-	 * @return
-	 * @throws IOException
+	 * @return new instance of {@code AnnotatedTable} that was read
+	 * @throws IOException if reading failed
 	 */
 	AnnotatedTable<T> readAll() throws IOException;
 
