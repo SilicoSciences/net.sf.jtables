@@ -109,7 +109,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 	@Override
 	protected List<? extends T> doRead() throws IOException {
 		String line = reader.readLine();
-//		System.err.println("reading line [" + line + "]");
+//		System.err.println("read line [" + line + "]");
 		if (line == null)
 			return null;
 		if (colsB && firstLine) {
@@ -117,6 +117,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 			firstLine = false;
 			// column ids read, continue to next line
 			line = reader.readLine();
+//			System.err.println("read line [" + line + "]");
+			if (line == null)
+				return null;
 		}
 
 		final Scanner scanner = new Scanner(line);
