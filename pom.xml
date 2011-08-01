@@ -56,17 +56,17 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.2.2</version>
+			<version>0.2.4</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.kerner-utils-collections</groupId>
 			<artifactId>kerner-utils-collections</artifactId>
-			<version>0.2.4</version>
+			<version>0.4.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.kerner-utils</groupId>
 			<artifactId>kerner-utils</artifactId>
-			<version>0.2.3</version>
+			<version>0.2.5</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
