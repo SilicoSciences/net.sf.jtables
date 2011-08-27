@@ -17,6 +17,7 @@ package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -272,6 +273,27 @@ public class TestStringTableReader {
 		tableReader = new StringTableReader(stringReader, true, false);
 		AnnotatedTable<String> result = tableReader.readAll();
 		assertEquals(table.toString(), result.toString());
+	}
+	
+	/**
+	 * 
+	 * Test case for bug fix a01240a88aba5ce9ffb496b52eb53737d68591f9
+	 *
+	 * @throws IOException
+	 */
+	@SuppressWarnings("serial")
+	@Test
+	public final void testReadAll01() throws IOException {
+		table = new StringTable();
+		table.setColumnIdentifier(new LinkedHashSet<String>() {
+			{
+				add("cid00");
+			}
+		});
+		stringReader = new StringReader(table.toString());
+		tableReader = new StringTableReader(stringReader, true, false);
+		AnnotatedTable<String> result = tableReader.readAll();
+		assertTrue(result.getAllElements().isEmpty());
 	}
 
 }

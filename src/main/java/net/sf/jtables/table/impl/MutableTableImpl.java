@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.jtables.table.MutableTable;
-import net.sf.kerner.utils.collections.list.ListUtils;
+import net.sf.kerner.utils.collections.list.impl.ListUtils;
 
 /**
  * 
