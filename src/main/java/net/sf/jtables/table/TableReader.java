@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterable;
+import net.sf.kerner.utils.io.buffered.IOIterator;
 
 /**
  * 
@@ -47,6 +48,6 @@ public interface TableReader<T> extends IOIterable<List<? extends T>> {
 	/**
 	 * 
 	 */
-	AbstractIOIterator<List<? extends T>> getIterator() throws IOException;
+	IOIterator<List<? extends T>> getIterator() throws IOException;
 
 }

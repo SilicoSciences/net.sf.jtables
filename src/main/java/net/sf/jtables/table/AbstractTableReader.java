@@ -13,6 +13,7 @@ import java.util.Set;
 
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
+import net.sf.kerner.utils.io.buffered.IOIterator;
 
 /**
  * 
@@ -147,7 +148,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 	public AnnotatedTable<T> readAll() throws IOException {
 //		System.err.println("reading at once");
 		final AnnotatedMutableTable<T> result = getInstance();
-		final AbstractIOIterator<List<? extends T>> it = getIterator();
+		final IOIterator<List<? extends T>> it = getIterator();
 		while (it.hasNext()) {
 			final List<? extends T> next = it.next();
 //			System.err.println("adding row " + next);
@@ -161,7 +162,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 		return result;
 	}
 
-	public AbstractIOIterator<List< ? extends T>> getIterator() throws IOException {
+	public IOIterator<List< ? extends T>> getIterator() throws IOException {
 		return this;
 	}
 
