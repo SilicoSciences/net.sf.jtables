@@ -77,7 +77,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 
 	public AbstractTableReader(File file, boolean columnIds, boolean rowIds,
 			String delim) throws IOException {
-		this(new FileInputStream(file), columnIds, rowIds, null);
+		this(new FileInputStream(file), columnIds, rowIds, delim);
 	}
 
 	public AbstractTableReader(File file, boolean columnIds, boolean rowIds)
