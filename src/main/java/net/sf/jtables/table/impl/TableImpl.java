@@ -136,7 +136,7 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public List<List<T>> getRows() {
+	public List<? extends List<T>> getRows() {
 		final List<List<T>> result = new ArrayList<List<T>>();
 		for (int i = 0; i < getNumberOfRows(); i++) {
 			// defensive copying since we are immutable
@@ -165,7 +165,7 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public List<List<T>> getColumns() {
+	public List<? extends List<T>> getColumns() {
 		final List<List<T>> result = new ArrayList<List<T>>();
 		for (int i = 0; i < getNumberOfColumns(); i++) {
 			// defensive copying since we are immutable
@@ -263,14 +263,14 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public Iterator<List<T>> getRowIterator() {
+	public Iterator<? extends List<T>> getRowIterator() {
 		return new ArrayList<List<T>>(getRows()).iterator();
 	}
 
 	/**
 	 * 
 	 */
-	public Iterator<List<T>> getColumnIterator() {
+	public Iterator<? extends List<T>> getColumnIterator() {
 		return new ArrayList<List<T>>(getColumns()).iterator();
 	}
 
