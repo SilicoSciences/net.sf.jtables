@@ -22,6 +22,7 @@ class ListToColumnTransformer<T> extends
 	public Column<T> transform(List<T> element) {
 		final ColumnImpl<T> result = new ColumnImpl<T>(element);
 		result.setIdentifier(idents);
+		System.err.println("idents="+idents);
 		return result;
 	}
 

@@ -16,7 +16,6 @@ limitations under the License.
 package net.sf.jtables.table;
 
 import java.io.IOException;
-import java.util.List;
 
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
@@ -40,7 +39,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * 
  * @param <T> type of elements in table
  */
-public interface TableReader<T> extends IOIterable<List<T>> {
+public interface TableReader<T> extends IOIterable<Row<T>> {
 
 	/**
 	 * Close this reader.
@@ -62,6 +61,6 @@ public interface TableReader<T> extends IOIterable<List<T>> {
 	/**
 	 * 
 	 */
-	IOIterator<List<T>> getIterator() throws IOException;
+	IOIterator<Row<T>> getIterator() throws IOException;
 
 }

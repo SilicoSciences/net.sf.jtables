@@ -2,27 +2,31 @@ package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
 import java.util.Set;
 
 import net.sf.jtables.table.Row;
+import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
 public class RowImpl<T> implements Row<T> {
 
-	protected final List<T> implementation;
+	protected final List<T> implementation = new ArrayList<T>();
 	
 	protected volatile ObjectToIndexMapper mapper = new ObjectToIndexMapperImpl(
 			new HashSet<Object>());
 	
 	public RowImpl(List<T> elements) {
-		 implementation = Collections.unmodifiableList(new ArrayList<T>(elements));
+		 implementation.addAll(elements);
+	}
+	
+	public RowImpl() {
 	}
 
 	public void setIdentifier(Set<? extends Object> ids) {
@@ -32,6 +36,9 @@ public class RowImpl<T> implements Row<T> {
 	// Implement //
 	
 	public T get(Object indentifier) {
+		if(implementation.size() <= mapper.get(indentifier)){
+			throw new NoSuchElementException("no value for [" + indentifier + "]");
+		}
 		return get(mapper.get(indentifier));
 	}
 
@@ -108,6 +115,11 @@ public class RowImpl<T> implements Row<T> {
 
 	public int hashCode() {
 		return implementation.hashCode();
+	}
+	
+	@Override
+	public String toString() {
+		return implementation.toString();
 	}
 
 	public T get(int index) {

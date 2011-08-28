@@ -20,7 +20,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -28,8 +27,10 @@ import java.util.Set;
 
 import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.AnnotatedTable;
+import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableReader;
 import net.sf.kerner.utils.StringUtils;
+import net.sf.kerner.utils.factory.Factory;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
@@ -52,7 +53,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  *
  * @param <T>
  */
-public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
+public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		implements TableReader<T> {
 	
 	public final static String DEFAULT_DELIM = "\t";
@@ -67,6 +68,12 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 
 	protected final Set<String> colids = new LinkedHashSet<String>();
 
+	protected volatile Factory<Row<T>> rowFactory = new Factory<Row<T>>(){
+
+		public Row<T> create() {
+			return new RowImpl<T>();
+		}};
+	
 	private volatile boolean firstLine = true;
 
 	public AbstractTableReader(Reader reader, boolean columnIds,
@@ -124,7 +131,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 	}
 	
 	@Override
-	protected List<T> doRead() throws IOException {
+	protected Row<T> doRead() throws IOException {
 		String line = reader.readLine();
 		if (line == null)
 			return null;
@@ -139,13 +146,15 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
-		final List<T> result = new ArrayList<T>();
+		final Row<T> result = rowFactory.create();
+		
 		boolean first = true;
 
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
-			if(StringUtils.emptyString(s))
-				continue;
+//			if(StringUtils.emptyString(s)){
+//				continue;
+//			}
 			if (rowsB && first) {
 				rowids.add(s);
 				first = false;
@@ -156,6 +165,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 		
 		if(result.isEmpty())
 			return null;
+		
+		result.setIdentifier(colids);
+		
 		return result;
 	}
 
@@ -164,7 +176,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 	 */
 	public AnnotatedTable<T> readAll() throws IOException {
 		final AnnotatedMutableTable<T> result = getInstance();
-		final IOIterator<List<T>> it = getIterator();
+		final IOIterator<Row<T>> it = getIterator();
 		while (it.hasNext()) {
 			final List<? extends T> next = it.next();
 //			System.err.println("adding row " + next);
@@ -178,8 +190,16 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 		return result;
 	}
 
-	public IOIterator<List<T>> getIterator() throws IOException {
+	public IOIterator<Row<T>> getIterator() throws IOException {
 		return this;
+	}
+
+	public Factory<Row<T>> getRowFactory() {
+		return rowFactory;
+	}
+
+	public void setRowFactory(Factory<Row<T>> rowFactory) {
+		this.rowFactory = rowFactory;
 	}
 
 	/**

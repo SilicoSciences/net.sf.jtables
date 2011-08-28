@@ -26,6 +26,8 @@ public interface Row<T> extends List<T> {
 	
 	Set<Object> getIdentifier();
 	
+	void setIdentifier(Set<? extends Object> idents);
+	
 	T get(Object indentifier);
 
 }

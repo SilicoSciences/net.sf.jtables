@@ -16,7 +16,11 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 
 /**
  * 
@@ -55,5 +59,29 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 			rows.add(columns);
 		}
 		return new StringTable(rows);
+	}
+	
+	public List<Column<String>> getColumns(String idPattern){
+		final List<Column<String>> result = new ArrayList<Column<String>>();
+		
+		for(Object s : getColumnIdentifier()){
+			if(s.toString().matches(idPattern)){
+				result.add(getColumn(s));
+			}
+		}
+		
+		return result;
+	}
+	
+	public List<Row<String>> getRows(String idPattern){
+		final List<Row<String>> result = new ArrayList<Row<String>>();
+		
+		for(Object s : getRowIdentifier()){
+			if(s.toString().matches(idPattern)){
+				result.add(getRow(s));
+			}
+		}
+		
+		return result;
 	}
 }
