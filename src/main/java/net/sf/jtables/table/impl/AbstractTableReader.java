@@ -1,4 +1,19 @@
-package net.sf.jtables.table;
+/**********************************************************************
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
+package net.sf.jtables.table.impl;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +26,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
+import net.sf.jtables.table.AnnotatedMutableTable;
+import net.sf.jtables.table.AnnotatedTable;
+import net.sf.jtables.table.TableReader;
 import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
@@ -30,11 +48,11 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-04-11
+ * @version 2011-08-28
  *
  * @param <T>
  */
-public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? extends T>>
+public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<T>>
 		implements TableReader<T> {
 	
 	public final static String DEFAULT_DELIM = "\t";
@@ -95,7 +113,6 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 	}
 
 	protected Set<String> getColIds(String line) {
-//		System.err.println("extractring column identifiers");
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
 		final Set<String> list = new LinkedHashSet<String>();
@@ -103,14 +120,12 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 			final String s = scanner.next();
 			list.add(s);
 		}
-//		System.err.println("got column identifiers: " + list);
 		return list;
 	}
 	
 	@Override
-	protected List<? extends T> doRead() throws IOException {
+	protected List<T> doRead() throws IOException {
 		String line = reader.readLine();
-//		System.err.println("read line [" + line + "]");
 		if (line == null)
 			return null;
 		if (colsB && firstLine) {
@@ -118,7 +133,6 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 			firstLine = false;
 			// column ids read, continue to next line
 			line = reader.readLine();
-//			System.err.println("read line [" + line + "]");
 			if (line == null)
 				return null;
 		}
@@ -149,9 +163,8 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 	 * Read a {@code AnnotatedTable} at once.
 	 */
 	public AnnotatedTable<T> readAll() throws IOException {
-//		System.err.println("reading at once");
 		final AnnotatedMutableTable<T> result = getInstance();
-		final IOIterator<List<? extends T>> it = getIterator();
+		final IOIterator<List<T>> it = getIterator();
 		while (it.hasNext()) {
 			final List<? extends T> next = it.next();
 //			System.err.println("adding row " + next);
@@ -165,7 +178,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<List<? e
 		return result;
 	}
 
-	public IOIterator<List< ? extends T>> getIterator() throws IOException {
+	public IOIterator<List<T>> getIterator() throws IOException {
 		return this;
 	}
 
