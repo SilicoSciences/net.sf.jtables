@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import net.sf.jtables.table.AbstractTableReader;
 import net.sf.jtables.table.AnnotatedMutableTable;
 
 public class DoubleTableReader extends AbstractTableReader<Double> {
