@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -27,14 +27,14 @@ import net.sf.kerner.utils.collections.list.impl.ListUtils;
  * 
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2011-08-28
  *
  * @param <T> type of elements in this {@code MutableTable}
  */
 public class MutableTableImpl<T> extends TableImpl<T> implements
 		MutableTable<T> {
 
-	public MutableTableImpl(List<List<? extends T>> rows) {
+	public MutableTableImpl(List<? extends List<? extends T>> rows) {
 		super(rows);
 	}
 
