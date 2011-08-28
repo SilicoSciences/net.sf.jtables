@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -30,7 +30,7 @@ import net.sf.jtables.table.AbstractTableReader;
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-04-13
+ * @version 2011-08-28
  * 
  */
 public class StringTableReader extends AbstractTableReader<String>{
@@ -72,6 +72,11 @@ public class StringTableReader extends AbstractTableReader<String>{
 
 	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
 		super(reader, columnIds, rowIds);
+	}
+	
+	@Override
+	public StringTable readAll() throws IOException {
+		return (StringTable) super.readAll();
 	}
 
 	@Override
