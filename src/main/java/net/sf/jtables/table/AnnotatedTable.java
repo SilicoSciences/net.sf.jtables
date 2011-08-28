@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,7 +15,7 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
-import java.util.List;
+import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
@@ -39,28 +39,12 @@ import java.util.Set;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-04
+ * @version 2011-08-28
  * 
  * @param <T>
  *            type of elements in table
  */
 public interface AnnotatedTable<T> extends Table<T> {
-
-	/**
-	 * 
-	 * Set identifiers for columns.
-	 *
-	 * @param ids a {@link java.util.Set Set} that contains all column identifiers
-	 */
-	void setColumnIdentifier(Set<? extends Object> ids);
-
-	/**
-	 * 
-	 * Set identifiers for rows.
-	 *
-	 * @param ids a {@link java.util.Set Set} that contains all row identifiers
-	 */
-	void setRowIdentifier(Set<? extends Object> ids);
 
 	/**
 	 * 
@@ -86,7 +70,11 @@ public interface AnnotatedTable<T> extends Table<T> {
 	 * @return row that is mapped by given identifier
 	 * @throws NoSuchElementException if there is no row mapped by given identifier
 	 */
-	List<T> getRow(Object key);
+	Row<T> getRow(Object key);
+	
+	Row<T> getRow(int index);
+	
+	Iterator<Row<T>> getRowIterator();
 
 	/**
 	 * 
@@ -96,6 +84,10 @@ public interface AnnotatedTable<T> extends Table<T> {
 	 * @return column that is mapped by given identifier
 	 * @throws NoSuchElementException if there is no column mapped by given identifier
 	 */
-	List<T> getColumn(Object key);
+	Column<T> getColumn(Object key);
+	
+	Column<T> getColumn(int index);
+	
+	Iterator<Column<T>> getColumnIterator();
 
 }

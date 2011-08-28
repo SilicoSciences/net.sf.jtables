@@ -33,7 +33,7 @@ public class IntegerTable extends AnnotatedMutableTableImpl<Integer> {
 		super();
 	}
 
-	public IntegerTable(List<List<? extends Integer>> rows) {
+	public IntegerTable(List<? extends List<? extends Integer>> rows) {
 		super(rows);
 	}
 

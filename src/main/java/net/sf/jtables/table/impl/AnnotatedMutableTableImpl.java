@@ -24,6 +24,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 
 import net.sf.jtables.table.AnnotatedMutableTable;
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.io.IOUtils;
@@ -51,7 +53,7 @@ AnnotatedMutableTable<T> {
 		super();
 	}
 
-	public AnnotatedMutableTableImpl(List<List<? extends T>> rows) {
+	public AnnotatedMutableTableImpl(List<? extends List<? extends T>> rows) {
 		super(rows);
 	}
 
@@ -78,7 +80,27 @@ AnnotatedMutableTable<T> {
 	// Public //
 
 	// Override //
+	
+	@Override
+	public Row<T> getRow(int index) {
+		return new ListToRowTransformer<T>(rowIdents.keySet()).transform(super.getRow(index));
+	}
+	
+	@Override
+	public Iterator<Row<T>> getRowIterator() {
+		return new ListToRowTransformer<T>(rowIdents.keySet()).transformList(super.getRows()).iterator();
+	}
+	
+	@Override
+	public Column<T> getColumn(int index) {
+		return new ListToColumnTransformer<T>(colIdents.keySet()).transform(super.getColumn(index));
+	}
 
+	@Override
+	public Iterator<Column<T>> getColumnIterator() {
+		return new ListToColumnTransformer<T>(colIdents.keySet()).transformList(super.getColumns()).iterator();
+	}
+	
 	@Override
 	public String toString() {
 		final StringBuilder sb = new StringBuilder();
@@ -104,7 +126,7 @@ AnnotatedMutableTable<T> {
 			sb.append(IOUtils.NEW_LINE_STRING);
 		}
 
-		final Iterator<List<T>> rowIt = getRowIterator();
+		final Iterator<? extends List<T>> rowIt = getRowIterator();
 		final Iterator<?> identIt = getRowIdentifier().iterator();
 
 		while (rowIt.hasNext() || identIt.hasNext()) {
@@ -149,16 +171,16 @@ AnnotatedMutableTable<T> {
 		return new LinkedHashSet<Object>(colIdents.keySet());
 	}
 
-	public List<T> getRow(Object key) {
+	public Row<T> getRow(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkRowIndex(key);
-		return getRow(rowIdents.get(key));
+		return new ListToRowTransformer<T>(rowIdents.keySet()).transform((super.getRow(rowIdents.get(key))));
 	}
 
-	public List<T> getColumn(Object key) {
+	public Column<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkColumnIndex(key);
-		return getColumn(colIdents.get(key));
+		return new ListToColumnTransformer<T>(colIdents.keySet()).transform((super.getColumn(colIdents.get(key))));
 	}
 
 }

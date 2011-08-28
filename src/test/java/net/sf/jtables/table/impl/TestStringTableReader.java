@@ -133,7 +133,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -166,7 +166,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -194,7 +194,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -216,7 +216,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -237,7 +237,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
@@ -257,7 +257,7 @@ public class TestStringTableReader {
 	
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
 	 * 
 	 * @throws IOException
 	 */
