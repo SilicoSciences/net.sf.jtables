@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -37,7 +37,7 @@ import java.util.List;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2011-08-28
  * 
  * @param <T> type of elements in {@code Table}
  */
@@ -58,7 +58,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return all rows
 	 */
-	List<List<T>> getRows();
+	List<? extends List<T>> getRows();
 
 	/**
 	 * 
@@ -75,7 +75,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return all columns
 	 */
-	List<List<T>> getColumns();
+	List<? extends List<T>> getColumns();
 
 	/**
 	 * 
@@ -160,7 +160,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return row iterator
 	 */
-	Iterator<List<T>> getRowIterator();
+	Iterator<? extends List<T>> getRowIterator();
 
 	/**
 	 * 
@@ -168,6 +168,6 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return column iterator
 	 */
-	Iterator<List<T>> getColumnIterator();
+	Iterator<? extends List<T>> getColumnIterator();
 
 }
