@@ -21,12 +21,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import net.sf.jtables.table.AbstractTableReader;
 import net.sf.jtables.table.AnnotatedMutableTable;
 
 /**
  * 
- * Implementation for {@link net.sf.jtables.table.AbstractTableReader
+ * Implementation for {@link net.sf.jtables.table.impl.AbstractTableReader
  * AbstractTableReader} that reads tables of type {@link IntegerTable}.
  * 
  * 
