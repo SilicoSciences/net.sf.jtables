@@ -3,7 +3,6 @@ package net.sf.jtables.table;
 import java.io.IOException;
 import java.util.List;
 
-import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
