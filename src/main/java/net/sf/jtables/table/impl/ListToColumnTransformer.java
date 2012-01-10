@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Set;
 
 import net.sf.jtables.table.Column;
-import net.sf.kerner.utils.collections.list.AbstractTransformingListFactory;
 import net.sf.kerner.utils.collections.list.ListTransformer;
+import net.sf.kerner.utils.collections.list.impl.AbstractTransformingListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
 class ListToColumnTransformer<T> extends
