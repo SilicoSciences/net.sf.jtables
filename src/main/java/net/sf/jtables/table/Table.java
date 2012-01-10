@@ -50,7 +50,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 * @param index index of row to return
 	 * @return row at given index
 	 */
-	List<T> getRow(int index);
+	Row<T> getRow(int index);
 
 	/**
 	 * 
@@ -58,7 +58,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return all rows
 	 */
-	List<? extends List<T>> getRows();
+	List<Row<T>> getRows();
 
 	/**
 	 * 
@@ -67,7 +67,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 * @param index index of column to return
 	 * @return column at given index
 	 */
-	List<T> getColumn(int index);
+	Column<T> getColumn(int index);
 
 	/**
 	 * 
@@ -75,7 +75,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return all columns
 	 */
-	List<? extends List<T>> getColumns();
+	List<Column<T>> getColumns();
 
 	/**
 	 * 
@@ -160,7 +160,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return row iterator
 	 */
-	Iterator<? extends List<T>> getRowIterator();
+	Iterator<Row<T>> getRowIterator();
 
 	/**
 	 * 
@@ -168,6 +168,6 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 *
 	 * @return column iterator
 	 */
-	Iterator<? extends List<T>> getColumnIterator();
+	Iterator<Column<T>> getColumnIterator();
 
 }

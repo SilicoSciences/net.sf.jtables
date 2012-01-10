@@ -53,7 +53,7 @@ AnnotatedMutableTable<T> {
 		super();
 	}
 
-	public AnnotatedMutableTableImpl(List<? extends List<? extends T>> rows) {
+	public AnnotatedMutableTableImpl(List<Row<T>> rows) {
 		super(rows);
 	}
 

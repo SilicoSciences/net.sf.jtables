@@ -38,21 +38,21 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 		super();
 	}
 
-	public StringTable(List<List<String>> rows) {
+	public StringTable(List<Row<String>> rows) {
 		super(getList(rows));
 	}
 	
-	private static List<List<? extends String>> getList(List<List<String>> rows){
-		final List<List<? extends String>> rr = new ArrayList<List<? extends String>>();
+	private static List<Row<String>> getList(List<Row<String>> rows){
+		final List<Row<String>> rr = new ArrayList<Row<String>>();
 		rr.addAll(rows);
 		return rr;
 	}
 	
 	@Override
 	public TableImpl<String> clone() throws CloneNotSupportedException {
-		final List<List<String>> rows = new ArrayList<List<String>>();
-		for(List<? extends String> row : this.rows){
-			final List<String> columns = new ArrayList<String>();
+		final List<Row<String>> rows = new ArrayList<Row<String>>();
+		for(Row<String> row : this.rows){
+			final Column<String> columns = new ColumnImpl<String>();
 			for(String element : row){
 				columns.add(element);
 			}

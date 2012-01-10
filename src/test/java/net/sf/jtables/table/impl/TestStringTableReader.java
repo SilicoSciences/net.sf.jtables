@@ -27,6 +27,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 import net.sf.jtables.table.AnnotatedTable;
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
@@ -50,9 +52,9 @@ public class TestStringTableReader {
 
 	private StringTableReader tableReader;
 
-	private List<List<String>> rows;
+	private List<Row<String>> rows;
 
-	private List<List<String>> cols;
+	private List<Column<String>> cols;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -65,35 +67,35 @@ public class TestStringTableReader {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		rows = new ArrayList<List<String>>();
-		rows.add(new ArrayList<String>() {
+		rows = new ArrayList<Row<String>>();
+		rows.add(new RowImpl<String>() {
 			{
 				add("eins00");
 				add("eins01");
 				add("eins02");
 			}
 		});
-		rows.add(new ArrayList<String>() {
+		rows.add(new RowImpl<String>() {
 			{
 				add("zwei00");
 				add("zwei01");
 				add("zwei02");
 			}
 		});
-		cols = new ArrayList<List<String>>();
-		cols.add(new ArrayList<String>() {
+		cols = new ArrayList<Column<String>>();
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins00");
 				add("zwei00");
 			}
 		});
-		cols.add(new ArrayList<String>() {
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins01");
 				add("zwei01");
 			}
 		});
-		cols.add(new ArrayList<String>() {
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins02");
 				add("zwei02");

@@ -36,9 +36,9 @@ public class RowImpl<T> implements Row<T> {
 	// Implement //
 	
 	public T get(Object indentifier) {
-		if(implementation.size() <= mapper.get(indentifier)){
-			throw new NoSuchElementException("no value for [" + indentifier + "]");
-		}
+//		if(implementation.size() <= mapper.get(indentifier)){
+//			throw new NoSuchElementException("no value for [" + indentifier + "]");
+//		}
 		return get(mapper.get(indentifier));
 	}
 

@@ -179,7 +179,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		final AnnotatedMutableTable<T> result = getInstance();
 		final IOIterator<Row<T>> it = getIterator();
 		while (it.hasNext()) {
-			final List<? extends T> next = it.next();
+			final Row<T> next = it.next();
 //			System.err.println("adding row " + next);
 			result.addRow(next);
 		}

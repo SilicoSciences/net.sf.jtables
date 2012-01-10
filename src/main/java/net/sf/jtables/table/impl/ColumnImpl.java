@@ -6,6 +6,10 @@ import net.sf.jtables.table.Column;
 
 public class ColumnImpl<T> extends RowImpl<T> implements Column<T> {
 
+	public ColumnImpl() {
+		
+	}
+
 	public ColumnImpl(List<T> elements) {
 		super(elements);
 	}

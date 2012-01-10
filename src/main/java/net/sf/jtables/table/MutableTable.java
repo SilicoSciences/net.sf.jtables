@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
-import java.util.List;
 
 /**
  * 
@@ -44,7 +43,7 @@ public interface MutableTable<T> extends Table<T> {
 	 *
 	 * @param row row to add 
 	 */
-	void addRow(List<? extends T> row);
+	void addRow(Row<T> row);
 
 	/**
 	 * 
@@ -53,7 +52,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param row row to add 
 	 * @param index index at which row is added
 	 */
-	void addRow(int index, List<? extends T> row);
+	void addRow(int index, Row<T> row);
 
 	/**
 	 * 
@@ -61,7 +60,7 @@ public interface MutableTable<T> extends Table<T> {
 	 *
 	 * @param column column to add 
 	 */
-	void addColumn(List<? extends T> column);
+	void addColumn(Column<T> column);
 
 	/**
 	 * 
@@ -70,7 +69,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param column column to add 
 	 * @param index index at which column is added
 	 */
-	void addColumn(int index, List<? extends T> column);
+	void addColumn(int index, Column<T> column);
 	
 	/**
 	 * 
@@ -79,7 +78,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param index index of row to be replaced
 	 * @param row new row at given index 
 	 */
-	void setRow(int index, List<? extends T> row);
+	void setRow(int index, Row<T> row);
 	
 	/**
 	 * 
@@ -88,7 +87,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param index index of column to be replaced
 	 * @param column new column at given index 
 	 */
-	void setColumn(int index, List<? extends T> column);
+	void setColumn(int index, Column<T> column);
 	
 	/**
 	 * 

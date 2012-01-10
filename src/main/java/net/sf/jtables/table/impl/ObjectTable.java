@@ -17,6 +17,8 @@ package net.sf.jtables.table.impl;
 
 import java.util.List;
 
+import net.sf.jtables.table.Row;
+
 /**
  * 
  * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable} with {@link java.lang.Object Object} elements.
@@ -32,7 +34,7 @@ public class ObjectTable extends AnnotatedMutableTableImpl<Object> {
 		super();
 	}
 
-	public ObjectTable(List<List<? extends Object>> rows) {
+	public ObjectTable(List<Row<Object>> rows) {
 		super(rows);
 	}
 

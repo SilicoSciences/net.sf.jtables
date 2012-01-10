@@ -13,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -33,9 +36,9 @@ public class TestTableImpl {
 	
 	private TableImpl<String> ma2;
 	
-	private List<List<String>> rows;
+	private List<Row<String>> rows;
 
-	private List<List<String>> cols;
+	private List<Column<String>> cols;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -48,35 +51,35 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		rows = new ArrayList<List<String>>();
-		rows.add(new ArrayList<String>(){
+		rows = new ArrayList<Row<String>>();
+		rows.add(new RowImpl<String>(){
 			{
 				add("eins00");
 				add("eins01");
 				add("eins02");
 			}
 		});
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("zwei00");
 				add("zwei01");
 				add("zwei02");
 			}
 		});
-		cols = new ArrayList<List<String>>();
-		cols.add(new ArrayList<String>(){
+		cols = new ArrayList<Column<String>>();
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins00");
 				add("zwei00");
 			}
 		});
-		cols.add(new ArrayList<String>(){
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins01");
 				add("zwei01");
 			}
 		});
-		cols.add(new ArrayList<String>(){
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins02");
 				add("zwei02");
@@ -334,7 +337,7 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxRowSize() {
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				add("2");
@@ -353,7 +356,7 @@ public class TestTableImpl {
 	@Test
 	public final void testGetMaxRowSize01() {
 		rows.clear();
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				
 			}
@@ -369,7 +372,7 @@ public class TestTableImpl {
 	@Test
 	public final void testGetMaxRowSize02() {
 		rows.clear();
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 			}
@@ -384,13 +387,13 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxColumnSize() {
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				
 			}
 		});
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				

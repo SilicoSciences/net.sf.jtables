@@ -18,7 +18,9 @@ package net.sf.jtables.table.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.jtables.table.Column;
 import net.sf.jtables.table.MutableTable;
+import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.list.impl.ListUtils;
 
 /**
@@ -34,7 +36,7 @@ import net.sf.kerner.utils.collections.list.impl.ListUtils;
 public class MutableTableImpl<T> extends TableImpl<T> implements
 		MutableTable<T> {
 
-	public MutableTableImpl(List<? extends List<? extends T>> rows) {
+	public MutableTableImpl(List<Row<T>> rows) {
 		super(rows);
 	}
 
@@ -42,20 +44,20 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 
 	}
 
-	public void setRow(int index, List<? extends T> elements) {
+	public void setRow(int index, Row<T> elements) {
 		super.rows.set(index, elements);
 	}
 
-	public void setColumn(int index, List<? extends T> elements) {
+	public void setColumn(int index, Column<T> elements) {
 		checkColumnIndex(index);
 		net.sf.kerner.utils.Utils.checkForNull(elements);
 
 		// assert that we have enough rows to set whole column
 		// fill number of rows to fit number of elements in column
-		ListUtils.fill(super.rows, elements.size(), new ArrayList<T>());
+		ListUtils.fill(super.rows, elements.size(), new RowImpl<T>());
 
 		for (int i = 0; i < elements.size(); i++) {
-			final List<T> row = new ArrayList<T>(getRow(i));
+			final Row<T> row = new RowImpl<T>(getRow(i));
 
 			// assert that row is at least index+1 long, so it can take the
 			// column element
@@ -69,16 +71,16 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		}
 	}
 
-	public void addColumn(int index, List<? extends T> elements) {
+	public void addColumn(int index, Column<T> elements) {
 		checkColumnIndex(index);
 		net.sf.kerner.utils.Utils.checkForNull(elements);
 
 		// assert that we have enough rows to set whole column
 		// fill number of rows to fit number of elements in column
-		ListUtils.fill(super.rows, elements.size(), new ArrayList<T>());
+		ListUtils.fill(super.rows, elements.size(), new RowImpl<T>());
 
 		for (int i = 0; i < elements.size(); i++) {
-			final List<T> row = new ArrayList<T>(getRow(i));
+			final Row<T> row = new RowImpl<T>(getRow(i));
 
 			// assert that row is at least index long, so it can take the column
 			// element
@@ -92,15 +94,15 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		}
 	}
 
-	public void addColumn(List<? extends T> elements) {
+	public void addColumn(Column<T> elements) {
 		net.sf.kerner.utils.Utils.checkForNull(elements);
 
 		// assert that we have enough rows to set whole column
 		// fill number of rows to fit number of elements in column
-		ListUtils.fill(super.rows, elements.size(), new ArrayList<T>());
+		ListUtils.fill(super.rows, elements.size(), new RowImpl<T>());
 
 		for (int i = 0; i < elements.size(); i++) {
-			final List<T> row = new ArrayList<T>(getRow(i));
+			final Row<T> row = new RowImpl<T>(getRow(i));
 
 			// since we are appending, assert that all row are maxRowSize()
 			// long, so it can take the column element
@@ -117,14 +119,14 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 	public void set(int i, int j, T element) {
 		// we are empty
 		if (getNumberOfRows() == 0)
-			addRow(new ArrayList<T>());
+			addRow(new RowImpl<T>());
 		
 		fillRows(j + 1, null);
 		fillColumns(i + 1, null);
 		checkRowIndex(i);
 		checkColumnIndex(j);
 		
-		final List<T> row2 = new ArrayList<T>(getRow(i));
+		final Row<T> row2 = new RowImpl<T>(getRow(i));
 		row2.set(j, element);
 		setRow(i, row2);
 	}
@@ -133,11 +135,11 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		super.rows.clear();
 	}
 
-	public void addRow(List<? extends T> elements) {
+	public void addRow(Row<T> elements) {
 		super.rows.add(elements);
 	}
 
-	public void addRow(int index, List<? extends T> elements) {
+	public void addRow(int index, Row<T> elements) {
 		super.rows.add(index, elements);
 	}
 
@@ -147,7 +149,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 
 		// assert we have at least one row
 		if (getNumberOfRows() == 0)
-			addRow(new ArrayList<T>() {
+			addRow(new RowImpl<T>() {
 				private static final long serialVersionUID = 8771525210955142646L;
 				{
 					add(element);
@@ -157,7 +159,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		final int end = getNumberOfRows();
 
 		for (int i = 0; i < end; i++) {
-			final List<T> rr = new ArrayList<T>(getRow(i));
+			final Row<T> rr = new RowImpl<T>(getRow(i));
 			ListUtils.fill(rr, index, element);
 			setRow(i, rr);
 		}
@@ -169,7 +171,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		
 		// assert we have at least one row
 		if (getNumberOfRows() == 0)
-			addRow(new ArrayList<T>() {
+			addRow(new RowImpl<T>() {
 				private static final long serialVersionUID = 3543285099623756394L;
 				{
 					add(element);
@@ -178,7 +180,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 
 		final int end = getNumberOfColumns();
 		for (int i = 0; i < end; i++) {
-			final List<T> rr = new ArrayList<T>(getColumn(i));
+			final Column<T> rr = new ColumnImpl<T>(getColumn(i));
 
 			ListUtils.fill(rr, index, element);
 

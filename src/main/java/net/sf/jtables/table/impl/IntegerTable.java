@@ -17,6 +17,8 @@ package net.sf.jtables.table.impl;
 
 import java.util.List;
 
+import net.sf.jtables.table.Row;
+
 /**
  * 
  * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}
@@ -33,7 +35,7 @@ public class IntegerTable extends AnnotatedMutableTableImpl<Integer> {
 		super();
 	}
 
-	public IntegerTable(List<? extends List<? extends Integer>> rows) {
+	public IntegerTable(List<Row<Integer>> rows) {
 		super(rows);
 	}
 
