@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
@@ -49,9 +50,9 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2012-01-10
  *
- * @param <T>
+ * @param <T> type of elements
  */
 public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		implements TableReader<T> {

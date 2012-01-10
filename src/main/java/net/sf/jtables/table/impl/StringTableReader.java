@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -24,55 +24,54 @@ import java.io.Reader;
 
 /**
  * 
- * Implementation for {@link net.sf.jtables.table.impl.AbstractTableReader
- * AbstractTableReader} that reads tables of type {@link StringTable}.
+ * Implementation for {@link AbstractTableReader} that reads tables of type
+ * {@link StringTable}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2012-01-10
  * 
  */
-public class StringTableReader extends AbstractTableReader<String>{
+public class StringTableReader extends AbstractTableReader<String> {
 
-	public StringTableReader(BufferedReader reader, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	public StringTableReader(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(BufferedReader reader, boolean columnIds,
-			boolean rowIds) throws IOException {
+	public StringTableReader(BufferedReader reader, boolean columnIds, boolean rowIds)
+			throws IOException {
 		super(reader, columnIds, rowIds);
 	}
 
-	public StringTableReader(File file, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public StringTableReader(File file, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(file, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(File file, boolean columnIds, boolean rowIds)
-			throws IOException {
+	public StringTableReader(File file, boolean columnIds, boolean rowIds) throws IOException {
 		super(file, columnIds, rowIds);
 	}
 
-	public StringTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	public StringTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(stream, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds) throws IOException {
+	public StringTableReader(InputStream stream, boolean columnIds, boolean rowIds)
+			throws IOException {
 		super(stream, columnIds, rowIds);
 	}
 
-	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
 	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
 		super(reader, columnIds, rowIds);
 	}
-	
+
 	@Override
 	public StringTable readAll() throws IOException {
 		return (StringTable) super.readAll();
@@ -85,7 +84,7 @@ public class StringTableReader extends AbstractTableReader<String>{
 
 	@Override
 	protected String parse(String s) {
-		return s.trim();
+		return s;
 	}
-	
+
 }
