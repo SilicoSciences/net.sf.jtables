@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2011-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,6 +15,25 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
+/**
+ * 
+ * A table column.
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ *
+ * </p>
+ * <p>
+ * <pre>
+ * TODO example
+ * </pre>
+ * </p>
+ *
+ * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
+ * @version 2012-01-12
+ *
+ * @param <T> type of table element
+ */
 public interface Column<T> extends Row<T> {
 
 }
