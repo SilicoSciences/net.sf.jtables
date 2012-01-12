@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -22,9 +22,9 @@ import java.util.Set;
  * A {@code MutableTable} and also a {@code AnnotatedTable}.
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2012-01-12
  *
- * @param <T> type of elements in table
+ * @param <T> type of elements in {@Table}
  * 
  * @see MutableTable
  * @see AnnotatedTable
@@ -35,7 +35,7 @@ public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTabl
 	 * 
 	 * Set identifiers for columns.
 	 *
-	 * @param ids a {@link java.util.Set Set} that contains all column identifiers
+	 * @param ids a {@link Set} that contains all column identifiers
 	 */
 	void setColumnIdentifier(Set<? extends Object> ids);
 
@@ -43,7 +43,7 @@ public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTabl
 	 * 
 	 * Set identifiers for rows.
 	 *
-	 * @param ids a {@link java.util.Set Set} that contains all row identifiers
+	 * @param ids a {@link Set} that contains all row identifiers
 	 */
 	void setRowIdentifier(Set<? extends Object> ids);
 	

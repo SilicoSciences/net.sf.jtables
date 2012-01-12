@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -24,20 +24,20 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * 
  * A {@code TableReader} reads an {@link AnnotatedTable} from an input source.
  * </p> It does so by extending
- * {@link net.sf.kerner.utils.io.buffered.IOIterable IOIterable} in oder to
+ * {@link IOIterable} in oder to
  * provide possibility to iterate over a table's rows.
  * </p>
- * Via {@link TableReader#readAll()} it is also possible, to read in a whole table at once.
+ * Via {@link TableReader#readAll()} it is also possible to read in a whole table at once.
  * 
- * @see net.sf.kerner.utils.io.buffered.IOIterable IOIterable
- * @see AnnotatedTable AnnotatedTable
- * @see net.sf.jtables.table.impl.StringTable StringTable
- * @see net.sf.jtables.table.impl.IntegerTable IntegerTable
+ * @see IOIterable
+ * @see AnnotatedTable
+ * @see StringTable
+ * @see IntegerTable
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2012-01-12
  * 
- * @param <T> type of elements in table
+ * @param <T> type of elements in {@code Table}
  */
 public interface TableReader<T> extends IOIterable<Row<T>> {
 

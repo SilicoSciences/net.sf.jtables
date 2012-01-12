@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -39,25 +39,25 @@ import java.util.Set;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2011-09-12
  * 
  * @param <T>
- *            type of elements in table
+ *            type of elements in {@code Table}
  */
 public interface AnnotatedTable<T> extends Table<T> {
 
 	/**
 	 * 
-	 * Retrieve a {@link java.util.Set Set} that contains all row identifiers. 
-	 *
+	 * Retrieve a {@link Set} that contains all row identifiers.
+	 * 
 	 * @return all row identifiers
 	 */
 	Set<Object> getRowIdentifier();
 
 	/**
 	 * 
-	 * Retrieve a {@link java.util.Set Set} that contains all column identifiers. 
-	 *
+	 * Retrieve a {@link Set} that contains all column identifiers.
+	 * 
 	 * @return all column identifiers
 	 */
 	Set<Object> getColumnIdentifier();
@@ -65,29 +65,45 @@ public interface AnnotatedTable<T> extends Table<T> {
 	/**
 	 * 
 	 * Retrieve row that is associated to given object key.
-	 *
-	 * @param key identifier that maps to returned row
+	 * 
+	 * @param key
+	 *            identifier that maps to returned row
 	 * @return row that is mapped by given identifier
-	 * @throws NoSuchElementException if there is no row mapped by given identifier
+	 * @throws NoSuchElementException
+	 *             if there is no row mapped by given identifier
 	 */
 	Row<T> getRow(Object key);
-	
+
+	/**
+	 * Retrieve row at given index.
+	 */
 	Row<T> getRow(int index);
-	
+
+	/**
+	 * Retrieve an {@link Iterator} for rows.
+	 */
 	Iterator<Row<T>> getRowIterator();
 
 	/**
 	 * 
 	 * Retrieve column that is associated to given object key.
-	 *
-	 * @param key identifier that maps to returned column
+	 * 
+	 * @param key
+	 *            identifier that maps to returned column
 	 * @return column that is mapped by given identifier
-	 * @throws NoSuchElementException if there is no column mapped by given identifier
+	 * @throws NoSuchElementException
+	 *             if there is no column mapped by given identifier
 	 */
 	Column<T> getColumn(Object key);
-	
+
+	/**
+	 * Retrieve column at given index.
+	 */
 	Column<T> getColumn(int index);
-	
+
+	/**
+	 * Retrieve an {@link Iterator} for columns.
+	 */
 	Iterator<Column<T>> getColumnIterator();
 
 }

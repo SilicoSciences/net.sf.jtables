@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -37,7 +37,7 @@ import java.util.List;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-08-28
+ * @version 2012-01-12
  * 
  * @param <T> type of elements in {@code Table}
  */
@@ -79,11 +79,11 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 
 	/**
 	 * 
-	 * Get element at given coordinates.
+	 * Get element at given row and column index.
 	 *
 	 * @param i index of row
 	 * @param j index of column
-	 * @return element at given coordinates
+	 * @return element at given row and column index
 	 */
 	T get(int i, int j);
 
@@ -150,13 +150,13 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	 * 
 	 * Retrieve a {@code List} view of all elements contained in this {@code Table}.
 	 *
-	 * @return a {@link java.util.List List} that contains all elements
+	 * @return a {@link List} that contains all elements
 	 */
 	List<T> getAllElements();
 
 	/**
 	 * 
-	 * Retrieve an {@link java.util.Iterator Iterator} over rows of this {@code Table}.
+	 * Retrieve an {@link Iterator} over rows of this {@code Table}.
 	 *
 	 * @return row iterator
 	 */

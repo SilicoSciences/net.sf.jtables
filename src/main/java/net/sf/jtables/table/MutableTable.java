@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -31,9 +31,9 @@ package net.sf.jtables.table;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2012-01-12
  *
- * @param <T> type of elements in table
+ * @param <T> type of elements in {@code Table}
  */
 public interface MutableTable<T> extends Table<T> {
 	
@@ -107,7 +107,7 @@ public interface MutableTable<T> extends Table<T> {
 	
 	/**
 	 * 
-	 * Set element at given coordinates.
+	 * Set element at given row and column index.
 	 *
 	 * @param i index of row
 	 * @param j index of column
@@ -117,7 +117,7 @@ public interface MutableTable<T> extends Table<T> {
 	
 	/**
 	 * 
-	 * Remove element at given coordinates.
+	 * Remove element at given row and column index.
 	 *
 	 * @param i index of row
 	 * @param j index of column
