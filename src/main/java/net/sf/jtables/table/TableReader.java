@@ -17,6 +17,8 @@ package net.sf.jtables.table;
 
 import java.io.IOException;
 
+import net.sf.jtables.table.impl.IntegerTable;
+import net.sf.jtables.table.impl.StringTable;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 

@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -32,27 +32,44 @@ import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
- * Default implementation for {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}.
+ * Default implementation for {@link AnnotatedMutableTable}.
  * 
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2012-01-12
  *
- * @param <T> type of elements in this {@code AnnotatedMutableTableImpl}
+ * @param <T> type of elements in {@code Table}
  */
 public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 AnnotatedMutableTable<T> {
 
-	protected volatile ObjectToIndexMapper rowIdents = new ObjectToIndexMapperImpl(
+	/**
+	 * row mappings.
+	 */
+	protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(
 			new HashSet<Object>());
 
-	protected volatile ObjectToIndexMapper colIdents = new ObjectToIndexMapperImpl(
+	/**
+	 * column mappings.
+	 */
+	protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(
 			new HashSet<Object>());
 
+	/**
+	 * 
+	 * Create an empty {@code AnnotatedMutableTableImpl}.
+	 *
+	 */
 	public AnnotatedMutableTableImpl() {
 		super();
 	}
 
+	/**
+	 * 
+	 * Create an {@code AnnotatedMutableTableImpl} with given rows.
+	 *
+	 * @param rows rows initially contained by this {@code Table}
+	 */
 	public AnnotatedMutableTableImpl(List<Row<T>> rows) {
 		super(rows);
 	}
@@ -62,7 +79,7 @@ AnnotatedMutableTable<T> {
 	// Protected //
 
 	protected void checkRowIndex(Object key) {
-		if (rowIdents.containsKey(key)) {
+		if (rowMapper.containsKey(key)) {
 			// all good
 		} else
 			throw new NoSuchElementException("no element for row index [" + key
@@ -70,7 +87,7 @@ AnnotatedMutableTable<T> {
 	}
 
 	protected void checkColumnIndex(Object key) {
-		if (colIdents.containsKey(key)) {
+		if (colMapper.containsKey(key)) {
 			// all good
 		} else
 			throw new NoSuchElementException("no element for row index [" + key
@@ -80,26 +97,6 @@ AnnotatedMutableTable<T> {
 	// Public //
 
 	// Override //
-	
-	@Override
-	public Row<T> getRow(int index) {
-		return new ListToRowTransformer<T>(rowIdents.keySet()).transform(super.getRow(index));
-	}
-	
-	@Override
-	public Iterator<Row<T>> getRowIterator() {
-		return new ListToRowTransformer<T>(rowIdents.keySet()).transformList(super.getRows()).iterator();
-	}
-	
-	@Override
-	public Column<T> getColumn(int index) {
-		return new ListToColumnTransformer<T>(colIdents.keySet()).transform(super.getColumn(index));
-	}
-
-	@Override
-	public Iterator<Column<T>> getColumnIterator() {
-		return new ListToColumnTransformer<T>(colIdents.keySet()).transformList(super.getColumns()).iterator();
-	}
 	
 	@Override
 	public String toString() {
@@ -156,31 +153,31 @@ AnnotatedMutableTable<T> {
 	 * 
 	 */
 	public void setColumnIdentifier(Set<? extends Object> ids) {
-		this.colIdents = new ObjectToIndexMapperImpl(ids);
+		this.colMapper = new ObjectToIndexMapperImpl(ids);
 	}
 
 	public void setRowIdentifier(Set<? extends Object> ids) {
-		this.rowIdents = new ObjectToIndexMapperImpl(ids);
+		this.rowMapper = new ObjectToIndexMapperImpl(ids);
 	}
 
 	public Set<Object> getRowIdentifier() {
-		return new LinkedHashSet<Object>(rowIdents.keySet());
+		return new LinkedHashSet<Object>(rowMapper.keySet());
 	}
 
 	public Set<Object> getColumnIdentifier() {
-		return new LinkedHashSet<Object>(colIdents.keySet());
+		return new LinkedHashSet<Object>(colMapper.keySet());
 	}
 
 	public Row<T> getRow(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkRowIndex(key);
-		return new ListToRowTransformer<T>(rowIdents.keySet()).transform((super.getRow(rowIdents.get(key))));
+		return new ListToRowTransformer<T>(rowMapper.keySet()).transform((super.getRow(rowMapper.get(key))));
 	}
 
 	public Column<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkColumnIndex(key);
-		return new ListToColumnTransformer<T>(colIdents.keySet()).transform((super.getColumn(colIdents.get(key))));
+		return new ListToColumnTransformer<T>(colMapper.keySet()).transform((super.getColumn(colMapper.get(key))));
 	}
 
 }

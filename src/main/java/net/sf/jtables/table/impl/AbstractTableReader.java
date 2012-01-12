@@ -20,9 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -30,55 +28,84 @@ import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.AnnotatedTable;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableReader;
-import net.sf.kerner.utils.StringUtils;
-import net.sf.kerner.utils.factory.Factory;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 /**
  * 
- * TODO description
+ * Prototype implementation for {@link TableReader}.
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-10
- *
- * @param <T> type of elements
+ * @version 2012-01-12
+ * 
+ * @param <T>
+ *            type of elements in {@code Table}
  */
-public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
-		implements TableReader<T> {
-	
+public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> implements TableReader<T> {
+
+	/**
+	 * Default column delimiter (tab).
+	 */
 	public final static String DEFAULT_DELIM = "\t";
 
+	/**
+	 * Does the table have column headers?
+	 */
 	protected final boolean colsB;
 
+	/**
+	 * Does the table have row headers?
+	 */
 	protected final boolean rowsB;
 
+	/**
+	 * column delimiter.
+	 */
 	protected final String delim;
 
-	protected final Set<String> rowids = new LinkedHashSet<String>();
+	/**
+	 * row headers.
+	 */
+	protected final Set<String> rowHeaders = new LinkedHashSet<String>();
 
-	protected final Set<String> colids = new LinkedHashSet<String>();
+	/**
+	 * column headers.
+	 */
+	protected final Set<String> columnHeaders = new LinkedHashSet<String>();
 
-	protected volatile Factory<Row<T>> rowFactory = new Factory<Row<T>>(){
-
-		public Row<T> create() {
-			return new RowImpl<T>();
-		}};
-	
+	/**
+	 * currently reading first line?
+	 */
 	private volatile boolean firstLine = true;
 
-	public AbstractTableReader(Reader reader, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param reader
+	 *            {@link Reader} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 * @param delim
+	 *            column delimiter to use
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
+	public AbstractTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
 		super(reader);
 		this.colsB = columnIds;
 		this.rowsB = rowIds;
@@ -89,8 +116,22 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		read();
 	}
 
-	public AbstractTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param stream
+	 *            {@link InputStream} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 * @param delim
+	 *            column delimiter to use
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
+	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim) throws IOException {
 		super(stream);
 		this.colsB = columnIds;
 		this.rowsB = rowIds;
@@ -101,26 +142,87 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		read();
 	}
 
-	public AbstractTableReader(File file, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param file
+	 *            {@link File} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 * @param delim
+	 *            column delimiter to use
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
+	public AbstractTableReader(File file, boolean columnIds, boolean rowIds, String delim) throws IOException {
 		this(new FileInputStream(file), columnIds, rowIds, delim);
 	}
 
-	public AbstractTableReader(File file, boolean columnIds, boolean rowIds)
-			throws IOException {
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param file
+	 *            {@link File} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 *            
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
+	public AbstractTableReader(File file, boolean columnIds, boolean rowIds) throws IOException {
 		this(file, columnIds, rowIds, null);
 	}
 
-	public AbstractTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds) throws IOException {
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param stream
+	 *            {@link InputStream} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 *            
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
+	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds) throws IOException {
 		this(stream, columnIds, rowIds, null);
 	}
 
+	/**
+	 * 
+	 * Create a new {@code AbstractTableReader}.
+	 * 
+	 * @param reader
+	 *            {@link Reader} from which table is read
+	 * @param columnIds
+	 *            {@code true}, if columns have headers; {@code false} otherwise
+	 * @param rowIds
+	 *            {@code true}, if rows have headers; {@code false} otherwise
+	 *            
+	 * @throws IOException
+	 *             if anything goes wrong
+	 */
 	public AbstractTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
 		this(reader, columnIds, rowIds, null);
 	}
 
-	protected Set<String> getColIds(String line) {
+	/**
+	 * 
+	 * Extract column headers from first line.
+	 *
+	 * @param line {@code String} that contains column headers
+	 * @return {@link Set} of column headers
+	 */
+	protected Set<String> getColHeaders(String line) {
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
 		final Set<String> list = new LinkedHashSet<String>();
@@ -130,16 +232,19 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		}
 		return list;
 	}
-	
+
+	/**
+	 * 
+	 */
 	@Override
 	protected Row<T> doRead() throws IOException {
 		String line = reader.readLine();
 		if (line == null)
 			return null;
 		if (colsB && firstLine) {
-			colids.addAll(getColIds(line));
+			columnHeaders.addAll(getColHeaders(line));
 			firstLine = false;
-			// column ids read, continue to next line
+			// column headers read, continue to next line
 			line = reader.readLine();
 			if (line == null)
 				return null;
@@ -147,28 +252,29 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
-		final Row<T> result = rowFactory.create();
-		
+		final Row<T> result = new RowImpl<T>();
+
+		// first column (row headers)?
 		boolean first = true;
 
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
-//			if(StringUtils.emptyString(s)){
-//				continue;
-//			}
+			// if(StringUtils.emptyString(s)){
+			// continue;
+			// }
 			if (rowsB && first) {
-				rowids.add(s);
+				rowHeaders.add(s);
 				first = false;
 			} else {
 				result.add(parse(s));
 			}
 		}
-		
-		if(result.isEmpty())
+
+		if (result.isEmpty())
 			return null;
-		
-		result.setIdentifier(colids);
-		
+
+		result.setIdentifier(columnHeaders);
+
 		return result;
 	}
 
@@ -180,27 +286,19 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>>
 		final IOIterator<Row<T>> it = getIterator();
 		while (it.hasNext()) {
 			final Row<T> next = it.next();
-//			System.err.println("adding row " + next);
+			// System.err.println("adding row " + next);
 			result.addRow(next);
 		}
 		it.close();
-		result.setRowIdentifier(rowids);
-		result.setColumnIdentifier(colids);
-//		System.err.println("cIds:" + result.getColumnIdentifier());
-//		System.err.println("rIds:" + result.getRowIdentifier());
+		result.setRowIdentifier(rowHeaders);
+		result.setColumnIdentifier(columnHeaders);
+		// System.err.println("cIds:" + result.getColumnIdentifier());
+		// System.err.println("rIds:" + result.getRowIdentifier());
 		return result;
 	}
 
 	public IOIterator<Row<T>> getIterator() throws IOException {
 		return this;
-	}
-
-	public Factory<Row<T>> getRowFactory() {
-		return rowFactory;
-	}
-
-	public void setRowFactory(Factory<Row<T>> rowFactory) {
-		this.rowFactory = rowFactory;
 	}
 
 	/**

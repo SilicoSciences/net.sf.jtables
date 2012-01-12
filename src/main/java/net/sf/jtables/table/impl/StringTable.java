@@ -39,13 +39,7 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 	}
 
 	public StringTable(List<Row<String>> rows) {
-		super(getList(rows));
-	}
-	
-	private static List<Row<String>> getList(List<Row<String>> rows){
-		final List<Row<String>> rr = new ArrayList<Row<String>>();
-		rr.addAll(rows);
-		return rr;
+		super(rows);
 	}
 	
 	@Override

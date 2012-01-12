@@ -8,6 +8,7 @@ import net.sf.kerner.utils.collections.list.ListTransformer;
 import net.sf.kerner.utils.collections.list.impl.AbstractTransformingListFactory;
 import net.sf.kerner.utils.transformer.Transformer;
 
+@Deprecated
 class ListToColumnTransformer<T> extends
 		AbstractTransformingListFactory<List<T>, Column<T>> implements
 		Transformer<List<T>, Column<T>>, ListTransformer<List<T>, Column<T>> {
