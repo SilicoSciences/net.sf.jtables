@@ -146,6 +146,17 @@ AnnotatedMutableTable<T> {
 		}
 		return sb.toString();
 	}
+	
+	@Override
+	public void addRow(Row<T> elements) {
+		final Row<T> copy = new RowImpl<T>(elements);
+		final Iterator<T> it = copy.iterator();
+		if(rowMapper.getSize() > 0){
+			rowMapper.addMapping(it.next());
+			it.remove();
+		}
+		super.addRow(copy);
+	}
 
 	// Implement //
 

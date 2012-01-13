@@ -42,7 +42,7 @@ import net.sf.kerner.utils.collections.ObjectToIndexMapper;
  * @param <T>
  *            type of table element
  */
-public interface Row<T> extends List<T> {
+public interface Row<T> extends List<T>, Cloneable {
 
 	/**
 	 * 

@@ -113,6 +113,11 @@ public class RowImpl<T> implements Row<T> {
 	public ObjectToIndexMapper getObjectToIndexMapper() {
 		return new ObjectToIndexMapperImpl(mapper.keySet());
 	}
+	
+	@Override
+	protected RowImpl<T> clone() throws CloneNotSupportedException {
+		return new RowImpl<T>(this);
+	}
 
 	// Delegates //
 

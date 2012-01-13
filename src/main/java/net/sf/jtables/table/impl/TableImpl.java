@@ -119,7 +119,7 @@ public class TableImpl<T> implements Table<T> {
 	}
 
 	/**
-	 * 
+	 * Retrieve an iterator over all elements.
 	 */
 	public synchronized Iterator<T> iterator() {
 		return getAllElements().iterator();
