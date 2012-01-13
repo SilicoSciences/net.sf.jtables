@@ -139,6 +139,8 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 	}
 
 	public void addRow(int index, Row<T> elements) {
+		if(index < 0 || index > rows.size())
+			throw new IllegalArgumentException();
 		super.rows.add(index, elements);
 	}
 

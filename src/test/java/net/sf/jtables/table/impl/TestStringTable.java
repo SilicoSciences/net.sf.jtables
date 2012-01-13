@@ -134,6 +134,29 @@ public class TestStringTable {
 	}
 	
 	@Test
+	public final void testAddColumn01() throws IOException {
+		
+		// read a table from a string
+		// table has row and column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "rowA\ta.a\ta.b"
+				), true, true).readAll();
+		
+		// add another column to table
+		
+		table1.addColumn(new ColumnImpl<String>(Arrays.asList("colC","a.c"
+				)));
+
+		System.out.println(table1);
+		
+		assertEquals(1,table1.getRows().size());
+		assertEquals(3,table1.getColumns().size());
+		assertArrayEquals(new String[]{"a.c"}, table1.getColumn("colC").toArray());
+	}
+	
+	@Test
 	public final void testAddRow02() throws IOException {
 		
 		// read a table from a string
@@ -154,10 +177,84 @@ public class TestStringTable {
 		assertArrayEquals(new String[]{"a.b","b.b"}, table1.getColumn("colB").toArray());
 	}
 
-	@Ignore
 	@Test
-	public final void testAddRowInt01() {
-		fail("Not yet implemented"); // TODO
+	public final void testAddRowInt01() throws IOException {
+		
+		// read a table from a string
+		// table has only column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "a.a\ta.b"
+				), true, false).readAll();
+		
+		// add another row to table at index 0 (before current line)
+		
+		table1.addRow(0,new RowImpl<String>(Arrays.asList("b.a","b.b"
+						)));
+		
+		assertEquals(2,table1.getRows().size());
+		
+		assertArrayEquals(new String[]{"b.a","b.b"}, table1.getRow(0).toArray());
+		assertArrayEquals(new String[]{"a.a","a.b"}, table1.getRow(1).toArray());
+	}
+	
+	@Test
+	public final void testAddRowInt02() throws IOException {
+		
+		// read a table from a string
+		// table has only column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "a.a\ta.b"
+				), true, false).readAll();
+		
+		// add another row to table
+		
+		table1.addRow(1,new RowImpl<String>(Arrays.asList("b.a","b.b"
+						)));
+		
+		assertEquals(2,table1.getRows().size());
+		
+		assertArrayEquals(new String[]{"a.a","a.b"}, table1.getRow(0).toArray());
+		assertArrayEquals(new String[]{"b.a","b.b"}, table1.getRow(1).toArray());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddRowInt03() throws IOException {
+		
+		// read a table from a string
+		// table has only column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "a.a\ta.b"
+				), true, false).readAll();
+		
+		// add another row to table
+		
+		table1.addRow(3,new RowImpl<String>(Arrays.asList("b.a","b.b"
+						)));
+		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public final void testAddRowInt04() throws IOException {
+		
+		// read a table from a string
+		// table has only column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "a.a\ta.b"
+				), true, false).readAll();
+		
+		// add another row to table
+		
+		table1.addRow(-1,new RowImpl<String>(Arrays.asList("b.a","b.b"
+						)));
+		
 	}
 
 	@Ignore

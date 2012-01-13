@@ -51,6 +51,8 @@ public interface MutableTable<T> extends Table<T> {
 	 *
 	 * @param row row to add 
 	 * @param index index at which row is added
+	 * 
+	 * @throws IllegalArgumentException if {@code index < 0 || index > {@link #getRows().size()}}
 	 */
 	void addRow(int index, Row<T> row);
 

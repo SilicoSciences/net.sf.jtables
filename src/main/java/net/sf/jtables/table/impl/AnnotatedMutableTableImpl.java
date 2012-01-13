@@ -157,6 +157,8 @@ AnnotatedMutableTable<T> {
 		}
 		super.addRow(copy);
 	}
+	
+	
 
 	// Implement //
 
