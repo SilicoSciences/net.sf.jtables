@@ -90,7 +90,7 @@ AnnotatedMutableTable<T> {
 		if (colMapper.containsKey(key)) {
 			// all good
 		} else
-			throw new NoSuchElementException("no element for row index [" + key
+			throw new NoSuchElementException("no element for column index [" + key
 					+ "]");
 	}
 
@@ -171,13 +171,13 @@ AnnotatedMutableTable<T> {
 	public Row<T> getRow(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkRowIndex(key);
-		return new ListToRowTransformer<T>(rowMapper.keySet()).transform((super.getRow(rowMapper.get(key))));
+		return getRow(rowMapper.get(key));
 	}
 
 	public Column<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkColumnIndex(key);
-		return new ListToColumnTransformer<T>(colMapper.keySet()).transform((super.getColumn(colMapper.get(key))));
+		return getColumn(colMapper.get(key));
 	}
 
 }

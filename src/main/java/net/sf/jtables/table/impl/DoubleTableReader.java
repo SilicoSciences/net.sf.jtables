@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
-import net.sf.jtables.table.AnnotatedMutableTable;
+import net.sf.jtables.table.TableReader;
 
 /**
  * 
@@ -158,13 +158,18 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 			throws IOException {
 		super(reader, columnIds, rowIds);
 	}
+	
+	@Override
+	public DoubleTable readAll() throws IOException {
+		return (DoubleTable) super.readAll();
+	}
 
 	/**
 	 * 
 	 */
 	@Override
-	protected AnnotatedMutableTable<Double> getInstance() {
-		return new AnnotatedMutableTableImpl<Double>();
+	protected DoubleTable getInstance() {
+		return new DoubleTable();
 	}
 
 	/**

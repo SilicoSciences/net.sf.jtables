@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.jtables.table.Column;

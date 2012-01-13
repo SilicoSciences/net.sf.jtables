@@ -130,8 +130,6 @@ public class TestStringTableReader {
 	public final void testStringTableReaderBooleanBoolean() {
 		fail("Not yet implemented"); // TODO
 	}
-
-	// START SNIPPET: example1
 	
 	/**
 	 * Test method for
@@ -163,8 +161,6 @@ public class TestStringTableReader {
 		
 		assertArrayEquals(new String[]{"1","2","3"}, table.getRow(0).toArray());
 	}
-
-	// END SNIPPET: example1
 	
 	/**
 	 * Test method for
@@ -297,5 +293,119 @@ public class TestStringTableReader {
 		AnnotatedTable<String> result = tableReader.readAll();
 		assertTrue(result.getAllElements().isEmpty());
 	}
+	
+	// START SNIPPET: example1
+	
+	@Test
+	public final void testReadAll02() throws IOException {
+		
+		/**
+		 *  		colA	colB	colC
+		 *  rowA	a.a	a.b	a.c
+		 *  rowB	b.a	b.b	b.c
+		 */
+		
+		// A string that contains a table (tab delimited)
+		String tableString =
+			  "colA\tcolB\tcolC"
+			+ IOUtils.NEW_LINE_STRING
+			+ "rowA\ta.a\ta.b\ta.c"
+			+ IOUtils.NEW_LINE_STRING
+			+ "rowB\tb.a\tb.b\tb.c"
+			;
+		
+		// A Reader to read the table
+		StringReader stringReader = new StringReader(tableString);
+		
+		// A TableReader to parse the file
+		// First argument is the Reader (File or Stream would also work)
+		// Second argument is if column headers are present
+		// Third argument is if row headers are present
+		// Forth argument is column-delimiter (in this case tab)
+		StringTableReader tableReader = new StringTableReader(stringReader, true, true, "\t");
+		
+		// Read the table at once
+		StringTable table = tableReader.readAll();
+		
+		// Close the reader
+		tableReader.close();
+		
+		// table does have row headers
+		assertEquals(2, table.getRowIdentifier().size());
+		
+		// table does have column headers
+		assertEquals(3, table.getColumnIdentifier().size());
+		
+		assertArrayEquals(new String[]{"a.a", "b.a"}, table.getColumn("colA").toArray());
+		assertArrayEquals(new String[]{"a.b", "b.b"}, table.getColumn("colB").toArray());
+		assertArrayEquals(new String[]{"a.c", "b.c"}, table.getColumn("colC").toArray());
+		
+		assertArrayEquals(new String[]{"a.a", "a.b", "a.c"}, table.getRow("rowA").toArray());
+		assertArrayEquals(new String[]{"b.a", "b.b", "b.c"}, table.getRow("rowB").toArray());
+	}
+	
+	// END SNIPPET: example1
+	
+	// START SNIPPET: example3
+	
+	@Test
+	public final void testReadAll03() throws IOException {
+		
+		/**
+		 *  		colA	colB	colC
+		 *  rowA	a.a		a.c
+		 *  rowB	b.a	b.b
+		 */
+		
+		// A string that contains a table (tab delimited)
+		// note that table has empty cells
+		
+		String tableString =
+			  "colA\tcolB\tcolC"
+			+ IOUtils.NEW_LINE_STRING
+			+ "rowA\ta.a\t\ta.c"
+			+ IOUtils.NEW_LINE_STRING
+			+ "rowB\tb.a\tb.b\t"
+			;
+		
+		// if empty cell is at the end of a row/ column (b.c), row/ column size is less by one! 
+		
+		// A Reader to read the table
+		StringReader stringReader = new StringReader(tableString);
+		
+		// A TableReader to parse the file
+		// First argument is the Reader (File or Stream would also work)
+		// Second argument is if column headers are present
+		// Third argument is if row headers are present
+		// Forth argument is column-delimiter (in this case tab)
+		StringTableReader tableReader = new StringTableReader(stringReader, true, true, "\t");
+		
+		// Read the table at once
+		StringTable table = tableReader.readAll();
+		
+		// Close the reader
+		tableReader.close();
+		
+		// table does have row headers
+		assertEquals(2, table.getRowIdentifier().size());
+		
+		// table does have column headers
+		assertEquals(3, table.getColumnIdentifier().size());
+		
+		// max row size is 3 (including empty element)
+		assertEquals(3, table.getMaxRowSize());
+		
+		// max column size is 2 (excluding empty element, since it is at the end)
+		assertEquals(2, table.getMaxColumnSize());
+		
+		assertArrayEquals(new String[]{"a.a", "b.a"}, table.getColumn("colA").toArray());
+		assertArrayEquals(new String[]{"", "b.b"}, table.getColumn("colB").toArray());
+		assertArrayEquals(new String[]{"a.c"}, table.getColumn("colC").toArray());
+		
+		assertArrayEquals(new String[]{"a.a", "", "a.c"}, table.getRow("rowA").toArray());
+		assertArrayEquals(new String[]{"b.a", "b.b"}, table.getRow("rowB").toArray());
+	}
+	
+	// END SNIPPET: example3
 
 }

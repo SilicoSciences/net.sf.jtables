@@ -22,11 +22,9 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.NoSuchElementException;
 import java.util.Set;
 
 import net.sf.jtables.table.Row;
-import net.sf.kerner.utils.StringUtils;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 

@@ -17,6 +17,7 @@ package net.sf.jtables.table.impl;
 
 import java.util.List;
 
+import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.Row;
 
 /**
