@@ -20,6 +20,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
+import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
 import java.util.Set;
@@ -78,7 +79,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	/**
 	 * row headers.
 	 */
-	protected final Set<String> rowHeaders = new LinkedHashSet<String>();
+//	protected final Set<String> rowHeaders = new LinkedHashSet<String>();
 
 	/**
 	 * column headers.
@@ -263,17 +264,22 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 			// continue;
 			// }
 			if (rowsB && first) {
-				rowHeaders.add(s);
+				result.setIdentifier(s);
 				first = false;
 			} else {
-				result.add(parse(s));
+				final Iterator<String> it = columnHeaders.iterator();
+				String identifier = null;
+				if(it.hasNext()){
+					identifier = it.next();
+					it.remove();
+				}
+				System.out.println("add new element to row: " + identifier + ", " + parse(s));
+				result.add(new RowColumnElement<T>(identifier, parse(s)));
 			}
 		}
 
 		if (result.isEmpty())
 			return null;
-
-		result.setIdentifier(columnHeaders);
 
 		return result;
 	}
@@ -290,8 +296,6 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 			result.addRow(next);
 		}
 		it.close();
-		result.setRowIdentifier(rowHeaders);
-		result.setColumnIdentifier(columnHeaders);
 		// System.err.println("cIds:" + result.getColumnIdentifier());
 		// System.err.println("rIds:" + result.getRowIdentifier());
 		return result;

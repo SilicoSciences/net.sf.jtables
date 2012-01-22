@@ -27,11 +27,11 @@ import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
- * Default implementation for {@link net.sf.jtables.table.Table Table}. 
+ * Default implementation for {@link Table}. 
  * 
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-10
+ * @version 2012-01-22
  *
  * @param <T> type of elements in this {@code Table}
  */
@@ -152,9 +152,10 @@ public class TableImpl<T> implements Table<T> {
 	public Column<T> getColumn(int index) {
 		checkColumnIndex(index);
 		final Column<T> result = new ColumnImpl<T>();
-		for (List<? extends T> l : rows) {
+		for (Row<T> l : rows) {
 			if (index < l.size()) {
-				result.add(l.get(index));
+				System.out.println("add element " + l.getElement(index).getIdentifier());
+				result.add(l.getElement(index));
 			} else {
 				// log.debug("row at index [" + index + "] has no column");
 			}

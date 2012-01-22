@@ -18,6 +18,7 @@ package net.sf.jtables.table;
 import java.util.List;
 import java.util.Set;
 
+import net.sf.jtables.table.impl.RowColumnElement;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 
 /**
@@ -37,7 +38,7 @@ import net.sf.kerner.utils.collections.ObjectToIndexMapper;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-22
  * 
  * @param <T>
  *            type of table element
@@ -46,28 +47,20 @@ public interface Row<T> extends List<T>, Cloneable {
 
 	/**
 	 * 
-	 * Retrieve this row's {@link ObjectToIndexMapper}.
+	 * Retrieve this row's identifier.
 	 * 
-	 * @return this row's {@link ObjectToIndexMapper}
+	 * @return this row's identifier
 	 */
-	ObjectToIndexMapper getObjectToIndexMapper();
-
-	/**
-	 * 
-	 * Retrieve this row's identifiers.
-	 * 
-	 * @return this row's identifiers
-	 */
-	Set<Object> getIdentifier();
+	String getIdentifier();
 
 	/**
 	 * 
 	 * Set this row's identifier.
 	 * 
-	 * @param idents
+	 * @param ident
 	 *            new identifier for this row
 	 */
-	void setIdentifier(Set<? extends Object> idents);
+	void setIdentifier(String identifier);
 
 	/**
 	 * 
@@ -79,4 +72,13 @@ public interface Row<T> extends List<T>, Cloneable {
 	 */
 	T get(Object indentifier);
 
+	boolean add(RowColumnElement<T> element);
+	
+	boolean addAll(List<RowColumnElement<T>> elements);
+	
+	List<RowColumnElement<T>> getElements();
+	
+	RowColumnElement<T> getElement(int i);
+	
+	RowColumnElement<T> getElement(Object identifier);
 }

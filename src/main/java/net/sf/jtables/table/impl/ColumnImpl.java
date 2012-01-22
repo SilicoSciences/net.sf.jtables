@@ -18,6 +18,7 @@ package net.sf.jtables.table.impl;
 import java.util.List;
 
 import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 
 /**
  * 
@@ -43,24 +44,20 @@ import net.sf.jtables.table.Column;
  */
 public class ColumnImpl<T> extends RowImpl<T> implements Column<T> {
 
-	/**
-	 * 
-	 * Create an empty column.
-	 * 
-	 */
 	public ColumnImpl() {
-
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * 
-	 * Create a column that contains provided elements.
-	 * 
-	 * @param elements
-	 *            elements initially contained by this {@code Column}
-	 */
-	public ColumnImpl(List<T> elements) {
-		super(elements);
+	public ColumnImpl(Row<T> template) {
+		super(template);
+		// TODO Auto-generated constructor stub
 	}
 
+	public ColumnImpl(String identifier, List<T> elements) {
+		super(identifier, elements);
+		// TODO Auto-generated constructor stub
+	}
+
+	
 }

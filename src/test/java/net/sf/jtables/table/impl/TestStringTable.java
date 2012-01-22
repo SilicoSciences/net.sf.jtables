@@ -124,9 +124,14 @@ public class TestStringTable {
 				+ "rowA\ta.a\ta.b"
 				), true, true).readAll();
 		
+		System.out.println("col-ident: " + table1.getColumnIdentifier());
+		System.out.println("row-ident: " + table1.getRowIdentifier());
+		System.out.println("rows: " + table1.getRows());
+		System.out.println("cols: " + table1.getColumns());
+		
 		// add another row to table
 		
-		table1.addRow(new RowImpl<String>(Arrays.asList("rowB","b.a","b.b"
+		table1.addRow(new RowImpl<String>(null, Arrays.asList("rowB","b.a","b.b"
 				)));
 		
 		assertEquals(2,table1.getRows().size());
@@ -146,10 +151,13 @@ public class TestStringTable {
 		
 		// add another column to table
 		
-		table1.addColumn(new ColumnImpl<String>(Arrays.asList("colC","a.c"
+		table1.addColumn(new ColumnImpl<String>(null, Arrays.asList("colC","a.c"
 				)));
 
-		System.out.println(table1);
+//		System.out.println("col-ident: " + table1.getColumnIdentifier());
+//		System.out.println("row-ident: " + table1.getRowIdentifier());
+//		System.out.println("rows: " + table1.getRows());
+//		System.out.println("cols: " + table1.getColumns());
 		
 		assertEquals(1,table1.getRows().size());
 		assertEquals(3,table1.getColumns().size());
@@ -169,12 +177,39 @@ public class TestStringTable {
 		
 		// add another row to table
 		
-		table1.addRow(new RowImpl<String>(Arrays.asList("b.a","b.b"
+		table1.addRow(new RowImpl<String>(null, Arrays.asList("b.a","b.b"
 				)));
 		
 		assertEquals(2,table1.getRows().size());
 		assertArrayEquals(new String[]{"a.a","b.a"}, table1.getColumn("colA").toArray());
 		assertArrayEquals(new String[]{"a.b","b.b"}, table1.getColumn("colB").toArray());
+	}
+	
+	@Test
+	public final void testAddColumn02() throws IOException {
+		
+		// read a table from a string
+		// table has only column headers
+		
+		table1 = new StringTableReader(new StringReader("\tcolA\tcolB"
+				+IOUtils.NEW_LINE_STRING
+				+ "a.a\ta.b"
+				), true, false).readAll();
+		
+		// add another column to table
+		
+		table1.addColumn(new ColumnImpl<String>(null, Arrays.asList("a.c"
+				)));
+		
+		System.out.println("col-ident: " + table1.getColumnIdentifier());
+		System.out.println("row-ident: " + table1.getRowIdentifier());
+		System.out.println("rows: " + table1.getRows());
+		System.out.println("cols: " + table1.getColumns());
+		
+		assertEquals(3,table1.getColumns().size());
+		assertArrayEquals(new String[]{"a.a"}, table1.getColumn("colA").toArray());
+		assertArrayEquals(new String[]{"a.b"}, table1.getColumn("colB").toArray());
+		assertArrayEquals(new String[]{"a.c"}, table1.getColumn(2).toArray());
 	}
 
 	@Test
@@ -190,7 +225,7 @@ public class TestStringTable {
 		
 		// add another row to table at index 0 (before current line)
 		
-		table1.addRow(0,new RowImpl<String>(Arrays.asList("b.a","b.b"
+		table1.addRow(0,new RowImpl<String>(null, Arrays.asList("b.a","b.b"
 						)));
 		
 		assertEquals(2,table1.getRows().size());
@@ -212,7 +247,7 @@ public class TestStringTable {
 		
 		// add another row to table
 		
-		table1.addRow(1,new RowImpl<String>(Arrays.asList("b.a","b.b"
+		table1.addRow(1,new RowImpl<String>(null, Arrays.asList("b.a","b.b"
 						)));
 		
 		assertEquals(2,table1.getRows().size());
@@ -234,7 +269,7 @@ public class TestStringTable {
 		
 		// add another row to table
 		
-		table1.addRow(3,new RowImpl<String>(Arrays.asList("b.a","b.b"
+		table1.addRow(3,new RowImpl<String>(null, Arrays.asList("b.a","b.b"
 						)));
 		
 	}
@@ -252,7 +287,7 @@ public class TestStringTable {
 		
 		// add another row to table
 		
-		table1.addRow(-1,new RowImpl<String>(Arrays.asList("b.a","b.b"
+		table1.addRow(-1,new RowImpl<String>(null, Arrays.asList("b.a","b.b"
 						)));
 		
 	}

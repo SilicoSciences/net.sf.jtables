@@ -31,20 +31,6 @@ import java.util.Set;
  */
 public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
 
-	/**
-	 * 
-	 * Set identifiers for columns.
-	 *
-	 * @param ids a {@link Set} that contains all column identifiers
-	 */
-	void setColumnIdentifier(Set<? extends Object> ids);
-
-	/**
-	 * 
-	 * Set identifiers for rows.
-	 *
-	 * @param ids a {@link Set} that contains all row identifiers
-	 */
-	void setRowIdentifier(Set<? extends Object> ids);
+	
 	
 }
