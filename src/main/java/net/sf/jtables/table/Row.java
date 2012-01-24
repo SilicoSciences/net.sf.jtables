@@ -16,10 +16,6 @@ limitations under the License.
 package net.sf.jtables.table;
 
 import java.util.List;
-import java.util.Set;
-
-import net.sf.jtables.table.impl.RowColumnElement;
-import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 
 /**
  * 
@@ -38,47 +34,12 @@ import net.sf.kerner.utils.collections.ObjectToIndexMapper;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-22
+ * @version 2012-01-24
  * 
  * @param <T>
  *            type of table element
  */
 public interface Row<T> extends List<T>, Cloneable {
 
-	/**
-	 * 
-	 * Retrieve this row's identifier.
-	 * 
-	 * @return this row's identifier
-	 */
-	String getIdentifier();
-
-	/**
-	 * 
-	 * Set this row's identifier.
-	 * 
-	 * @param ident
-	 *            new identifier for this row
-	 */
-	void setIdentifier(String identifier);
-
-	/**
-	 * 
-	 * Retrieve row's element that is associated with given identifier.
-	 * 
-	 * @param indentifier
-	 *            identifier that is associated to returned value.
-	 * @return value that is associated to given identifier
-	 */
-	T get(Object indentifier);
-
-	boolean add(RowColumnElement<T> element);
 	
-	boolean addAll(List<RowColumnElement<T>> elements);
-	
-	List<RowColumnElement<T>> getElements();
-	
-	RowColumnElement<T> getElement(int i);
-	
-	RowColumnElement<T> getElement(Object identifier);
 }

@@ -20,8 +20,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -49,7 +50,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-24
  * 
  * @param <T>
  *            type of elements in {@code Table}
@@ -79,12 +80,12 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	/**
 	 * row headers.
 	 */
-//	protected final Set<String> rowHeaders = new LinkedHashSet<String>();
+	protected final List<String> rowHeaders = new ArrayList<String>();
 
 	/**
 	 * column headers.
 	 */
-	protected final Set<String> columnHeaders = new LinkedHashSet<String>();
+	protected final List<String> columnHeaders = new ArrayList<String>();
 
 	/**
 	 * currently reading first line?
@@ -264,17 +265,10 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 			// continue;
 			// }
 			if (rowsB && first) {
-				result.setIdentifier(s);
+				rowHeaders.add(s);
 				first = false;
 			} else {
-				final Iterator<String> it = columnHeaders.iterator();
-				String identifier = null;
-				if(it.hasNext()){
-					identifier = it.next();
-					it.remove();
-				}
-				System.out.println("add new element to row: " + identifier + ", " + parse(s));
-				result.add(new RowColumnElement<T>(identifier, parse(s)));
+				result.add(parse(s));
 			}
 		}
 
@@ -293,11 +287,11 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 		while (it.hasNext()) {
 			final Row<T> next = it.next();
 			// System.err.println("adding row " + next);
-			result.addRow(next);
+			result.addRow(null,next);
 		}
 		it.close();
-		// System.err.println("cIds:" + result.getColumnIdentifier());
-		// System.err.println("rIds:" + result.getRowIdentifier());
+		result.setRowIdentifier(rowHeaders);
+		result.setColumnIdentifier(columnHeaders);
 		return result;
 	}
 

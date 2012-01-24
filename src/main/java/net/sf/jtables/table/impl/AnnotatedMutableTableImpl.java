@@ -18,7 +18,6 @@ package net.sf.jtables.table.impl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -43,17 +42,17 @@ import net.sf.kerner.utils.io.IOUtils;
 public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 AnnotatedMutableTable<T> {
 
-//	/**
-//	 * row mappings.
-//	 */
-//	protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(
-//			new HashSet<Object>());
-//
-//	/**
-//	 * column mappings.
-//	 */
-//	protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(
-//			new HashSet<Object>());
+	/**
+	 * row mappings.
+	 */
+	protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(
+			new HashSet<Object>());
+
+	/**
+	 * column mappings.
+	 */
+	protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(
+			new HashSet<Object>());
 
 	/**
 	 * 
@@ -78,21 +77,21 @@ AnnotatedMutableTable<T> {
 
 	// Protected //
 
-//	protected void checkRowIndex(Object key) {
-//		if (rowMapper.containsKey(key)) {
-//			// all good
-//		} else
-//			throw new NoSuchElementException("no element for row index [" + key
-//					+ "]");
-//	}
-//
-//	protected void checkColumnIndex(Object key) {
-//		if (colMapper.containsKey(key)) {
-//			// all good
-//		} else
-//			throw new NoSuchElementException("no element for column index [" + key
-//					+ "]");
-//	}
+	protected void checkRowIndex(Object key) {
+		if (rowMapper.containsKey(key)) {
+			// all good
+		} else
+			throw new NoSuchElementException("no element for row index [" + key
+					+ "]");
+	}
+
+	protected void checkColumnIndex(Object key) {
+		if (colMapper.containsKey(key)) {
+			// all good
+		} else
+			throw new NoSuchElementException("no element for column index [" + key
+					+ "]");
+	}
 
 	// Public //
 
@@ -152,55 +151,40 @@ AnnotatedMutableTable<T> {
 	/**
 	 * 
 	 */
-//	public void setColumnIdentifier(Set<? extends Object> ids) {
-//		this.colMapper = new ObjectToIndexMapperImpl(ids);
-//	}
-//
-//	public void setRowIdentifier(Set<? extends Object> ids) {
-//		this.rowMapper = new ObjectToIndexMapperImpl(ids);
-//	}
-//
-//	public Set<Object> getRowIdentifier() {
-//		return new LinkedHashSet<Object>(rowMapper.keySet());
-//	}
-//
-//	public Set<Object> getColumnIdentifier() {
-//		return new LinkedHashSet<Object>(colMapper.keySet());
-//	}
+	public void setColumnIdentifier(Set<? extends Object> ids) {
+		this.colMapper = new ObjectToIndexMapperImpl(ids);
+	}
+
+	public void setRowIdentifier(Set<? extends Object> ids) {
+		this.rowMapper = new ObjectToIndexMapperImpl(ids);
+	}
+
+	public List<Object> getRowIdentifier() {
+		return new ArrayList<Object>(rowMapper.keySet());
+	}
+
+	public List<Object> getColumnIdentifier() {
+		return new ArrayList<Object>(colMapper.keySet());
+	}
 
 	public Row<T> getRow(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
-		for(Row<T> r : getRows()){
-			if(r != null && r.getIdentifier().equals(key))
-				return r;
-		}
-		throw new NoSuchElementException("no row for identifier [" + key + "]");
+		checkRowIndex(key);
+		return getRow(rowMapper.get(key));
 	}
 
 	public Column<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
-		for(Column<T> r : getColumns()){
-			if(r != null && r.getIdentifier().equals(key))
-				return r;
-		}
-		throw new NoSuchElementException("no column for identifier [" + key + "]");
+		checkColumnIndex(key);
+		return getColumn(colMapper.get(key));
 	}
 
-	public Set<Object> getRowIdentifier() {
-		final Set<Object> result = new LinkedHashSet<Object>();
-		for(Row<T> r : getRows()){
-			result.add(r.getIdentifier());
-		}
-		return result;
+	public void setColumnIdentifier(List<? extends Object> ids) {
+		this.colMapper = new ObjectToIndexMapperImpl(ids);
 	}
 
-	public Set<Object> getColumnIdentifier() {
-		final Set<Object> result = new LinkedHashSet<Object>();
-		for(Column<T> r : getColumns()){
-			System.out.println("now column " + r.getIdentifier());
-			result.add(r.getIdentifier());
-		}
-		return result;
+	public void setRowIdentifier(List<? extends Object> ids) {
+		this.rowMapper = new ObjectToIndexMapperImpl(ids);
 	}
 
 }

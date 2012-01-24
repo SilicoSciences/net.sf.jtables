@@ -16,8 +16,8 @@ limitations under the License.
 package net.sf.jtables.table;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 /**
  * 
@@ -39,7 +39,7 @@ import java.util.Set;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-09-12
+ * @version 2011-09-24
  * 
  * @param <T>
  *            type of elements in {@code Table}
@@ -48,19 +48,19 @@ public interface AnnotatedTable<T> extends Table<T> {
 
 	/**
 	 * 
-	 * Retrieve a {@link Set} that contains all row identifiers.
+	 * Retrieve a {@link List} that contains all row identifiers in proper order.
 	 * 
 	 * @return all row identifiers
 	 */
-	Set<Object> getRowIdentifier();
+	List<Object> getRowIdentifier();
 
 	/**
 	 * 
-	 * Retrieve a {@link Set} that contains all column identifiers.
+	 * Retrieve a {@link List} that contains all column identifiers in proper order.
 	 * 
 	 * @return all column identifiers
 	 */
-	Set<Object> getColumnIdentifier();
+	List<Object> getColumnIdentifier();
 
 	/**
 	 * 

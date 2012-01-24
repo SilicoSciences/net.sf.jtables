@@ -37,7 +37,7 @@ import java.util.List;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-24
  * 
  * @param <T> type of elements in {@code Table}
  */

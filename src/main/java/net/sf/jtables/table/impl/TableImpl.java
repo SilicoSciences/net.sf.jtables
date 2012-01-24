@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -151,11 +152,10 @@ public class TableImpl<T> implements Table<T> {
 	 */
 	public Column<T> getColumn(int index) {
 		checkColumnIndex(index);
-		final Column<T> result = new ColumnImpl<T>();
-		for (Row<T> l : rows) {
+		final List<T> result = new ArrayList<T>();
+		for (List<? extends T> l : rows) {
 			if (index < l.size()) {
-				System.out.println("add element " + l.getElement(index).getIdentifier());
-				result.add(l.getElement(index));
+				result.add(l.get(index));
 			} else {
 				// log.debug("row at index [" + index + "] has no column");
 			}

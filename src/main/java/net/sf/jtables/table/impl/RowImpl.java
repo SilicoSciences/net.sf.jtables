@@ -17,13 +17,13 @@ package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.NoSuchElementException;
 
 import net.sf.jtables.table.Row;
+import net.sf.kerner.utils.collections.ObjectToIndexMapper;
+import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
 /**
  * 
@@ -49,84 +49,39 @@ import net.sf.jtables.table.Row;
  */
 public class RowImpl<T> implements Row<T> {
 
-	/**
-	 * List implementation to which is delegated.
-	 */
-	protected final List<RowColumnElement<T>> implementation = new ArrayList<RowColumnElement<T>>();
-
-	protected volatile String identifier;
+protected final List<T> implementation = new ArrayList<T>();
 	
-	public RowImpl(String identifier, List<T> elements) {
-		this.identifier = identifier;
-		for(T t : elements)
-			this.add(t);
-	}
+	protected volatile ObjectToIndexMapper mapper = new ObjectToIndexMapperImpl(
+			new ArrayList<Object>());
 	
-	public RowImpl(Row<T> template) {
-		this.setIdentifier(template.getIdentifier());
-		this.implementation.addAll(template.getElements());
+	public RowImpl(List<T> elements) {
+		 implementation.addAll(elements);
 	}
 	
 	public RowImpl() {
-		
-	}
-	
-	protected List<T> asValueList(){
-		final List<T> values = new ArrayList<T>();
-		for(RowColumnElement<T> e : implementation){
-			values.add(e.getValue());
-		}
-		return values;
 	}
 
+	public void setIdentifier(List<? extends Object> ids) {
+		this.mapper = new ObjectToIndexMapperImpl(ids);
+	}
+	
 	// Implement //
-
-	public String getIdentifier() {
-		return identifier;
-	}
-
-	public void setIdentifier(String identifier) {
-		this.identifier = identifier;
-		
-	}
-
+	
 	public T get(Object indentifier) {
-		for(RowColumnElement<T> t : implementation){
-			if(t.getIdentifier().equals(indentifier))
-				return t.getValue();
-		}
-		throw new NoSuchElementException("no element for identifier [" + identifier + "]");
+//		if(implementation.size() <= mapper.get(indentifier)){
+//			throw new NoSuchElementException("no value for [" + indentifier + "]");
+//		}
+		return get(mapper.get(indentifier));
 	}
 
-	public boolean add(RowColumnElement<T> element) {
-		return implementation.add(element);
+	public List<Object> getIdentifier() {
+		return new ArrayList<Object>(mapper.keySet());
 	}
 	
-	public boolean addAll(List<RowColumnElement<T>> elements) {
-		return implementation.addAll(elements);
+	public ObjectToIndexMapper getObjectToIndexMapper() {
+		return new ObjectToIndexMapperImpl(mapper.keySet());
 	}
 	
-	public List<RowColumnElement<T>> getElements() {
-		return implementation;
-	}
-	
-	@Override
-	protected RowImpl<T> clone() throws CloneNotSupportedException {
-		return new RowImpl<T>(this);
-	}
-	
-	public RowColumnElement<T> getElement(int i) {
-		return implementation.get(i);
-	}
-	
-	public RowColumnElement<T> getElement(Object identifier) {
-		for(RowColumnElement<T> e : implementation){
-			if(e.getIdentifier().equals(identifier))
-				return e;
-		}
-		throw new NoSuchElementException("no element for identifier " + identifier);
-	}
-
 	// Delegates //
 
 	public int size() {
@@ -142,7 +97,7 @@ public class RowImpl<T> implements Row<T> {
 	}
 
 	public Iterator<T> iterator() {
-		return asValueList().iterator();
+		return implementation.iterator();
 	}
 
 	public Object[] toArray() {
@@ -155,7 +110,7 @@ public class RowImpl<T> implements Row<T> {
 	}
 
 	public boolean add(T e) {
-		return implementation.add(new RowColumnElement<T>(null, e));
+		return implementation.add(e);
 	}
 
 	public boolean remove(Object o) {
@@ -167,20 +122,11 @@ public class RowImpl<T> implements Row<T> {
 	}
 
 	public boolean addAll(Collection<? extends T> c) {
-		boolean b = false;
-		for(T t : c)
-			b = add(t);
-		return b;
+		return implementation.addAll(c);
 	}
 
 	public boolean addAll(int index, Collection<? extends T> c) {
-		boolean b = false;
-		List<T> list = new ArrayList<T>(c);
-		Collections.reverse(list);
-		for(T t : list){
-			b = implementation.add(new RowColumnElement<T>(null, t));
-		}
-		return b;
+		return implementation.addAll(index, c);
 	}
 
 	public boolean removeAll(Collection<?> c) {
@@ -202,26 +148,26 @@ public class RowImpl<T> implements Row<T> {
 	public int hashCode() {
 		return implementation.hashCode();
 	}
-
+	
 	@Override
 	public String toString() {
 		return implementation.toString();
 	}
 
 	public T get(int index) {
-		return implementation.get(index).getValue();
+		return implementation.get(index);
 	}
 
 	public T set(int index, T element) {
-		return implementation.set(index, new RowColumnElement<T>(null, element)).getValue();
+		return implementation.set(index, element);
 	}
 
 	public void add(int index, T element) {
-		implementation.add(index, new RowColumnElement<T>(null, element));
+		implementation.add(index, element);
 	}
 
 	public T remove(int index) {
-		return implementation.remove(index).getValue();
+		return implementation.remove(index);
 	}
 
 	public int indexOf(Object o) {
@@ -233,15 +179,15 @@ public class RowImpl<T> implements Row<T> {
 	}
 
 	public ListIterator<T> listIterator() {
-		return asValueList().listIterator();
+		return implementation.listIterator();
 	}
 
 	public ListIterator<T> listIterator(int index) {
-		return asValueList().listIterator(index);
+		return implementation.listIterator(index);
 	}
 
 	public List<T> subList(int fromIndex, int toIndex) {
-		return asValueList().subList(fromIndex, toIndex);
+		return implementation.subList(fromIndex, toIndex);
 	}
 
 }

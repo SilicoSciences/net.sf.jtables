@@ -15,22 +15,39 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * 
  * A {@code MutableTable} and also a {@code AnnotatedTable}.
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
- *
- * @param <T> type of elements in {@Table}
+ * @version 2012-01-24
+ * 
+ * @param <T>
+ *            type of elements in {@Table}
  * 
  * @see MutableTable
  * @see AnnotatedTable
  */
 public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
 
-	
-	
+	/**
+	 * 
+	 * Set identifiers for columns.
+	 * 
+	 * @param ids
+	 *            a {@link List} that contains all column identifiers
+	 */
+	void setColumnIdentifier(List<? extends Object> ids);
+
+	/**
+	 * 
+	 * Set identifiers for rows.
+	 * 
+	 * @param ids
+	 *            a {@link List} that contains all row identifiers
+	 */
+	void setRowIdentifier(List<? extends Object> ids);
+
 }

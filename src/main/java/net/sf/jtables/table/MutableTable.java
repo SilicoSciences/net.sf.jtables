@@ -31,7 +31,7 @@ package net.sf.jtables.table;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-24
  *
  * @param <T> type of elements in {@code Table}
  */
@@ -41,28 +41,31 @@ public interface MutableTable<T> extends Table<T> {
 	 * 
 	 * Add a row to this {@code MutableTable}.
 	 *
-	 * @param row row to add 
+	 * @param row row to add
+	 * @param ident row identifier, may be {@code null}
 	 */
-	void addRow(Row<T> row);
+	void addRow(Object ident, Row<T> row);
 
 	/**
 	 * 
 	 * Add a row to this {@code MutableTable} at given index.
 	 *
-	 * @param row row to add 
+	 * @param row row to add
+	 * @param ident row identifier, may be {@code null}
 	 * @param index index at which row is added
 	 * 
 	 * @throws IllegalArgumentException if {@code index < 0 || index > {@link #getRows().size()}}
 	 */
-	void addRow(int index, Row<T> row);
+	void addRow(int index, Object ident, Row<T> row);
 
 	/**
 	 * 
 	 * Add a column to this {@code MutableTable}.
 	 *
-	 * @param column column to add 
+	 * @param column column to add
+	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(Column<T> column);
+	void addColumn(Object ident, Column<T> column);
 
 	/**
 	 * 
@@ -70,26 +73,29 @@ public interface MutableTable<T> extends Table<T> {
 	 *
 	 * @param column column to add 
 	 * @param index index at which column is added
+	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(int index, Column<T> column);
+	void addColumn(int index, Object ident, Column<T> column);
 	
 	/**
 	 * 
 	 * Replace row at given index with given row.
 	 *
 	 * @param index index of row to be replaced
-	 * @param row new row at given index 
+	 * @param row new row at given index
+	 * @param ident row identifier, may be {@code null}
 	 */
-	void setRow(int index, Row<T> row);
+	void setRow(int index, Object ident, Row<T> row);
 	
 	/**
 	 * 
 	 * Replace column at given index with given column.
 	 *
 	 * @param index index of column to be replaced
-	 * @param column new column at given index 
+	 * @param column new column at given index
+	 * @param ident column identifier, may be {@code null} 
 	 */
-	void setColumn(int index, Column<T> column);
+	void setColumn(int index, Object ident, Column<T> column);
 	
 	/**
 	 * 
