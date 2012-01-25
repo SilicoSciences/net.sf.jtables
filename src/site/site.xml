@@ -20,7 +20,9 @@
 			<item name="Sourceforge" href="http://sourceforge.net/projects/jtables/" />
 		</menu>
 		<menu name="Examples">
-			<item name="Reading a CSV-file" href="example1.html" />
+			<item name="Reading a String table from a CSV-file" href="example1.html" />
+			<item name="Reading a Double matrix from a CSV-file" href="example2.html" />
+			<item name="Robust table parsing" href="example3.html" />
 		</menu>
 		<menu ref="reports" />
 	</body>

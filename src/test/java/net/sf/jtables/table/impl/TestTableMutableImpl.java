@@ -1,14 +1,24 @@
-/**
- * 
- *
- */
+/**********************************************************************
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
 package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.junit.After;
@@ -45,7 +55,7 @@ public class TestTableMutableImpl {
 	@Before
 	public void setUp() throws Exception {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new ArrayList<String>(){
+		ma.addRow(new RowImpl<String>(){
 			{
 			add("eins");
 			}
@@ -81,7 +91,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetRow() {
-		ma.setRow(0, new ArrayList<String>(){
+		ma.setRow(0, new RowImpl<String>(){
 			{
 				add("zwei");
 			}
@@ -95,7 +105,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn() {
-		ma.setColumn(0, new ArrayList<String>(){
+		ma.setColumn(0, new ColumnImpl<String>(){
 			{
 				add("zwei");
 			}
@@ -109,7 +119,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn01() {
-		ma.setColumn(0, new ArrayList<String>(){
+		ma.setColumn(0, new ColumnImpl<String>(){
 			{
 				add("zwei");
 				add("drei");
@@ -124,7 +134,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test(expected=NoSuchElementException.class)
 	public final void testSetColumn02() {
-		ma.setColumn(0, new ArrayList<String>(){
+		ma.setColumn(0, new ColumnImpl<String>(){
 			{
 				add("zwei");
 				add("drei");
@@ -140,7 +150,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn03() {
-		ma.setColumn(0, new ArrayList<String>(){
+		ma.setColumn(0, new ColumnImpl<String>(){
 			{
 				add("zwei");
 				add("drei");
@@ -177,7 +187,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddRowListOfQextendsT() {
-		ma.addRow(new ArrayList<String>(){
+		ma.addRow(new RowImpl<String>(){
 			{
 				add("zwei");
 				add("drei");
@@ -193,7 +203,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddRowIntListOfQextendsT() {
-		ma.addRow(0,new ArrayList<String>(){
+		ma.addRow(0,new RowImpl<String>(){
 			{
 				add("zwei");
 				add("drei");
@@ -209,7 +219,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT() {
-		ma.addColumn(new ArrayList<String>(){
+		ma.addColumn(new ColumnImpl<String>(){
 			{
 				add("ff");
 			}
@@ -223,7 +233,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT01() {
-		ma.addColumn(new ArrayList<String>(){
+		ma.addColumn(new ColumnImpl<String>(){
 			{
 				add("ff");
 			}
@@ -238,7 +248,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT02() {
-		ma.addColumn(new ArrayList<String>(){
+		ma.addColumn(new ColumnImpl<String>(){
 			{
 				add("ff");
 				add("ee");
@@ -254,7 +264,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT03() {
-		ma.addColumn(new ArrayList<String>(){
+		ma.addColumn(new ColumnImpl<String>(){
 			{
 				add("ff");
 				add("ee");
@@ -270,7 +280,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT() {
-		ma.addColumn(0,new ArrayList<String>(){
+		ma.addColumn(0,new ColumnImpl<String>(){
 			{
 				add("ff");
 			}
@@ -284,7 +294,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT01() {
-		ma.addColumn(0,new ArrayList<String>(){
+		ma.addColumn(0,new ColumnImpl<String>(){
 			{
 				add("ff");
 			}
@@ -298,7 +308,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT02() {
-		ma.addColumn(0,new ArrayList<String>(){
+		ma.addColumn(0,new ColumnImpl<String>(){
 			{
 				add("ff");
 				add("ee");
@@ -313,7 +323,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT03() {
-		ma.addColumn(0,new ArrayList<String>(){
+		ma.addColumn(0,new ColumnImpl<String>(){
 			{
 				add("ff");
 				add("ee");
@@ -328,7 +338,7 @@ public class TestTableMutableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT04() {
-		ma.addColumn(0,new ArrayList<String>(){
+		ma.addColumn(0,new ColumnImpl<String>(){
 			{
 				add("ff");
 				add("ee");
@@ -399,7 +409,7 @@ public class TestTableMutableImpl {
 	@Test
 	public final void testFillColumns04() {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new ArrayList<String>(){
+		ma.addRow(new RowImpl<String>(){
 			{
 			add("eins");
 			add("zwei");
@@ -416,7 +426,7 @@ public class TestTableMutableImpl {
 	@Test
 	public final void testFillColumns05() {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new ArrayList<String>(){
+		ma.addRow(new RowImpl<String>(){
 			{
 			add("eins");
 			add("zwei");

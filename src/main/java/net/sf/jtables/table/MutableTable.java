@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
-import java.util.List;
 
 /**
  * 
@@ -32,9 +31,9 @@ import java.util.List;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2012-01-25
  *
- * @param <T> type of elements in table
+ * @param <T> type of elements in {@code Table}
  */
 public interface MutableTable<T> extends Table<T> {
 	
@@ -42,26 +41,31 @@ public interface MutableTable<T> extends Table<T> {
 	 * 
 	 * Add a row to this {@code MutableTable}.
 	 *
-	 * @param row row to add 
+	 * @param row row to add
+	 * @param ident row identifier, may be {@code null}
 	 */
-	void addRow(List<? extends T> row);
+	void addRow(Row<T> row);
 
 	/**
 	 * 
 	 * Add a row to this {@code MutableTable} at given index.
 	 *
-	 * @param row row to add 
+	 * @param row row to add
+	 * @param ident row identifier, may be {@code null}
 	 * @param index index at which row is added
+	 * 
+	 * @throws IllegalArgumentException if {@code index < 0 || index > {@link #getRows().size()}}
 	 */
-	void addRow(int index, List<? extends T> row);
+	void addRow(int index, Row<T> row);
 
 	/**
 	 * 
 	 * Add a column to this {@code MutableTable}.
 	 *
-	 * @param column column to add 
+	 * @param column column to add
+	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(List<? extends T> column);
+	void addColumn(Column<T> column);
 
 	/**
 	 * 
@@ -69,26 +73,29 @@ public interface MutableTable<T> extends Table<T> {
 	 *
 	 * @param column column to add 
 	 * @param index index at which column is added
+	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(int index, List<? extends T> column);
+	void addColumn(int index, Column<T> column);
 	
 	/**
 	 * 
 	 * Replace row at given index with given row.
 	 *
 	 * @param index index of row to be replaced
-	 * @param row new row at given index 
+	 * @param row new row at given index
+	 * @param ident row identifier, may be {@code null}
 	 */
-	void setRow(int index, List<? extends T> row);
+	void setRow(int index, Row<T> row);
 	
 	/**
 	 * 
 	 * Replace column at given index with given column.
 	 *
 	 * @param index index of column to be replaced
-	 * @param column new column at given index 
+	 * @param column new column at given index
+	 * @param ident column identifier, may be {@code null} 
 	 */
-	void setColumn(int index, List<? extends T> column);
+	void setColumn(int index, Column<T> column);
 	
 	/**
 	 * 
@@ -108,7 +115,7 @@ public interface MutableTable<T> extends Table<T> {
 	
 	/**
 	 * 
-	 * Set element at given coordinates.
+	 * Set element at given row and column index.
 	 *
 	 * @param i index of row
 	 * @param j index of column
@@ -118,7 +125,7 @@ public interface MutableTable<T> extends Table<T> {
 	
 	/**
 	 * 
-	 * Remove element at given coordinates.
+	 * Remove element at given row and column index.
 	 *
 	 * @param i index of row
 	 * @param j index of column

@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -16,21 +16,22 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 import net.sf.jtables.table.Table;
 import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
- * Default implementation for {@link net.sf.jtables.table.Table Table}. 
+ * Default implementation for {@link Table}. 
  * 
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2012-01-22
  *
  * @param <T> type of elements in this {@code Table}
  */
@@ -41,14 +42,14 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	protected final List<List<? extends T>> rows = new ArrayList<List<? extends T>>();
+	protected final List<Row<T>> rows = new ArrayList<Row<T>>();
 
 	// Constructor //
 
 	public TableImpl() {
 	}
 
-	public TableImpl(List<? extends List<? extends T>> rows) {
+	public TableImpl(List<Row<T>> rows) {
 		synchronized (rows) {
 			this.rows.addAll(rows);
 		}
@@ -118,7 +119,7 @@ public class TableImpl<T> implements Table<T> {
 	}
 
 	/**
-	 * 
+	 * Retrieve an iterator over all elements.
 	 */
 	public synchronized Iterator<T> iterator() {
 		return getAllElements().iterator();
@@ -127,21 +128,20 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public List<T> getRow(int index) {
+	public Row<T> getRow(int index) {
 		checkRowIndex(index);
-		// defensive copying since we are immutable
-		return Collections.unmodifiableList(rows.get(index));
+		// TODO defensive copying since we are immutable
+		return rows.get(index);
 	}
 
 	/**
 	 * 
 	 */
-	public List<List<T>> getRows() {
-		final List<List<T>> result = new ArrayList<List<T>>();
+	public List<Row<T>> getRows() {
+		final List<Row<T>> result = new ArrayList<Row<T>>();
 		for (int i = 0; i < getNumberOfRows(); i++) {
-			// defensive copying since we are immutable
-			result.add(Collections
-					.unmodifiableList(new ArrayList<T>(getRow(i))));
+			// TODO defensive copying since we are immutable
+			result.add(new RowImpl<T>(getRow(i)));
 		}
 		return result;
 	}
@@ -149,7 +149,7 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public List<T> getColumn(int index) {
+	public Column<T> getColumn(int index) {
 		checkColumnIndex(index);
 		final List<T> result = new ArrayList<T>();
 		for (List<? extends T> l : rows) {
@@ -159,18 +159,18 @@ public class TableImpl<T> implements Table<T> {
 				// log.debug("row at index [" + index + "] has no column");
 			}
 		}
-		return Collections.unmodifiableList(new ArrayList<T>(result));
+		return new ColumnImpl<T>(result);
 	}
 
 	/**
 	 * 
 	 */
-	public List<List<T>> getColumns() {
-		final List<List<T>> result = new ArrayList<List<T>>();
+	public List<Column<T>> getColumns() {
+		final List<Column<T>> result = new ArrayList<Column<T>>();
 		for (int i = 0; i < getNumberOfColumns(); i++) {
 			// defensive copying since we are immutable
-			result.add(Collections.unmodifiableList(new ArrayList<T>(
-					getColumn(i))));
+			result.add(new ColumnImpl<T>(
+					getColumn(i)));
 		}
 		return result;
 	}
@@ -263,15 +263,15 @@ public class TableImpl<T> implements Table<T> {
 	/**
 	 * 
 	 */
-	public Iterator<List<T>> getRowIterator() {
-		return new ArrayList<List<T>>(getRows()).iterator();
+	public Iterator<Row<T>> getRowIterator() {
+		return new ArrayList<Row<T>>(getRows()).iterator();
 	}
 
 	/**
 	 * 
 	 */
-	public Iterator<List<T>> getColumnIterator() {
-		return new ArrayList<List<T>>(getColumns()).iterator();
+	public Iterator<Column<T>> getColumnIterator() {
+		return new ArrayList<Column<T>>(getColumns()).iterator();
 	}
 
 }

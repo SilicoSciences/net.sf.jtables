@@ -40,7 +40,15 @@
 				<ul>
 					<li>
 						Example one:
-						<a href="example1.html">Reading a CSV-file</a>
+						<a href="example1.html">Reading a CSV-file: A table of Strings</a>
+					</li>
+					<li>
+						Example two:
+						<a href="example2.html">Reading a CSV-file: A table of Doubles (Matrix)</a>
+					</li>
+					<li>
+						Example three:
+						<a href="example3.html">Reading a CSV-file: Robust table parsing</a>
 					</li>
 				</ul>
 			</p>

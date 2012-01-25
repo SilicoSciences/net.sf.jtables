@@ -10,11 +10,11 @@
 			content="simple, lightweight, file format, csv, tab-delimited, comma-separated, csv, Comma-Separated Values" />
 	</head>
 	<body>
-		<section name="Example one: Reading a CSV-file: A table of Strings">
+		<section name="Example two: Reading a CSV-file: A table of Doubles (Matrix)">
 			<macro name="snippet">
-				<param name="id" value="example1" />
+				<param name="id" value="example2" />
 				<param name="file"
-					value="src/test/java/net/sf/jtables/table/impl/TestStringTableReader.java" />
+					value="src/test/java/net/sf/jtables/table/impl/TestDoubleTableReader.java" />
 			</macro>
 		</section>
 	</body>
