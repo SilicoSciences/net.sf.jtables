@@ -42,46 +42,47 @@ import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  * 
  * @param <T>
  *            type of table elements
  */
 public class RowImpl<T> implements Row<T> {
 
-protected final List<T> implementation = new ArrayList<T>();
-	
+	protected final List<T> implementation = new ArrayList<T>();
+
 	protected volatile ObjectToIndexMapper mapper = new ObjectToIndexMapperImpl(
 			new ArrayList<Object>());
-	
+
 	public RowImpl(List<T> elements) {
-		 implementation.addAll(elements);
+		implementation.addAll(elements);
 	}
-	
+
 	public RowImpl() {
 	}
 
 	public void setIdentifier(List<? extends Object> ids) {
 		this.mapper = new ObjectToIndexMapperImpl(ids);
 	}
-	
+
 	// Implement //
-	
+
 	public T get(Object indentifier) {
-//		if(implementation.size() <= mapper.get(indentifier)){
-//			throw new NoSuchElementException("no value for [" + indentifier + "]");
-//		}
+		// if(implementation.size() <= mapper.get(indentifier)){
+		// throw new NoSuchElementException("no value for [" + indentifier +
+		// "]");
+		// }
 		return get(mapper.get(indentifier));
 	}
 
 	public List<Object> getIdentifier() {
-		return new ArrayList<Object>(mapper.keySet());
+		return new ArrayList<Object>(mapper.keys());
 	}
-	
+
 	public ObjectToIndexMapper getObjectToIndexMapper() {
-		return new ObjectToIndexMapperImpl(mapper.keySet());
+		return new ObjectToIndexMapperImpl(mapper.keys());
 	}
-	
+
 	// Delegates //
 
 	public int size() {
@@ -148,7 +149,7 @@ protected final List<T> implementation = new ArrayList<T>();
 	public int hashCode() {
 		return implementation.hashCode();
 	}
-	
+
 	@Override
 	public String toString() {
 		return implementation.toString();

@@ -36,7 +36,7 @@ import net.sf.jtables.table.Column;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  * 
  * @param <T>
  *            type of table element
@@ -45,15 +45,10 @@ public class ColumnImpl<T> extends RowImpl<T> implements Column<T> {
 
 	public ColumnImpl() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public ColumnImpl(List<T> elements) {
 		super(elements);
-		// TODO Auto-generated constructor stub
 	}
-
-	
-
 	
 }

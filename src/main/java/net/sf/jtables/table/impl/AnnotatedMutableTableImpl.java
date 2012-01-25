@@ -16,11 +16,9 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.Column;
@@ -35,7 +33,7 @@ import net.sf.kerner.utils.io.IOUtils;
  * 
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  *
  * @param <T> type of elements in {@code Table}
  */
@@ -46,13 +44,13 @@ AnnotatedMutableTable<T> {
 	 * row mappings.
 	 */
 	protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(
-			new HashSet<Object>());
+			new ArrayList<Object>());
 
 	/**
 	 * column mappings.
 	 */
 	protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(
-			new HashSet<Object>());
+			new ArrayList<Object>());
 
 	/**
 	 * 
@@ -99,6 +97,9 @@ AnnotatedMutableTable<T> {
 	
 	@Override
 	public String toString() {
+		
+		// TODO maybe a little bit more complicated?!
+		
 		final StringBuilder sb = new StringBuilder();
 
 		// print column indices
@@ -151,20 +152,13 @@ AnnotatedMutableTable<T> {
 	/**
 	 * 
 	 */
-	public void setColumnIdentifier(Set<? extends Object> ids) {
-		this.colMapper = new ObjectToIndexMapperImpl(ids);
-	}
-
-	public void setRowIdentifier(Set<? extends Object> ids) {
-		this.rowMapper = new ObjectToIndexMapperImpl(ids);
-	}
 
 	public List<Object> getRowIdentifier() {
-		return new ArrayList<Object>(rowMapper.keySet());
+		return new ArrayList<Object>(rowMapper.keys());
 	}
 
 	public List<Object> getColumnIdentifier() {
-		return new ArrayList<Object>(colMapper.keySet());
+		return new ArrayList<Object>(colMapper.keys());
 	}
 
 	public Row<T> getRow(Object key) {
@@ -185,6 +179,27 @@ AnnotatedMutableTable<T> {
 
 	public void setRowIdentifier(List<? extends Object> ids) {
 		this.rowMapper = new ObjectToIndexMapperImpl(ids);
+	}
+
+	public void addRow(Object id, Row<T> row) {
+		this.rowMapper.addMapping(id);
+		super.addRow(row);
+	}
+
+	public void addColumn(Object id, Column<T> row) {
+		this.colMapper.addMapping(id);
+		super.addColumn(row);		
+	}
+
+	public void addRow(Object id, Row<T> row, int index) {
+		this.rowMapper.addMapping(id, index);
+		super.addRow(index, row);		
+	}
+
+	public void addColumn(Object id, Column<T> row, int index) {
+		this.colMapper.addMapping(id, index);
+		super.addColumn(index, row);	
+		
 	}
 
 }

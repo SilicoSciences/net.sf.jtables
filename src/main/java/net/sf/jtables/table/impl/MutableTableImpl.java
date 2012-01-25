@@ -26,14 +26,14 @@ import net.sf.kerner.utils.collections.list.impl.ListUtils;
  * 
  * Default implementation for {@link MutableTable}.
  * 
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
- *
- * @param <T> type of elements in this {@code Table}
+ * @version 2012-01-25
+ * 
+ * @param <T>
+ *            type of elements in this {@code Table}
  */
-public class MutableTableImpl<T> extends TableImpl<T> implements
-		MutableTable<T> {
+public class MutableTableImpl<T> extends TableImpl<T> implements MutableTable<T> {
 
 	public MutableTableImpl(List<Row<T>> rows) {
 		super(rows);
@@ -119,12 +119,12 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 		// we are empty
 		if (getNumberOfRows() == 0)
 			addRow(new RowImpl<T>());
-		
+
 		fillRows(j + 1, null);
 		fillColumns(i + 1, null);
 		checkRowIndex(i);
 		checkColumnIndex(j);
-		
+
 		final Row<T> row2 = new RowImpl<T>(getRow(i));
 		row2.set(j, element);
 		setRow(i, row2);
@@ -139,13 +139,13 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 	}
 
 	public void addRow(int index, Row<T> elements) {
-		if(index < 0 || index > rows.size())
+		if (index < 0 || index > rows.size())
 			throw new IllegalArgumentException();
 		super.rows.add(index, elements);
 	}
 
-	public void fillRows(int index,final T element) {
-		if(index < 1)
+	public void fillRows(int index, final T element) {
+		if (index < 1)
 			throw new IllegalArgumentException();
 
 		// assert we have at least one row
@@ -167,9 +167,9 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 	}
 
 	public void fillColumns(int index, final T element) {
-		if(index < 1)
+		if (index < 1)
 			throw new IllegalArgumentException();
-		
+
 		// assert we have at least one row
 		if (getNumberOfRows() == 0)
 			addRow(new RowImpl<T>() {
@@ -195,8 +195,10 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 	}
 
 	public void fillAndSet(int i, int j, T elementToFill, T elementToSet) {
-		fillRows(j+1, elementToFill); // rows have to be filled up to column index
-		fillColumns(i+1, elementToFill); // columns have to be filled up to row index
+		fillRows(j + 1, elementToFill); // rows have to be filled up to column
+										// index
+		fillColumns(i + 1, elementToFill); // columns have to be filled up to
+											// row index
 		set(i, j, elementToSet);
 	}
 
@@ -207,15 +209,16 @@ public class MutableTableImpl<T> extends TableImpl<T> implements
 
 	public void removeColumn(int index) {
 		checkColumnIndex(index);
-		
-		// iterate over rows and remove element at position index if there is such an element
-		for(List<? extends T> t : super.rows){
-			if(t.size() > index){
+
+		// iterate over rows and remove element at position index if there is
+		// such an element
+		for (List<? extends T> t : super.rows) {
+			if (t.size() > index) {
 				t.remove(index);
 			}
 		}
 	}
-	
+
 	public void remove(int i, int j) {
 		checkColumnIndex(j);
 		getRow(i).remove(j);

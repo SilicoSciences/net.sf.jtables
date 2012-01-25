@@ -39,7 +39,7 @@ import java.util.NoSuchElementException;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-09-24
+ * @version 2012-01-25
  * 
  * @param <T>
  *            type of elements in {@code Table}
@@ -48,7 +48,8 @@ public interface AnnotatedTable<T> extends Table<T> {
 
 	/**
 	 * 
-	 * Retrieve a {@link List} that contains all row identifiers in proper order.
+	 * Retrieve a {@link List} that contains all row identifiers in proper
+	 * order.
 	 * 
 	 * @return all row identifiers
 	 */
@@ -56,7 +57,8 @@ public interface AnnotatedTable<T> extends Table<T> {
 
 	/**
 	 * 
-	 * Retrieve a {@link List} that contains all column identifiers in proper order.
+	 * Retrieve a {@link List} that contains all column identifiers in proper
+	 * order.
 	 * 
 	 * @return all column identifiers
 	 */
@@ -72,12 +74,12 @@ public interface AnnotatedTable<T> extends Table<T> {
 	 * @throws NoSuchElementException
 	 *             if there is no row mapped by given identifier
 	 */
-	Row<T> getRow(Object key);
+	Row<T> getRow(Object key) throws NoSuchElementException;
 
 	/**
 	 * Retrieve row at given index.
 	 */
-	Row<T> getRow(int index);
+	Row<T> getRow(int index) throws NoSuchElementException;
 
 	/**
 	 * Retrieve an {@link Iterator} for rows.
@@ -94,12 +96,12 @@ public interface AnnotatedTable<T> extends Table<T> {
 	 * @throws NoSuchElementException
 	 *             if there is no column mapped by given identifier
 	 */
-	Column<T> getColumn(Object key);
+	Column<T> getColumn(Object key) throws NoSuchElementException;
 
 	/**
 	 * Retrieve column at given index.
 	 */
-	Column<T> getColumn(int index);
+	Column<T> getColumn(int index) throws NoSuchElementException;
 
 	/**
 	 * Retrieve an {@link Iterator} for columns.

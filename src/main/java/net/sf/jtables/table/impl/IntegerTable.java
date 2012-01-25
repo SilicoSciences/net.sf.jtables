@@ -26,7 +26,7 @@ import net.sf.jtables.table.Row;
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  * 
  */
 public class IntegerTable extends AnnotatedMutableTableImpl<Integer> {

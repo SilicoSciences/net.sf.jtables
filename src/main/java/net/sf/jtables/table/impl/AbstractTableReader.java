@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
@@ -50,7 +49,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-24
+ * @version 2012-01-25
  * 
  * @param <T>
  *            type of elements in {@code Table}
@@ -224,10 +223,10 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 * @param line {@code String} that contains column headers
 	 * @return {@link Set} of column headers
 	 */
-	protected Set<String> getColHeaders(String line) {
+	protected List<String> getColHeaders(String line) {
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
-		final Set<String> list = new LinkedHashSet<String>();
+		final List<String> list = new ArrayList<String>();
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
 			list.add(s);
@@ -281,18 +280,18 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	/**
 	 * Read a {@code AnnotatedTable} at once.
 	 */
-	public AnnotatedTable<T> readAll() throws IOException {
+	@SuppressWarnings("unchecked")
+	public <A extends AnnotatedTable<T>> A readAll() throws IOException {
 		final AnnotatedMutableTable<T> result = getInstance();
 		final IOIterator<Row<T>> it = getIterator();
 		while (it.hasNext()) {
 			final Row<T> next = it.next();
-			// System.err.println("adding row " + next);
-			result.addRow(null,next);
+			result.addRow(next);
 		}
 		it.close();
 		result.setRowIdentifier(rowHeaders);
 		result.setColumnIdentifier(columnHeaders);
-		return result;
+		return (A) result;
 	}
 
 	public IOIterator<Row<T>> getIterator() throws IOException {
@@ -305,7 +304,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 * 
 	 * @return a new instance of {@link AnnotatedMutableTable}
 	 */
-	protected abstract AnnotatedMutableTable<T> getInstance();
+	protected abstract <A extends AnnotatedMutableTable<T>> A getInstance();
 
 	/**
 	 * 

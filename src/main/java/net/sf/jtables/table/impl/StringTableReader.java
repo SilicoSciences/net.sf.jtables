@@ -29,7 +29,7 @@ import java.io.Reader;
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-10
+ * @version 2012-01-25
  * 
  */
 public class StringTableReader extends AbstractTableReader<String> {
@@ -72,11 +72,7 @@ public class StringTableReader extends AbstractTableReader<String> {
 		super(reader, columnIds, rowIds);
 	}
 
-	@Override
-	public StringTable readAll() throws IOException {
-		return (StringTable) super.readAll();
-	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	protected StringTable getInstance() {
 		return new StringTable();

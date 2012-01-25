@@ -22,7 +22,7 @@ import java.util.List;
  * A {@code MutableTable} and also a {@code AnnotatedTable}.
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-24
+ * @version 2012-01-25
  * 
  * @param <T>
  *            type of elements in {@Table}
@@ -49,5 +49,13 @@ public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTabl
 	 *            a {@link List} that contains all row identifiers
 	 */
 	void setRowIdentifier(List<? extends Object> ids);
+	
+	void addRow(Object id, Row<T> row);
+	
+	void addColumn(Object id, Column<T> row);
+	
+	void addRow(Object id, Row<T> row, int index);
+	
+	void addColumn(Object id, Column<T> row, int index);
 
 }

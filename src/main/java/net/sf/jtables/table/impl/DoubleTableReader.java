@@ -37,7 +37,7 @@ import net.sf.jtables.table.TableReader;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  *
  */
 public class DoubleTableReader extends AbstractTableReader<Double> {
@@ -158,15 +158,11 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 			throws IOException {
 		super(reader, columnIds, rowIds);
 	}
-	
-	@Override
-	public DoubleTable readAll() throws IOException {
-		return (DoubleTable) super.readAll();
-	}
 
 	/**
 	 * 
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	protected DoubleTable getInstance() {
 		return new DoubleTable();

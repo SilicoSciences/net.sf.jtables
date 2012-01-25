@@ -39,7 +39,7 @@ import net.sf.jtables.table.TableReader;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-12
+ * @version 2012-01-25
  *
  */
 public class IntegerTableReader extends AbstractTableReader<Integer> {
@@ -83,8 +83,9 @@ public class IntegerTableReader extends AbstractTableReader<Integer> {
 		super(reader, columnIds, rowIds);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	protected AnnotatedMutableTable<Integer> getInstance() {
+	protected IntegerTable getInstance() {
 		return new IntegerTable();
 	}
 

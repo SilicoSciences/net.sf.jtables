@@ -159,7 +159,7 @@ public class TestStringTableReader {
 		// Close the reader
 		tableReader.close();
 		
-		assertArrayEquals(new String[]{"1","2","3"}, table.getRow(0).getElements().toArray());
+		assertArrayEquals(new String[]{"1","2","3"}, table.getRow(0).toArray());
 	}
 	
 //	/**

@@ -31,7 +31,7 @@ package net.sf.jtables.table;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-24
+ * @version 2012-01-25
  *
  * @param <T> type of elements in {@code Table}
  */
@@ -44,7 +44,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param row row to add
 	 * @param ident row identifier, may be {@code null}
 	 */
-	void addRow(Object ident, Row<T> row);
+	void addRow(Row<T> row);
 
 	/**
 	 * 
@@ -56,7 +56,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * 
 	 * @throws IllegalArgumentException if {@code index < 0 || index > {@link #getRows().size()}}
 	 */
-	void addRow(int index, Object ident, Row<T> row);
+	void addRow(int index, Row<T> row);
 
 	/**
 	 * 
@@ -65,7 +65,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param column column to add
 	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(Object ident, Column<T> column);
+	void addColumn(Column<T> column);
 
 	/**
 	 * 
@@ -75,7 +75,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param index index at which column is added
 	 * @param ident column identifier, may be {@code null}
 	 */
-	void addColumn(int index, Object ident, Column<T> column);
+	void addColumn(int index, Column<T> column);
 	
 	/**
 	 * 
@@ -85,7 +85,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param row new row at given index
 	 * @param ident row identifier, may be {@code null}
 	 */
-	void setRow(int index, Object ident, Row<T> row);
+	void setRow(int index, Row<T> row);
 	
 	/**
 	 * 
@@ -95,7 +95,7 @@ public interface MutableTable<T> extends Table<T> {
 	 * @param column new column at given index
 	 * @param ident column identifier, may be {@code null} 
 	 */
-	void setColumn(int index, Object ident, Column<T> column);
+	void setColumn(int index, Column<T> column);
 	
 	/**
 	 * 

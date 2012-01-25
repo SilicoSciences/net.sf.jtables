@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * 
  * A {@code Table} is a collection of elements that is organized in rows and
- * columns which both are represented as a {@link java.util.List List} of elements.<br>
+ * columns.<br>
  * A {@code Table} is immutable.
  * 
  * <p>
@@ -37,17 +37,19 @@ import java.util.List;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-24
+ * @version 2012-01-25
  * 
- * @param <T> type of elements in {@code Table}
+ * @param <T>
+ *            type of elements in {@code Table}
  */
 public interface Table<T> extends Cloneable, Iterable<T> {
 
 	/**
 	 * 
 	 * Get row at given index.
-	 *
-	 * @param index index of row to return
+	 * 
+	 * @param index
+	 *            index of row to return
 	 * @return row at given index
 	 */
 	Row<T> getRow(int index);
@@ -55,7 +57,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get all rows.
-	 *
+	 * 
 	 * @return all rows
 	 */
 	List<Row<T>> getRows();
@@ -63,8 +65,9 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get column at given index.
-	 *
-	 * @param index index of column to return
+	 * 
+	 * @param index
+	 *            index of column to return
 	 * @return column at given index
 	 */
 	Column<T> getColumn(int index);
@@ -72,7 +75,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get all columns.
-	 *
+	 * 
 	 * @return all columns
 	 */
 	List<Column<T>> getColumns();
@@ -80,9 +83,11 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get element at given row and column index.
-	 *
-	 * @param i index of row
-	 * @param j index of column
+	 * 
+	 * @param i
+	 *            index of row
+	 * @param j
+	 *            index of column
 	 * @return element at given row and column index
 	 */
 	T get(int i, int j);
@@ -90,8 +95,9 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get number of elements in row at given index.
-	 *
-	 * @param index index of row
+	 * 
+	 * @param index
+	 *            index of row
 	 * @return number of elements
 	 */
 	int getRowSize(int index);
@@ -99,8 +105,9 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get number of elements in column at given index.
-	 *
-	 * @param index index of column
+	 * 
+	 * @param index
+	 *            index of column
 	 * @return number of elements
 	 */
 	int getColumnSize(int index);
@@ -108,7 +115,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get number of elements in row that has the most elements.
-	 *
+	 * 
 	 * @return number of elements
 	 */
 	int getMaxRowSize();
@@ -116,7 +123,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get number of elements in column that has the most elements.
-	 *
+	 * 
 	 * @return number of elements
 	 */
 	int getMaxColumnSize();
@@ -124,7 +131,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get the number of rows.
-	 *
+	 * 
 	 * @return number of rows
 	 */
 	int getNumberOfRows();
@@ -132,7 +139,7 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Get the number of columns.
-	 *
+	 * 
 	 * @return number of rows
 	 */
 	int getNumberOfColumns();
@@ -140,16 +147,19 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Check weather this {@code Table} contains given element.
-	 *
-	 * @param element element that is checked
-	 * @return {@code true}, if this {@code Table} contains given element; {@code false} otherwise
+	 * 
+	 * @param element
+	 *            element that is checked
+	 * @return {@code true}, if this {@code Table} contains given element;
+	 *         {@code false} otherwise
 	 */
 	boolean contains(T element);
 
 	/**
 	 * 
-	 * Retrieve a {@code List} view of all elements contained in this {@code Table}.
-	 *
+	 * Retrieve a {@code List} view of all elements contained in this
+	 * {@code Table}.
+	 * 
 	 * @return a {@link List} that contains all elements
 	 */
 	List<T> getAllElements();
@@ -157,15 +167,16 @@ public interface Table<T> extends Cloneable, Iterable<T> {
 	/**
 	 * 
 	 * Retrieve an {@link Iterator} over rows of this {@code Table}.
-	 *
+	 * 
 	 * @return row iterator
 	 */
 	Iterator<Row<T>> getRowIterator();
 
 	/**
 	 * 
-	 * Retrieve an {@link java.util.Iterator Iterator} over columns of this {@code Table}.
-	 *
+	 * Retrieve an {@link java.util.Iterator Iterator} over columns of this
+	 * {@code Table}.
+	 * 
 	 * @return column iterator
 	 */
 	Iterator<Column<T>> getColumnIterator();

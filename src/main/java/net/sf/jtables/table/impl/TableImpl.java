@@ -16,7 +16,6 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
