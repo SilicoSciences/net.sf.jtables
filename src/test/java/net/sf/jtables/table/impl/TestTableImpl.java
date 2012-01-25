@@ -1,7 +1,18 @@
-/**
- * 
- *
- */
+/**********************************************************************
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
 package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.assertArrayEquals;
@@ -12,6 +23,9 @@ import static org.junit.Assert.fail;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import net.sf.jtables.table.Column;
+import net.sf.jtables.table.Row;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -33,9 +47,9 @@ public class TestTableImpl {
 	
 	private TableImpl<String> ma2;
 	
-	private List<List<String>> rows;
+	private List<Row<String>> rows;
 
-	private List<List<String>> cols;
+	private List<Column<String>> cols;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -48,35 +62,35 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
-		rows = new ArrayList<List<String>>();
-		rows.add(new ArrayList<String>(){
+		rows = new ArrayList<Row<String>>();
+		rows.add(new RowImpl<String>(){
 			{
 				add("eins00");
 				add("eins01");
 				add("eins02");
 			}
 		});
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("zwei00");
 				add("zwei01");
 				add("zwei02");
 			}
 		});
-		cols = new ArrayList<List<String>>();
-		cols.add(new ArrayList<String>(){
+		cols = new ArrayList<Column<String>>();
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins00");
 				add("zwei00");
 			}
 		});
-		cols.add(new ArrayList<String>(){
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins01");
 				add("zwei01");
 			}
 		});
-		cols.add(new ArrayList<String>(){
+		cols.add(new ColumnImpl<String>(){
 			{
 				add("eins02");
 				add("zwei02");
@@ -334,7 +348,7 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxRowSize() {
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				add("2");
@@ -353,7 +367,7 @@ public class TestTableImpl {
 	@Test
 	public final void testGetMaxRowSize01() {
 		rows.clear();
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				
 			}
@@ -369,7 +383,7 @@ public class TestTableImpl {
 	@Test
 	public final void testGetMaxRowSize02() {
 		rows.clear();
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 			}
@@ -384,13 +398,13 @@ public class TestTableImpl {
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxColumnSize() {
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				
 			}
 		});
-		rows.add(new ArrayList<String>(){
+		rows.add(new RowImpl<String>(){
 			{
 				add("1");
 				

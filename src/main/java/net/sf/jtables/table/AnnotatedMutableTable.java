@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,18 +15,47 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
+import java.util.List;
+
 /**
  * 
  * A {@code MutableTable} and also a {@code AnnotatedTable}.
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-04
- *
- * @param <T> type of elements in table
+ * @version 2012-01-25
+ * 
+ * @param <T>
+ *            type of elements in {@Table}
  * 
  * @see MutableTable
  * @see AnnotatedTable
  */
 public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
+
+	/**
+	 * 
+	 * Set identifiers for columns.
+	 * 
+	 * @param ids
+	 *            a {@link List} that contains all column identifiers
+	 */
+	void setColumnIdentifier(List<? extends Object> ids);
+
+	/**
+	 * 
+	 * Set identifiers for rows.
+	 * 
+	 * @param ids
+	 *            a {@link List} that contains all row identifiers
+	 */
+	void setRowIdentifier(List<? extends Object> ids);
+	
+	void addRow(Object id, Row<T> row);
+	
+	void addColumn(Object id, Column<T> row);
+	
+	void addRow(Object id, Row<T> row, int index);
+	
+	void addColumn(Object id, Column<T> row, int index);
 
 }
