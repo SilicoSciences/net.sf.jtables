@@ -40,6 +40,9 @@ import java.util.List;
  *            type of table element
  */
 public interface Row<T> extends List<T>, Cloneable {
-
+	
+	List<Object> getIdentifier();
+	
+	T get(Object o);
 	
 }
