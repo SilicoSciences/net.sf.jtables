@@ -166,11 +166,25 @@ AnnotatedMutableTable<T> {
 		checkRowIndex(key);
 		return getRow(rowMapper.get(key));
 	}
+	
+	@Override
+	public Row<T> getRow(int index) {
+		final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
+		r.setIdentifier(colMapper.keys());
+		return r;
+	}
 
 	public Column<T> getColumn(Object key) {
 		net.sf.kerner.utils.Utils.checkForNull(key);
 		checkColumnIndex(key);
 		return getColumn(colMapper.get(key));
+	}
+	
+	@Override
+	public Column<T> getColumn(int index) {
+		final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
+		r.setIdentifier(rowMapper.keys());
+		return r;
 	}
 
 	public void setColumnIdentifier(List<? extends Object> ids) {

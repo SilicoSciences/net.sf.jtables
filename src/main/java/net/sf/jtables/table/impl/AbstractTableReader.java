@@ -253,7 +253,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 
 		final Scanner scanner = new Scanner(line);
 		scanner.useDelimiter(delim);
-		final Row<T> result = new RowImpl<T>();
+		final RowImpl<T> result = new RowImpl<T>();
 
 		// first column (row headers)?
 		boolean first = true;
@@ -273,7 +273,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 
 		if (result.isEmpty())
 			return null;
-
+		
+		result.setIdentifier(columnHeaders);
+		
 		return result;
 	}
 

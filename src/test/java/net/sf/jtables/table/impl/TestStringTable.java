@@ -17,6 +17,7 @@ package net.sf.jtables.table.impl;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
@@ -97,14 +98,19 @@ public class TestStringTable {
 
 	@Ignore
 	@Test
-	public final void testGetRowObject() {
-		fail("Not yet implemented"); // TODO
+	public final void testGetRowObject01() throws IOException {
+
 	}
 
-	@Ignore
 	@Test
-	public final void testGetColumnObject() {
-		fail("Not yet implemented"); // TODO
+	public final void testGetColumnObject01() throws IOException {
+		table1 = new StringTableReader(new File("src/test/resources/anno-orphan-anno.txt"), true, false).readAll();
+//		System.out.println(table1.getColumns());
+//		System.out.println(table1.getColumn("mz"));
+//		System.out.println(table1.getColumn("frac"));
+		assertArrayEquals(new String[]{"1","4"}, table1.getColumn("mz").toArray());
+		assertArrayEquals(new String[]{"2","5"}, table1.getColumn("frac").toArray());
+		assertArrayEquals(new String[]{"3","6"}, table1.getColumn("conf").toArray());
 	}
 
 	@Ignore
