@@ -97,6 +97,10 @@ AnnotatedMutableTable<T> {
 	
 	@Override
 	public String toString() {
+		return toString("\t");
+	}
+	
+	public String toString(String delimiter) {
 		
 		// TODO maybe a little bit more complicated?!
 		
@@ -112,13 +116,13 @@ AnnotatedMutableTable<T> {
 			if(getRowIdentifier().isEmpty()){
 				
 			} else {
-				sb.append("\t");
+				sb.append(delimiter);
 			}
 			
 			while (it.hasNext()) {
 				sb.append(it.next());
 				if (it.hasNext())
-					sb.append('\t');
+					sb.append(delimiter);
 			}
 			sb.append(IOUtils.NEW_LINE_STRING);
 		}
@@ -129,14 +133,14 @@ AnnotatedMutableTable<T> {
 		while (rowIt.hasNext() || identIt.hasNext()) {
 			if (identIt.hasNext()) {
 				sb.append(identIt.next());
-				sb.append('\t');
+				sb.append(delimiter);
 			}
 			if (rowIt.hasNext()) {
 				final Iterator<?> ii = rowIt.next().iterator();
 				while(ii.hasNext()){
 					sb.append(ii.next());
 					if(ii.hasNext())
-						sb.append("\t");
+						sb.append(delimiter);
 				}
 				
 				
