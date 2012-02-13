@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -56,6 +57,10 @@ public class RowImpl<T> implements Row<T> {
 
 	public RowImpl(List<T> elements) {
 		implementation.addAll(elements);
+	}
+	
+	public RowImpl(T... elements) {
+		implementation.addAll(Arrays.asList(elements));
 	}
 
 	public RowImpl() {
