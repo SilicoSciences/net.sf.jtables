@@ -11,6 +11,9 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
 
 public class ObjectFromStringTableReader<T> {
 	
+	
+
+	
 	protected final boolean colIds;
 	
 	protected final boolean rowIds;
@@ -26,6 +29,10 @@ public class ObjectFromStringTableReader<T> {
 		this.maxElements = maxElements;
 	}
 
+public ObjectFromStringTableReader(RowParserString<E> parser) {
+		this(parser, true, false, -1);
+	}
+
 	public List<T> readFile(File file) throws IOException {
 		final List<T> result = new ArrayList<T>();
 		final StringTableReader reader = new StringTableReader(file, colIds, rowIds);
@@ -35,7 +42,8 @@ public class ObjectFromStringTableReader<T> {
 			cnt++;
 			result.add(parser.transform(it.next()));
 		}
-		return null;
+		reader.close();
+		return result;
 	}
 	
 	
