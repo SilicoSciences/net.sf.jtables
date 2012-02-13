@@ -29,7 +29,7 @@ public class ObjectFromStringTableReader<T> {
 		this.maxElements = maxElements;
 	}
 
-public ObjectFromStringTableReader(RowParserString<E> parser) {
+public ObjectFromStringTableReader(RowParserString<T> parser) {
 		this(parser, true, false, -1);
 	}
 
