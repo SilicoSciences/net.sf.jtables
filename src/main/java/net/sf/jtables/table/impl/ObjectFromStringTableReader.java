@@ -10,26 +10,24 @@ import net.sf.jtables.table.RowParserString;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 public class ObjectFromStringTableReader<T> {
-	
-	
 
-	
 	protected final boolean colIds;
-	
+
 	protected final boolean rowIds;
-	
-	protected final RowParserString<T> parser;
-	
+
+	protected final RowParserString<? extends T> parser;
+
 	protected final int maxElements;
-	
-	public ObjectFromStringTableReader(RowParserString<T> parser, boolean colIds, boolean rowIds,  int maxElements) {
+
+	public ObjectFromStringTableReader(RowParserString<? extends T> parser, boolean colIds, boolean rowIds,
+			int maxElements) {
 		this.colIds = colIds;
 		this.rowIds = rowIds;
 		this.parser = parser;
 		this.maxElements = maxElements;
 	}
 
-public ObjectFromStringTableReader(RowParserString<T> parser) {
+	public ObjectFromStringTableReader(RowParserString<? extends T> parser) {
 		this(parser, true, false, -1);
 	}
 
@@ -45,7 +43,5 @@ public ObjectFromStringTableReader(RowParserString<T> parser) {
 		reader.close();
 		return result;
 	}
-	
-	
 
 }
