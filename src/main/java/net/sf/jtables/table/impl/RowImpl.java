@@ -24,6 +24,8 @@ import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
+import net.sf.kerner.utils.collections.ToStringStrategy;
+import net.sf.kerner.utils.collections.impl.CollectionUtils;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
 /**
@@ -49,6 +51,8 @@ import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
  *            type of table elements
  */
 public class RowImpl<T> implements Row<T> {
+	
+	public final static String DEFAULT_DELIMITER = "\t"; 
 
 	protected final List<T> implementation = new ArrayList<T>();
 
@@ -73,10 +77,6 @@ public class RowImpl<T> implements Row<T> {
 	// Implement //
 
 	public T get(Object indentifier) {
-		// if(implementation.size() <= mapper.get(indentifier)){
-		// throw new NoSuchElementException("no value for [" + indentifier +
-		// "]");
-		// }
 		return get(mapper.get(indentifier));
 	}
 
@@ -86,6 +86,14 @@ public class RowImpl<T> implements Row<T> {
 
 	public ObjectToIndexMapper getObjectToIndexMapper() {
 		return new ObjectToIndexMapperImpl(mapper.keys());
+	}
+	
+	public String toString(String delimiter) {
+		return CollectionUtils.toString(this, delimiter);
+	}
+	
+	public String toString(){
+		return toString(DEFAULT_DELIMITER);
 	}
 
 	// Delegates //
@@ -153,11 +161,6 @@ public class RowImpl<T> implements Row<T> {
 
 	public int hashCode() {
 		return implementation.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return implementation.toString();
 	}
 
 	public T get(int index) {

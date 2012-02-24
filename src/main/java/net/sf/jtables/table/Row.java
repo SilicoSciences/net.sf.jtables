@@ -45,4 +45,6 @@ public interface Row<T> extends List<T>, Cloneable {
 	
 	T get(Object o);
 	
+	String toString(String delimiter);
+	
 }
