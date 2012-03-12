@@ -27,13 +27,14 @@ import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
- * Default implementation for {@link Table}. 
+ * Default implementation for {@link Table}.
  * 
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-22
- *
- * @param <T> type of elements in this {@code Table}
+ * 
+ * @param <T>
+ *            type of elements in this {@code Table}
  */
 public class TableImpl<T> implements Table<T> {
 
@@ -63,16 +64,14 @@ public class TableImpl<T> implements Table<T> {
 		if (index < 0)
 			throw new IllegalArgumentException("row index must be >= 0");
 		if (index >= getNumberOfRows())
-			throw new NoSuchElementException("no element for row index ["
-					+ index + "]");
+			throw new NoSuchElementException("no element for row index [" + index + "]");
 	}
 
 	protected void checkColumnIndex(int index) {
 		if (index < 0)
 			throw new IllegalArgumentException("column index must be >= 0");
 		if (index >= getNumberOfColumns())
-			throw new NoSuchElementException("no element for column index ["
-					+ index + "]");
+			throw new NoSuchElementException("no element for column index [" + index + "]");
 	}
 
 	// Public //
@@ -169,8 +168,7 @@ public class TableImpl<T> implements Table<T> {
 		final List<Column<T>> result = new ArrayList<Column<T>>();
 		for (int i = 0; i < getNumberOfColumns(); i++) {
 			// defensive copying since we are immutable
-			result.add(new ColumnImpl<T>(
-					getColumn(i)));
+			result.add(new ColumnImpl<T>(getColumn(i)));
 		}
 		return result;
 	}
@@ -247,9 +245,9 @@ public class TableImpl<T> implements Table<T> {
 	 */
 	public List<T> getAllElements() {
 		final ArrayList<T> result = new ArrayList<T>();
-	
+
 		for (int i = 0; i < getNumberOfRows(); i++) {
-			
+
 			final List<T> row = getRow(i);
 			// defensive copying since we are immutable
 			for (T t : row) {

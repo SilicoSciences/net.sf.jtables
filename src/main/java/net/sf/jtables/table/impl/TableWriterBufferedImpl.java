@@ -76,7 +76,7 @@ public class TableWriterBufferedImpl extends AbstractBufferedWriter implements T
 		while (it.hasNext()) {
 			Row<?> r = it.next();
 			write(delimiter, r);
-			if(it.hasNext()){
+			if (it.hasNext()) {
 				writer.newLine();
 			}
 			writer.flush();

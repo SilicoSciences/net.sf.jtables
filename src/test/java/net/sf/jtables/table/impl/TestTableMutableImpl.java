@@ -28,24 +28,21 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
-
-
 /**
- *
- *
+ * 
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-09-20
  * @SuppressWarnings("serial")
- *
+ * 
  */
 public class TestTableMutableImpl {
 
 	private MutableTableImpl<String> ma;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
-
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -55,9 +52,9 @@ public class TestTableMutableImpl {
 	@Before
 	public void setUp() throws Exception {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new RowImpl<String>(){
+		ma.addRow(new RowImpl<String>() {
 			{
-			add("eins");
+				add("eins");
 			}
 		});
 	}
@@ -68,7 +65,9 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#MutableTableImpl(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#MutableTableImpl(java.util.List)}
+	 * .
 	 */
 	@Test
 	@Ignore
@@ -77,7 +76,9 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#MutableTableImpl()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#MutableTableImpl()}
+	 * .
 	 */
 	@Test
 	@Ignore
@@ -86,55 +87,63 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setRow(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setRow(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetRow() {
-		ma.setRow(0, new RowImpl<String>(){
+		ma.setRow(0, new RowImpl<String>() {
 			{
 				add("zwei");
 			}
 		});
-		assertArrayEquals(new String[]{"zwei"}, ma.getRow(0).toArray());
+		assertArrayEquals(new String[] { "zwei" }, ma.getRow(0).toArray());
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn() {
-		ma.setColumn(0, new ColumnImpl<String>(){
+		ma.setColumn(0, new ColumnImpl<String>() {
 			{
 				add("zwei");
 			}
 		});
-		assertArrayEquals(new String[]{"zwei"}, ma.getColumn(0).toArray());
+		assertArrayEquals(new String[] { "zwei" }, ma.getColumn(0).toArray());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn01() {
-		ma.setColumn(0, new ColumnImpl<String>(){
+		ma.setColumn(0, new ColumnImpl<String>() {
 			{
 				add("zwei");
 				add("drei");
 			}
 		});
-		assertArrayEquals(new String[]{"zwei","drei"}, ma.getColumn(0).toArray());
+		assertArrayEquals(new String[] { "zwei", "drei" }, ma.getColumn(0).toArray());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
-	@Test(expected=NoSuchElementException.class)
+	@Test(expected = NoSuchElementException.class)
 	public final void testSetColumn02() {
-		ma.setColumn(0, new ColumnImpl<String>(){
+		ma.setColumn(0, new ColumnImpl<String>() {
 			{
 				add("zwei");
 				add("drei");
@@ -143,14 +152,16 @@ public class TestTableMutableImpl {
 		// we set, so column is replaced
 		ma.getColumn(1);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#setColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testSetColumn03() {
-		ma.setColumn(0, new ColumnImpl<String>(){
+		ma.setColumn(0, new ColumnImpl<String>() {
 			{
 				add("zwei");
 				add("drei");
@@ -161,18 +172,22 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#set(int, int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#set(int, int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testSet() {
-//		log.debug(ma);
+		// log.debug(ma);
 		ma.set(0, 0, "john");
 		assertEquals("john", ma.getRow(0).get(0));
 		assertEquals("john", ma.getColumn(0).get(0));
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#clear()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#clear()}
+	 * .
 	 */
 	@Test
 	public final void testClear() {
@@ -182,133 +197,151 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addRow(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addRow(java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddRowListOfQextendsT() {
-		ma.addRow(new RowImpl<String>(){
+		ma.addRow(new RowImpl<String>() {
 			{
 				add("zwei");
 				add("drei");
 			}
 		});
-//		log.debug(ma);
-		assertArrayEquals(new String[]{"zwei", "drei"}, ma.getRow(1).toArray());
+		// log.debug(ma);
+		assertArrayEquals(new String[] { "zwei", "drei" }, ma.getRow(1).toArray());
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addRow(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addRow(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddRowIntListOfQextendsT() {
-		ma.addRow(0,new RowImpl<String>(){
+		ma.addRow(0, new RowImpl<String>() {
 			{
 				add("zwei");
 				add("drei");
 			}
 		});
-//		log.debug(ma);
-		assertArrayEquals(new String[]{"zwei", "drei"}, ma.getRow(0).toArray());
+		// log.debug(ma);
+		assertArrayEquals(new String[] { "zwei", "drei" }, ma.getRow(0).toArray());
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT() {
-		ma.addColumn(new ColumnImpl<String>(){
+		ma.addColumn(new ColumnImpl<String>() {
 			{
 				add("ff");
 			}
 		});
 		assertEquals(2, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT01() {
-		ma.addColumn(new ColumnImpl<String>(){
+		ma.addColumn(new ColumnImpl<String>() {
 			{
 				add("ff");
 			}
 		});
-//		log.debug(ma);
+		// log.debug(ma);
 		assertEquals(1, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT02() {
-		ma.addColumn(new ColumnImpl<String>(){
+		ma.addColumn(new ColumnImpl<String>() {
 			{
 				add("ff");
 				add("ee");
 			}
 		});
-//		log.debug(ma);
+		// log.debug(ma);
 		assertEquals(2, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnListOfQextendsT03() {
-		ma.addColumn(new ColumnImpl<String>(){
+		ma.addColumn(new ColumnImpl<String>() {
 			{
 				add("ff");
 				add("ee");
 			}
 		});
-//		log.debug(ma);
+		// log.debug(ma);
 		assertEquals(2, ma.getNumberOfRows());
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT() {
-		ma.addColumn(0,new ColumnImpl<String>(){
+		ma.addColumn(0, new ColumnImpl<String>() {
 			{
 				add("ff");
 			}
 		});
 		assertEquals(2, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT01() {
-		ma.addColumn(0,new ColumnImpl<String>(){
+		ma.addColumn(0, new ColumnImpl<String>() {
 			{
 				add("ff");
 			}
 		});
 		assertEquals(1, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT02() {
-		ma.addColumn(0,new ColumnImpl<String>(){
+		ma.addColumn(0, new ColumnImpl<String>() {
 			{
 				add("ff");
 				add("ee");
@@ -316,14 +349,16 @@ public class TestTableMutableImpl {
 		});
 		assertEquals(2, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT03() {
-		ma.addColumn(0,new ColumnImpl<String>(){
+		ma.addColumn(0, new ColumnImpl<String>() {
 			{
 				add("ff");
 				add("ee");
@@ -331,33 +366,39 @@ public class TestTableMutableImpl {
 		});
 		assertEquals(2, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#addColumn(int, java.util.List)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testAddColumnIntListOfQextendsT04() {
-		ma.addColumn(0,new ColumnImpl<String>(){
+		ma.addColumn(0, new ColumnImpl<String>() {
 			{
 				add("ff");
 				add("ee");
 			}
 		});
-		assertArrayEquals(new String[]{"ff","ee"}, ma.getColumn(0).toArray());
+		assertArrayEquals(new String[] { "ff", "ee" }, ma.getColumn(0).toArray());
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillRows(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillRows(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillRows() {
 		ma.fillRows(2, "peter");
-		assertArrayEquals(new String[]{"eins","peter"}, ma.getRow(0).toArray());
+		assertArrayEquals(new String[] { "eins", "peter" }, ma.getRow(0).toArray());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillRows(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillRows(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillRows01() {
@@ -366,34 +407,42 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillColumns() {
 		ma.fillColumns(2, "peter");
-		assertArrayEquals(new String[]{"eins","peter"}, ma.getColumn(0).toArray());
+		assertArrayEquals(new String[] { "eins", "peter" }, ma.getColumn(0).toArray());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillColumns01() {
 		ma.fillColumns(2, "peter");
 		assertEquals(1, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillColumns02() {
 		ma.fillColumns(2, "peter");
 		assertEquals(2, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillColumns03() {
@@ -401,35 +450,39 @@ public class TestTableMutableImpl {
 		ma.fillColumns(2, "peter");
 		assertEquals(2, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testFillColumns04() {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new RowImpl<String>(){
+		ma.addRow(new RowImpl<String>() {
 			{
-			add("eins");
-			add("zwei");
+				add("eins");
+				add("zwei");
 			}
 		});
 		ma.fillColumns(3, "peter");
 		assertEquals(3, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillColumns(int, java.lang.Object)}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testFillColumns05() {
 		ma = new MutableTableImpl<String>();
-		ma.addRow(new RowImpl<String>(){
+		ma.addRow(new RowImpl<String>() {
 			{
-			add("eins");
-			add("zwei");
+				add("eins");
+				add("zwei");
 			}
 		});
 		ma.fillColumns(3, "peter");
@@ -437,16 +490,20 @@ public class TestTableMutableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fill(int, java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fill(int, java.lang.Object)}
+	 * .
 	 */
 	@Test
 	public final void testFill() {
 		ma.fill(3, "peter");
-//		log.debug(ma);
+		// log.debug(ma);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillAndSet() {
@@ -466,9 +523,11 @@ public class TestTableMutableImpl {
 		ma.fillAndSet(0, 0, null, "hans");
 		assertEquals(1, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillAndSet02() {
@@ -476,9 +535,11 @@ public class TestTableMutableImpl {
 		ma.fillAndSet(1, 1, null, "hans");
 		assertEquals(2, ma.getNumberOfColumns());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillAndSet03() {
@@ -486,9 +547,11 @@ public class TestTableMutableImpl {
 		ma.fillAndSet(1, 1, null, "hans");
 		assertEquals(2, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillAndSet04() {
@@ -496,9 +559,11 @@ public class TestTableMutableImpl {
 		ma.fillAndSet(1, 2, null, "hans");
 		assertEquals(2, ma.getNumberOfRows());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.MutableTableImpl#fillAndSet(int, int, Object, Object)}
+	 * .
 	 */
 	@Test
 	public final void testFillAndSet05() {

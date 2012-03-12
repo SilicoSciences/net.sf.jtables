@@ -19,8 +19,8 @@ public class ObjectFromStringTableReader<T> {
 
 	protected final int maxElements;
 
-	public ObjectFromStringTableReader(TransformerStringRowToObject<? extends T> parser, boolean colIds, boolean rowIds,
-			int maxElements) {
+	public ObjectFromStringTableReader(TransformerStringRowToObject<? extends T> parser,
+			boolean colIds, boolean rowIds, int maxElements) {
 		this.colIds = colIds;
 		this.rowIds = rowIds;
 		this.parser = parser;
@@ -36,7 +36,7 @@ public class ObjectFromStringTableReader<T> {
 		final StringTableReader reader = new StringTableReader(file, colIds, rowIds);
 		final IOIterator<Row<String>> it = reader.getIterator();
 		int cnt = 0;
-		while(it.hasNext() && (maxElements < 0 || maxElements >= cnt)){
+		while (it.hasNext() && (maxElements < 0 || maxElements >= cnt)) {
 			cnt++;
 			result.add(parser.transform(it.next()));
 		}

@@ -34,7 +34,7 @@ public class IntegerTable extends AnnotatedMutableTableImpl<Integer> {
 	/**
 	 * 
 	 * Create a empty {@code IntegerTable}.
-	 *
+	 * 
 	 */
 	public IntegerTable() {
 		super();
@@ -43,8 +43,9 @@ public class IntegerTable extends AnnotatedMutableTableImpl<Integer> {
 	/**
 	 * 
 	 * Create a new {@code IntegerTable} that contains given rows.
-	 *
-	 * @param rows rows that are initially contained by this {@code Table}
+	 * 
+	 * @param rows
+	 *            rows that are initially contained by this {@code Table}
 	 */
 	public IntegerTable(List<Row<Integer>> rows) {
 		super(rows);

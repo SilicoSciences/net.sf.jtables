@@ -1,6 +1,7 @@
 package net.sf.jtables.table.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +16,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class TestRowImpl {
-	
+
 	private RowImpl r1, r2;
 
 	@BeforeClass
@@ -40,7 +41,7 @@ public class TestRowImpl {
 	public final void testHashCode() {
 		fail("Not yet implemented"); // TODO
 	}
-	
+
 	@Ignore
 	@Test
 	public final void testEqualsObject() {
@@ -49,14 +50,13 @@ public class TestRowImpl {
 
 	@Test
 	public final void testGetObject01() throws IOException {
-		final StringTable table = new StringTableReader(new File("src/test/resources/anno-orphan-anno.txt"), true, false).readAll();
+		final StringTable table = new StringTableReader(new File(
+				"src/test/resources/anno-orphan-anno.txt"), true, false).readAll();
 		Row<String> r = table.getRow(0);
-//		System.out.println(r.getIdentifier());
+		// System.out.println(r.getIdentifier());
 		assertEquals("1", r.get("mz"));
 		assertEquals("2", r.get("frac"));
 		assertEquals("3", r.get("conf"));
 	}
-
-	
 
 }

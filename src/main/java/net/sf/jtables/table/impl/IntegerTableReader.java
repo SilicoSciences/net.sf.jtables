@@ -29,52 +29,53 @@ import net.sf.jtables.table.TableReader;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- *
+ * 
  */
 public class IntegerTableReader extends AbstractTableReader<Integer> {
 
-	public IntegerTableReader(BufferedReader reader, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	public IntegerTableReader(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
-	public IntegerTableReader(BufferedReader reader, boolean columnIds,
-			boolean rowIds) throws IOException {
+	public IntegerTableReader(BufferedReader reader, boolean columnIds, boolean rowIds)
+			throws IOException {
 		super(reader, columnIds, rowIds);
 	}
 
-	public IntegerTableReader(File file, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public IntegerTableReader(File file, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(file, columnIds, rowIds, delim);
 	}
 
-	public IntegerTableReader(File file, boolean columnIds, boolean rowIds)
-			throws IOException {
+	public IntegerTableReader(File file, boolean columnIds, boolean rowIds) throws IOException {
 		super(file, columnIds, rowIds);
 	}
 
-	public IntegerTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	public IntegerTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(stream, columnIds, rowIds, delim);
 	}
 
-	public IntegerTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds) throws IOException {
+	public IntegerTableReader(InputStream stream, boolean columnIds, boolean rowIds)
+			throws IOException {
 		super(stream, columnIds, rowIds);
 	}
 
-	public IntegerTableReader(Reader reader, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public IntegerTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 

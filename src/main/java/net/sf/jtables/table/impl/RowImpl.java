@@ -24,7 +24,6 @@ import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.ToStringStrategy;
 import net.sf.kerner.utils.collections.impl.CollectionUtils;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
@@ -51,8 +50,8 @@ import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
  *            type of table elements
  */
 public class RowImpl<T> implements Row<T> {
-	
-	public final static String DEFAULT_DELIMITER = "\t"; 
+
+	public final static String DEFAULT_DELIMITER = "\t";
 
 	protected final List<T> implementation = new ArrayList<T>();
 
@@ -62,7 +61,7 @@ public class RowImpl<T> implements Row<T> {
 	public RowImpl(List<T> elements) {
 		implementation.addAll(elements);
 	}
-	
+
 	public RowImpl(T... elements) {
 		implementation.addAll(Arrays.asList(elements));
 	}
@@ -87,12 +86,12 @@ public class RowImpl<T> implements Row<T> {
 	public ObjectToIndexMapper getObjectToIndexMapper() {
 		return new ObjectToIndexMapperImpl(mapper.keys());
 	}
-	
+
 	public String toString(String delimiter) {
 		return CollectionUtils.toString(this, delimiter);
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return toString(DEFAULT_DELIMITER);
 	}
 

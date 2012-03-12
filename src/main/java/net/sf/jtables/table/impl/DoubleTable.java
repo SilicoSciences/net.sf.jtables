@@ -4,7 +4,7 @@ import java.util.List;
 
 import net.sf.jtables.table.Row;
 
-public class DoubleTable extends AnnotatedMutableTableImpl<Double>{
+public class DoubleTable extends AnnotatedMutableTableImpl<Double> {
 
 	public DoubleTable() {
 		super();

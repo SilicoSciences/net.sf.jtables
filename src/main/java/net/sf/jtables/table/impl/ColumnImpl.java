@@ -56,5 +56,5 @@ public class ColumnImpl<T> extends RowImpl<T> implements Column<T> {
 		super(elements);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }

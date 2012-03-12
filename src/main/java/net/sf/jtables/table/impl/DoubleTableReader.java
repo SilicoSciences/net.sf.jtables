@@ -28,17 +28,19 @@ import net.sf.jtables.table.TableReader;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- *
+ * 
  */
 public class DoubleTableReader extends AbstractTableReader<Double> {
 
@@ -57,8 +59,8 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(File file, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public DoubleTableReader(File file, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(file, columnIds, rowIds, delim);
 	}
 
@@ -76,8 +78,7 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(File file, boolean columnIds, boolean rowIds)
-			throws IOException {
+	public DoubleTableReader(File file, boolean columnIds, boolean rowIds) throws IOException {
 		super(file, columnIds, rowIds);
 	}
 
@@ -96,8 +97,8 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds, String delim) throws IOException {
+	public DoubleTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(stream, columnIds, rowIds, delim);
 	}
 
@@ -111,12 +112,12 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 *            {@code true}, if columns have headers; {@code false} otherwise
 	 * @param rowIds
 	 *            {@code true}, if rows have headers; {@code false} otherwise
-	 *
+	 * 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(InputStream stream, boolean columnIds,
-			boolean rowIds) throws IOException {
+	public DoubleTableReader(InputStream stream, boolean columnIds, boolean rowIds)
+			throws IOException {
 		super(stream, columnIds, rowIds);
 	}
 
@@ -135,8 +136,8 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(Reader reader, boolean columnIds, boolean rowIds,
-			String delim) throws IOException {
+	public DoubleTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
@@ -154,8 +155,7 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public DoubleTableReader(Reader reader, boolean columnIds, boolean rowIds)
-			throws IOException {
+	public DoubleTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
 		super(reader, columnIds, rowIds);
 	}
 
@@ -175,7 +175,5 @@ public class DoubleTableReader extends AbstractTableReader<Double> {
 	protected Double parse(String s) throws NumberFormatException {
 		return Double.parseDouble(s);
 	}
-	
-	
 
 }

@@ -31,14 +31,15 @@ import net.sf.kerner.utils.io.IOUtils;
  * 
  * Default implementation for {@link AnnotatedMutableTable}.
  * 
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- *
- * @param <T> type of elements in {@code Table}
+ * 
+ * @param <T>
+ *            type of elements in {@code Table}
  */
 public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
-AnnotatedMutableTable<T> {
+		AnnotatedMutableTable<T> {
 
 	/**
 	 * row mappings.
@@ -55,7 +56,7 @@ AnnotatedMutableTable<T> {
 	/**
 	 * 
 	 * Create an empty {@code AnnotatedMutableTableImpl}.
-	 *
+	 * 
 	 */
 	public AnnotatedMutableTableImpl() {
 		super();
@@ -64,8 +65,9 @@ AnnotatedMutableTable<T> {
 	/**
 	 * 
 	 * Create an {@code AnnotatedMutableTableImpl} with given rows.
-	 *
-	 * @param rows rows initially contained by this {@code Table}
+	 * 
+	 * @param rows
+	 *            rows initially contained by this {@code Table}
 	 */
 	public AnnotatedMutableTableImpl(List<Row<T>> rows) {
 		super(rows);
@@ -79,31 +81,29 @@ AnnotatedMutableTable<T> {
 		if (rowMapper.containsKey(key)) {
 			// all good
 		} else
-			throw new NoSuchElementException("no element for row index [" + key
-					+ "]");
+			throw new NoSuchElementException("no element for row index [" + key + "]");
 	}
 
 	protected void checkColumnIndex(Object key) {
 		if (colMapper.containsKey(key)) {
 			// all good
 		} else
-			throw new NoSuchElementException("no element for column index [" + key
-					+ "]");
+			throw new NoSuchElementException("no element for column index [" + key + "]");
 	}
 
 	// Public //
 
 	// Override //
-	
+
 	@Override
 	public String toString() {
 		return toString("\t");
 	}
-	
+
 	public String toString(String delimiter) {
-		
+
 		// TODO maybe a little bit more complicated?!
-		
+
 		final StringBuilder sb = new StringBuilder();
 
 		// print column indices
@@ -112,13 +112,13 @@ AnnotatedMutableTable<T> {
 		} else {
 			final List<?> r = new ArrayList<Object>(getColumnIdentifier());
 			final java.util.Iterator<?> it = r.iterator();
-			
-			if(getRowIdentifier().isEmpty()){
-				
+
+			if (getRowIdentifier().isEmpty()) {
+
 			} else {
 				sb.append(delimiter);
 			}
-			
+
 			while (it.hasNext()) {
 				sb.append(it.next());
 				if (it.hasNext())
@@ -137,19 +137,18 @@ AnnotatedMutableTable<T> {
 			}
 			if (rowIt.hasNext()) {
 				final Iterator<?> ii = rowIt.next().iterator();
-				while(ii.hasNext()){
+				while (ii.hasNext()) {
 					sb.append(ii.next());
-					if(ii.hasNext())
+					if (ii.hasNext())
 						sb.append(delimiter);
 				}
-				
-				
+
 			}
 			if (rowIt.hasNext() || identIt.hasNext())
 				sb.append(IOUtils.NEW_LINE_STRING);
 		}
 		return sb.toString();
-	}	
+	}
 
 	// Implement //
 
@@ -170,7 +169,7 @@ AnnotatedMutableTable<T> {
 		checkRowIndex(key);
 		return getRow(rowMapper.get(key));
 	}
-	
+
 	@Override
 	public Row<T> getRow(int index) {
 		final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
@@ -183,7 +182,7 @@ AnnotatedMutableTable<T> {
 		checkColumnIndex(key);
 		return getColumn(colMapper.get(key));
 	}
-	
+
 	@Override
 	public Column<T> getColumn(int index) {
 		final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
@@ -206,18 +205,18 @@ AnnotatedMutableTable<T> {
 
 	public void addColumn(Object id, Column<T> row) {
 		this.colMapper.addMapping(id);
-		super.addColumn(row);		
+		super.addColumn(row);
 	}
 
 	public void addRow(Object id, Row<T> row, int index) {
 		this.rowMapper.addMapping(id, index);
-		super.addRow(index, row);		
+		super.addRow(index, row);
 	}
 
 	public void addColumn(Object id, Column<T> row, int index) {
 		this.colMapper.addMapping(id, index);
-		super.addColumn(index, row);	
-		
+		super.addColumn(index, row);
+
 	}
 
 }

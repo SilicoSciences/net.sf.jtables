@@ -40,41 +40,41 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 	public StringTable(List<Row<String>> rows) {
 		super(rows);
 	}
-	
+
 	@Override
 	public TableImpl<String> clone() throws CloneNotSupportedException {
 		final List<Row<String>> rows = new ArrayList<Row<String>>();
-		for(Row<String> row : this.rows){
+		for (Row<String> row : this.rows) {
 			final Column<String> columns = new ColumnImpl<String>();
-			for(String element : row){
+			for (String element : row) {
 				columns.add(element);
 			}
 			rows.add(columns);
 		}
 		return new StringTable(rows);
 	}
-	
-	public List<Column<String>> getColumns(String idPattern){
+
+	public List<Column<String>> getColumns(String idPattern) {
 		final List<Column<String>> result = new ArrayList<Column<String>>();
-		
-		for(Object s : getColumnIdentifier()){
-			if(s.toString().matches(idPattern)){
+
+		for (Object s : getColumnIdentifier()) {
+			if (s.toString().matches(idPattern)) {
 				result.add(getColumn(s));
 			}
 		}
-		
+
 		return result;
 	}
-	
-	public List<Row<String>> getRows(String idPattern){
+
+	public List<Row<String>> getRows(String idPattern) {
 		final List<Row<String>> result = new ArrayList<Row<String>>();
-		
-		for(Object s : getRowIdentifier()){
-			if(s.toString().matches(idPattern)){
+
+		for (Object s : getRowIdentifier()) {
+			if (s.toString().matches(idPattern)) {
 				result.add(getRow(s));
 			}
 		}
-		
+
 		return result;
 	}
 }

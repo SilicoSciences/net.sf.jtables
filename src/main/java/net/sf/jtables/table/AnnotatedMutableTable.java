@@ -49,13 +49,13 @@ public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTabl
 	 *            a {@link List} that contains all row identifiers
 	 */
 	void setRowIdentifier(List<? extends Object> ids);
-	
+
 	void addRow(Object id, Row<T> row);
-	
+
 	void addColumn(Object id, Column<T> row);
-	
+
 	void addRow(Object id, Row<T> row, int index);
-	
+
 	void addColumn(Object id, Column<T> row, int index);
 
 }

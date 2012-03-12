@@ -15,7 +15,9 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -80,7 +82,7 @@ public class TestStringTable {
 		assertArrayEquals(new ColumnImpl[] { new ColumnImpl<String>(Arrays.asList("a.a")),
 				new ColumnImpl<String>(Arrays.asList("a.b")) }, table1.getColumns().toArray());
 	}
-	
+
 	@Test
 	public final void testGetColumns02() throws IOException {
 		table1 = new StringTableReader(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING
@@ -104,13 +106,14 @@ public class TestStringTable {
 
 	@Test
 	public final void testGetColumnObject01() throws IOException {
-		table1 = new StringTableReader(new File("src/test/resources/anno-orphan-anno.txt"), true, false).readAll();
-//		System.out.println(table1.getColumns());
-//		System.out.println(table1.getColumn("mz"));
-//		System.out.println(table1.getColumn("frac"));
-		assertArrayEquals(new String[]{"1","4"}, table1.getColumn("mz").toArray());
-		assertArrayEquals(new String[]{"2","5"}, table1.getColumn("frac").toArray());
-		assertArrayEquals(new String[]{"3","6"}, table1.getColumn("conf").toArray());
+		table1 = new StringTableReader(new File("src/test/resources/anno-orphan-anno.txt"), true,
+				false).readAll();
+		// System.out.println(table1.getColumns());
+		// System.out.println(table1.getColumn("mz"));
+		// System.out.println(table1.getColumn("frac"));
+		assertArrayEquals(new String[] { "1", "4" }, table1.getColumn("mz").toArray());
+		assertArrayEquals(new String[] { "2", "5" }, table1.getColumn("frac").toArray());
+		assertArrayEquals(new String[] { "3", "6" }, table1.getColumn("conf").toArray());
 	}
 
 	@Ignore

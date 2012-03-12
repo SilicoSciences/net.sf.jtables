@@ -54,7 +54,8 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * @param <T>
  *            type of elements in {@code Table}
  */
-public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> implements TableReader<T> {
+public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> implements
+		TableReader<T> {
 
 	/**
 	 * Default column delimiter (tab).
@@ -106,7 +107,8 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public AbstractTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
+	public AbstractTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(reader);
 		this.colsB = columnIds;
 		this.rowsB = rowIds;
@@ -132,7 +134,8 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim) throws IOException {
+	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		super(stream);
 		this.colsB = columnIds;
 		this.rowsB = rowIds;
@@ -158,7 +161,8 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public AbstractTableReader(File file, boolean columnIds, boolean rowIds, String delim) throws IOException {
+	public AbstractTableReader(File file, boolean columnIds, boolean rowIds, String delim)
+			throws IOException {
 		this(new FileInputStream(file), columnIds, rowIds, delim);
 	}
 
@@ -172,7 +176,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 *            {@code true}, if columns have headers; {@code false} otherwise
 	 * @param rowIds
 	 *            {@code true}, if rows have headers; {@code false} otherwise
-	 *            
+	 * 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
@@ -190,11 +194,12 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 *            {@code true}, if columns have headers; {@code false} otherwise
 	 * @param rowIds
 	 *            {@code true}, if rows have headers; {@code false} otherwise
-	 *            
+	 * 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
-	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds) throws IOException {
+	public AbstractTableReader(InputStream stream, boolean columnIds, boolean rowIds)
+			throws IOException {
 		this(stream, columnIds, rowIds, null);
 	}
 
@@ -208,7 +213,7 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	 *            {@code true}, if columns have headers; {@code false} otherwise
 	 * @param rowIds
 	 *            {@code true}, if rows have headers; {@code false} otherwise
-	 *            
+	 * 
 	 * @throws IOException
 	 *             if anything goes wrong
 	 */
@@ -219,8 +224,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 	/**
 	 * 
 	 * Extract column headers from first line.
-	 *
-	 * @param line {@code String} that contains column headers
+	 * 
+	 * @param line
+	 *            {@code String} that contains column headers
 	 * @return {@link Set} of column headers
 	 */
 	protected List<String> getColHeaders(String line) {
@@ -273,9 +279,9 @@ public abstract class AbstractTableReader<T> extends AbstractIOIterator<Row<T>> 
 
 		if (result.isEmpty())
 			return null;
-		
+
 		result.setIdentifier(columnHeaders);
-		
+
 		return result;
 	}
 

@@ -35,18 +35,18 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 /**
- *
- *
+ * 
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-11-19
- *
+ * 
  */
 public class TestTableImpl {
-	
+
 	private TableImpl<String> ma;
-	
+
 	private TableImpl<String> ma2;
-	
+
 	private List<Row<String>> rows;
 
 	private List<Column<String>> cols;
@@ -63,14 +63,14 @@ public class TestTableImpl {
 	@Before
 	public void setUp() throws Exception {
 		rows = new ArrayList<Row<String>>();
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("eins00");
 				add("eins01");
 				add("eins02");
 			}
 		});
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("zwei00");
 				add("zwei01");
@@ -78,19 +78,19 @@ public class TestTableImpl {
 			}
 		});
 		cols = new ArrayList<Column<String>>();
-		cols.add(new ColumnImpl<String>(){
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins00");
 				add("zwei00");
 			}
 		});
-		cols.add(new ColumnImpl<String>(){
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins01");
 				add("zwei01");
 			}
 		});
-		cols.add(new ColumnImpl<String>(){
+		cols.add(new ColumnImpl<String>() {
 			{
 				add("eins02");
 				add("zwei02");
@@ -116,7 +116,7 @@ public class TestTableImpl {
 	public final void testHashCode() {
 		assertEquals(ma.hashCode(), ma2.hashCode());
 	}
-	
+
 	/**
 	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#hashCode()}.
 	 */
@@ -137,7 +137,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#TableImpl(java.util.List)}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#TableImpl(java.util.List)}.
 	 */
 	@Test
 	@Ignore
@@ -146,7 +147,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#checkRowIndex(int)}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#checkRowIndex(int)}.
 	 */
 	@Test
 	@Ignore
@@ -155,7 +157,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#checkColumnIndex(int)}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#checkColumnIndex(int)}.
 	 */
 	@Test
 	@Ignore
@@ -173,7 +176,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#equals(java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#equals(java.lang.Object)}.
 	 */
 	@Test
 	@Ignore
@@ -191,31 +195,39 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetRow() {
 		assertEquals(rows.get(0), ma.getRow(0));
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}
+	 * .
 	 */
 	@Test(expected = NoSuchElementException.class)
 	public final void testGetRow02() {
 		ma.getRow(2);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}
+	 * .
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetRow03() {
 		ma.getRow(-1);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRow(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetRow01() {
@@ -223,7 +235,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRows()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRows()}.
 	 */
 	@Test
 	public final void testGetRows() {
@@ -231,31 +244,39 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetColumn() {
 		assertEquals(cols.get(0), ma.getColumn(0));
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}
+	 * .
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public final void testGetColumn01() {
 		ma.getColumn(-1);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}
+	 * .
 	 */
 	@Test(expected = NoSuchElementException.class)
 	public final void testGetColumn02() {
 		ma.getColumn(4);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumn(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetColumn03() {
@@ -263,7 +284,9 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumns()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumns()}
+	 * .
 	 */
 	@Test
 	public final void testGetColumns() {
@@ -271,84 +294,102 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}
+	 * .
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testGet() {
 		ma.get(-1, 0);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}
+	 * .
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testGet01() {
 		ma.get(0, -1);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}
+	 * .
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testGet02() {
 		ma.get(-1, -1);
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#get(int, int)}
+	 * .
 	 */
 	@Test
 	public final void testGet03() {
-		for(int i=0; i<rows.size(); i++){
-			for(int j=0; j<rows.get(i).size(); j++){
+		for (int i = 0; i < rows.size(); i++) {
+			for (int j = 0; j < rows.get(i).size(); j++) {
 				assertEquals(rows.get(i).get(j), ma.get(i, j));
 			}
 		}
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRowSize(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRowSize(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetRowSize() {
-		for(int i = 0; i< rows.size();i++){
+		for (int i = 0; i < rows.size(); i++) {
 			assertEquals(rows.get(i).size(), ma.getRowSize(i));
 		}
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRowSize(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getRowSize(int)}
+	 * .
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testGetRowSize01() {
-			ma.getRowSize(-1);
+		ma.getRowSize(-1);
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumnSize(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumnSize(int)}
+	 * .
 	 */
 	@Test
 	public final void testGetColumnSize() {
-		for(int i = 0; i< cols.size();i++){
+		for (int i = 0; i < cols.size(); i++) {
 			assertEquals(cols.get(i).size(), ma.getColumnSize(i));
 		}
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumnSize(int)}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getColumnSize(int)}
+	 * .
 	 */
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public final void testGetColumnSize01() {
 		ma.getColumnSize(-1);
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxRowSize() {
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("1");
 				add("2");
@@ -359,31 +400,35 @@ public class TestTableImpl {
 		ma = new TableImpl<String>(rows);
 		assertEquals(4, ma.getMaxRowSize());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxRowSize01() {
 		rows.clear();
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
-				
+
 			}
 		});
 		ma = new TableImpl<String>(rows);
 		assertEquals(0, ma.getMaxRowSize());
 	}
-	
+
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxRowSize()}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxRowSize02() {
 		rows.clear();
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("1");
 			}
@@ -393,21 +438,23 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxColumnSize()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getMaxColumnSize()}
+	 * .
 	 */
 	@SuppressWarnings("serial")
 	@Test
 	public final void testGetMaxColumnSize() {
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("1");
-				
+
 			}
 		});
-		rows.add(new RowImpl<String>(){
+		rows.add(new RowImpl<String>() {
 			{
 				add("1");
-				
+
 			}
 		});
 		ma = new TableImpl<String>(rows);
@@ -415,7 +462,9 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getNumberOfRows()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getNumberOfRows()}
+	 * .
 	 */
 	@Test
 	public final void testGetNumberOfRows() {
@@ -423,7 +472,9 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getNumberOfColumns()}.
+	 * Test method for
+	 * {@link net.sf.kerner.commons.collection.table.impl.TableImpl#getNumberOfColumns()}
+	 * .
 	 */
 	@Test
 	public final void testGetNumberOfColumns() {
@@ -431,7 +482,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#contains(java.lang.Object)}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#contains(java.lang.Object)}.
 	 */
 	@Test
 	@Ignore
@@ -440,7 +492,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getAllElements()}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#getAllElements()}.
 	 */
 	@Test
 	@Ignore
@@ -449,7 +502,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getRowIterator()}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#getRowIterator()}.
 	 */
 	@Test
 	@Ignore
@@ -458,7 +512,8 @@ public class TestTableImpl {
 	}
 
 	/**
-	 * Test method for {@link net.sf.jtables.table.impl.TableImpl#getColumnIterator()}.
+	 * Test method for
+	 * {@link net.sf.jtables.table.impl.TableImpl#getColumnIterator()}.
 	 */
 	@Test
 	@Ignore
