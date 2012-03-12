@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.jtables.table.Row;
-import net.sf.jtables.table.RowToObjectTransformerString;
+import net.sf.jtables.table.TransformerStringRowToObject;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 public class ObjectFromStringTableReader<T> {
@@ -15,11 +15,11 @@ public class ObjectFromStringTableReader<T> {
 
 	protected final boolean rowIds;
 
-	protected final RowToObjectTransformerString<? extends T> parser;
+	protected final TransformerStringRowToObject<? extends T> parser;
 
 	protected final int maxElements;
 
-	public ObjectFromStringTableReader(RowToObjectTransformerString<? extends T> parser, boolean colIds, boolean rowIds,
+	public ObjectFromStringTableReader(TransformerStringRowToObject<? extends T> parser, boolean colIds, boolean rowIds,
 			int maxElements) {
 		this.colIds = colIds;
 		this.rowIds = rowIds;
@@ -27,7 +27,7 @@ public class ObjectFromStringTableReader<T> {
 		this.maxElements = maxElements;
 	}
 
-	public ObjectFromStringTableReader(RowToObjectTransformerString<? extends T> parser) {
+	public ObjectFromStringTableReader(TransformerStringRowToObject<? extends T> parser) {
 		this(parser, true, false, -1);
 	}
 
