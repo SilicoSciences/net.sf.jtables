@@ -27,10 +27,10 @@ import java.util.List;
  * @param <T>
  *            type of elements in {@Table}
  * 
- * @see MutableTable
- * @see AnnotatedTable
+ * @see TableMutable
+ * @see TableAnnotated
  */
-public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
+public interface TableMutableAnnotated<T> extends TableAnnotated<T>, TableMutable<T> {
 
 	/**
 	 * 

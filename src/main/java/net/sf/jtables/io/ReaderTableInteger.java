@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
+package net.sf.jtables.io;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,65 +21,81 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import net.sf.jtables.table.impl.TableInteger;
+
 /**
  * 
- * Implementation for {@link AbstractTableReader} that reads tables of type
- * {@link StringTable}.
+ * {@link ReaderTable} to read a table that contains {@link Integer} values.
  * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
+ * @version 2012-03-13
  * 
  */
-public class StringTableReader extends AbstractTableReader<String> {
+public class ReaderTableInteger extends ReaderTableAbstract<Integer> {
 
-	public StringTableReader(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
+	public ReaderTableInteger(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
 			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(BufferedReader reader, boolean columnIds, boolean rowIds)
+	public ReaderTableInteger(BufferedReader reader, boolean columnIds, boolean rowIds)
 			throws IOException {
 		super(reader, columnIds, rowIds);
 	}
 
-	public StringTableReader(File file, boolean columnIds, boolean rowIds, String delim)
+	public ReaderTableInteger(File file, boolean columnIds, boolean rowIds, String delim)
 			throws IOException {
 		super(file, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(File file, boolean columnIds, boolean rowIds) throws IOException {
+	public ReaderTableInteger(File file, boolean columnIds, boolean rowIds) throws IOException {
 		super(file, columnIds, rowIds);
 	}
 
-	public StringTableReader(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+	public ReaderTableInteger(InputStream stream, boolean columnIds, boolean rowIds, String delim)
 			throws IOException {
 		super(stream, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(InputStream stream, boolean columnIds, boolean rowIds)
+	public ReaderTableInteger(InputStream stream, boolean columnIds, boolean rowIds)
 			throws IOException {
 		super(stream, columnIds, rowIds);
 	}
 
-	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds, String delim)
+	public ReaderTableInteger(Reader reader, boolean columnIds, boolean rowIds, String delim)
 			throws IOException {
 		super(reader, columnIds, rowIds, delim);
 	}
 
-	public StringTableReader(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
+	public ReaderTableInteger(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
 		super(reader, columnIds, rowIds);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	protected StringTable getInstance() {
-		return new StringTable();
+	protected TableInteger getInstance() {
+		return new TableInteger();
 	}
 
 	@Override
-	protected String parse(String s) {
-		return s;
+	protected Integer parse(String s) throws NumberFormatException {
+		return Integer.parseInt(s);
+	}
+
+	@Override
+	public TableInteger readTableAtOnce() throws IOException {
+		return (TableInteger) super.readTableAtOnce();
 	}
 
 }

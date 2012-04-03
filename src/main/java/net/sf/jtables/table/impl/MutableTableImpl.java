@@ -18,13 +18,13 @@ package net.sf.jtables.table.impl;
 import java.util.List;
 
 import net.sf.jtables.table.Column;
-import net.sf.jtables.table.MutableTable;
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.TableMutable;
 import net.sf.kerner.utils.collections.list.impl.ListUtils;
 
 /**
  * 
- * Default implementation for {@link MutableTable}.
+ * Default implementation for {@link TableMutable}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
@@ -33,7 +33,7 @@ import net.sf.kerner.utils.collections.list.impl.ListUtils;
  * @param <T>
  *            type of elements in this {@code Table}
  */
-public class MutableTableImpl<T> extends TableImpl<T> implements MutableTable<T> {
+public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T> {
 
 	public MutableTableImpl(List<Row<T>> rows) {
 		super(rows);

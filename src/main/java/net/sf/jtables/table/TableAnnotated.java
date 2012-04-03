@@ -44,7 +44,7 @@ import java.util.NoSuchElementException;
  * @param <T>
  *            type of elements in {@code Table}
  */
-public interface AnnotatedTable<T> extends Table<T> {
+public interface TableAnnotated<T> extends Table<T> {
 
 	/**
 	 * 

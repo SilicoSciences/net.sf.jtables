@@ -13,40 +13,45 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table;
+package net.sf.jtables.io;
 
 import java.io.IOException;
+import java.io.Reader;
 
-import net.sf.jtables.table.impl.IntegerTable;
-import net.sf.jtables.table.impl.StringTable;
+import net.sf.jtables.table.Row;
+import net.sf.jtables.table.Table;
+import net.sf.jtables.table.TableAnnotated;
+import net.sf.jtables.table.impl.TableInteger;
+import net.sf.jtables.table.impl.TableString;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 /**
  * 
- * A {@code TableReader} reads an {@link AnnotatedTable} from an input source.
+ * A {@code TableReader} reads an {@link TableAnnotated} from an input source.
  * </p> It does so by extending {@link IOIterable} in oder to provide
  * possibility to iterate over a table's rows. </p> Via
- * {@link TableReader#readAll()} it is also possible to read in a whole table at
- * once.
+ * {@link ReaderTable#readTableAtOnce()} it is also possible to read in a whole
+ * table at once.
  * 
  * @see IOIterable
- * @see AnnotatedTable
- * @see StringTable
- * @see IntegerTable
+ * @see TableAnnotated
+ * @see TableString
+ * @see TableInteger
+ * @see Row
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
+ * @version 2012-03-14
  * 
  * @param <T>
  *            type of elements in {@code Table}
  */
-public interface TableReader<T> extends IOIterable<Row<T>> {
+public interface ReaderTable<T> extends IOIterable<Row<T>> {
 
 	/**
 	 * Close this reader.
 	 * 
-	 * @see java.io.Reader#close()
+	 * @see Reader#close()
 	 * 
 	 */
 	void close();
@@ -59,10 +64,13 @@ public interface TableReader<T> extends IOIterable<Row<T>> {
 	 * @throws IOException
 	 *             if reading failed
 	 */
-	<A extends AnnotatedTable<T>> A readAll() throws IOException;
+	TableAnnotated<T> readTableAtOnce() throws IOException;
 
 	/**
+	 * Retrieve an {@link Iterator} to read one {@link Row} after another.
 	 * 
+	 * @throws IOException
+	 *             if reading failed
 	 */
 	IOIterator<Row<T>> getIterator() throws IOException;
 

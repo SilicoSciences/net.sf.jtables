@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
+package net.sf.jtables.table.impl.io;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -24,9 +24,13 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.jtables.table.AnnotatedTable;
+import net.sf.jtables.io.ReaderTableString;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.TableAnnotated;
+import net.sf.jtables.table.impl.ColumnImpl;
+import net.sf.jtables.table.impl.RowImpl;
+import net.sf.jtables.table.impl.TableString;
 import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
@@ -44,11 +48,11 @@ import org.junit.Test;
  */
 public class TestStringTableReader {
 
-	private StringTable table;
+	private TableString table;
 
-	private StringReader stringReader;
+	// private StringReader stringReader;
 
-	private StringTableReader tableReader;
+	// private TableReaderString tableReader;
 
 	private List<Row<String>> rows;
 
@@ -62,7 +66,6 @@ public class TestStringTableReader {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@SuppressWarnings("serial")
 	@Before
 	public void setUp() throws Exception {
 		rows = new ArrayList<Row<String>>();
@@ -99,8 +102,8 @@ public class TestStringTableReader {
 				add("zwei02");
 			}
 		});
-		table = new StringTable(rows);
-		stringReader = new StringReader(table.toString());
+		table = new TableString(rows);
+		// stringReader = new StringReader(table.toString());
 	}
 
 	@After
@@ -109,7 +112,7 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.impl.StringTableReader#StringTableReader(boolean, boolean, java.lang.String)}
+	 * {@link net.sf.jtables.io.ReaderTableString#StringTableReader(boolean, boolean, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -120,7 +123,7 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.impl.StringTableReader#StringTableReader(boolean, boolean)}
+	 * {@link net.sf.jtables.io.ReaderTableString#StringTableReader(boolean, boolean)}
 	 * .
 	 */
 	@Test
@@ -131,7 +134,8 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.table.impl.AbstractTableReader#readAll()}.
+	 * {@link net.sf.jtables.io.ReaderTableAbstract#readTableAtOnce()}
+	 * .
 	 * 
 	 * @throws IOException
 	 */
@@ -145,10 +149,10 @@ public class TestStringTableReader {
 		// First argument is the reader (File or Stream would also work)
 		// Second and third argument is column/ row headers
 		// Forth argument is column-delimiter
-		StringTableReader tableReader = new StringTableReader(stringReader, false, false, " ");
+		ReaderTableString tableReader = new ReaderTableString(stringReader, false, false, " ");
 
 		// Read the table (is also of type StringTable, may be casted)
-		AnnotatedTable<String> table = tableReader.readAll();
+		TableAnnotated<String> table = tableReader.readTableAtOnce();
 
 		// Close the reader
 		tableReader.close();
@@ -309,10 +313,10 @@ public class TestStringTableReader {
 		// Second argument is if column headers are present
 		// Third argument is if row headers are present
 		// Forth argument is column-delimiter (in this case tab)
-		StringTableReader tableReader = new StringTableReader(stringReader, true, true, "\t");
+		ReaderTableString tableReader = new ReaderTableString(stringReader, true, true, "\t");
 
 		// Read the table at once
-		StringTable table = tableReader.readAll();
+		TableString table = tableReader.readTableAtOnce();
 
 		// Close the reader
 		tableReader.close();
@@ -359,10 +363,10 @@ public class TestStringTableReader {
 		// Second argument is if column headers are present
 		// Third argument is if row headers are present
 		// Forth argument is column-delimiter (in this case tab)
-		StringTableReader tableReader = new StringTableReader(stringReader, true, true, "\t");
+		ReaderTableString tableReader = new ReaderTableString(stringReader, true, true, "\t");
 
 		// Read the table at once
-		StringTable table = tableReader.readAll();
+		TableString table = tableReader.readTableAtOnce();
 
 		// Close the reader
 		tableReader.close();

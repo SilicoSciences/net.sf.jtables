@@ -21,7 +21,7 @@ import net.sf.jtables.table.Row;
 
 /**
  * 
- * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}
+ * An {@link net.sf.jtables.table.TableMutableAnnotated AnnotatedMutableTable}
  * with {@link java.lang.Object Object} elements.
  * 
  * 

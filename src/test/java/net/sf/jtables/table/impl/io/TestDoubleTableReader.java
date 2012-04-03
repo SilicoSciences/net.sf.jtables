@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
+package net.sf.jtables.table.impl.io;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -21,6 +21,8 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringReader;
 
+import net.sf.jtables.io.ReaderTableDouble;
+import net.sf.jtables.table.impl.TableDouble;
 import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;
@@ -68,10 +70,10 @@ public class TestDoubleTableReader {
 		// Second argument is if column headers are present
 		// Third argument is if row headers are present
 		// Forth argument is column-delimiter (in this case tab)
-		DoubleTableReader tableReader = new DoubleTableReader(stringReader, true, true, "\t");
+		ReaderTableDouble tableReader = new ReaderTableDouble(stringReader, true, true, "\t");
 
 		// Read the table at once
-		DoubleTable table = tableReader.readAll();
+		TableDouble table = tableReader.readTableAtOnce();
 
 		// Close the reader
 		tableReader.close();

@@ -23,7 +23,7 @@ import net.sf.jtables.table.Row;
 
 /**
  * 
- * An {@link net.sf.jtables.table.AnnotatedMutableTable AnnotatedMutableTable}
+ * An {@link net.sf.jtables.table.TableMutableAnnotated AnnotatedMutableTable}
  * with {@link java.lang.String String} elements.
  * 
  * 
@@ -31,13 +31,13 @@ import net.sf.jtables.table.Row;
  * @version 2010-12-25
  * 
  */
-public class StringTable extends AnnotatedMutableTableImpl<String> {
+public class TableString extends AnnotatedMutableTableImpl<String> {
 
-	public StringTable() {
+	public TableString() {
 		super();
 	}
 
-	public StringTable(List<Row<String>> rows) {
+	public TableString(List<Row<String>> rows) {
 		super(rows);
 	}
 
@@ -51,7 +51,7 @@ public class StringTable extends AnnotatedMutableTableImpl<String> {
 			}
 			rows.add(columns);
 		}
-		return new StringTable(rows);
+		return new TableString(rows);
 	}
 
 	public List<Column<String>> getColumns(String idPattern) {

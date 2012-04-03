@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2010 Alexander Kerner. All rights reserved.
+Copyright (c) 2011-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -15,37 +15,40 @@ limitations under the License.
 
 package net.sf.jtables.table.impl;
 
-import net.sf.jtables.table.Table;
-import net.sf.kerner.utils.io.lazy.LazyStringWriter;
+import java.util.List;
+
+import net.sf.jtables.table.Row;
+import net.sf.jtables.table.TableMutableAnnotated;
 
 /**
  * 
+ * An {@link TableMutableAnnotated} with {@link Integer} elements.
  * 
- * A {@code TableWriter} will write a {@link net.sf.jtables.table.Table Table}
- * to
- * <ul>
- * <li>
- * a {@link java.io.File}</li>
- * <li>
- * a {@link java.io.Writer}</li>
- * <li>
- * an {@link java.io.OutputStream}</li>
- * </ul>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-05
+ * @version 2012-01-25
+ * 
  */
-public class TableWriter extends LazyStringWriter {
+public class TableInteger extends AnnotatedMutableTableImpl<Integer> {
 
 	/**
 	 * 
-	 * Construct a {@code TableWriter} that will write given
-	 * {@link net.sf.jtables.table.Table Table}.
+	 * Create a empty {@code IntegerTable}.
 	 * 
-	 * @param table
-	 *            {@link net.sf.jtables.table.Table Table} to write
 	 */
-	public TableWriter(Table<?> table) {
-		super(table.toString());
+	public TableInteger() {
+		super();
 	}
+
+	/**
+	 * 
+	 * Create a new {@code IntegerTable} that contains given rows.
+	 * 
+	 * @param rows
+	 *            rows that are initially contained by this {@code Table}
+	 */
+	public TableInteger(List<Row<Integer>> rows) {
+		super(rows);
+	}
+
 }

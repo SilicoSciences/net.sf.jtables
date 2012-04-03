@@ -6,6 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 
+import net.sf.jtables.io.ReaderTableString;
 import net.sf.jtables.table.Row;
 
 import org.junit.After;
@@ -50,10 +51,10 @@ public class TestRowImpl {
 
 	@Test
 	public final void testGetObject01() throws IOException {
-		final StringTable table = new StringTableReader(new File(
-				"src/test/resources/anno-orphan-anno.txt"), true, false).readAll();
+		final TableString table = new ReaderTableString(new File(
+				"src/test/resources/anno-orphan-anno.txt"), true, false).readTableAtOnce();
 		Row<String> r = table.getRow(0);
-		// System.out.println(r.getIdentifier());
+		System.out.println(table);
 		assertEquals("1", r.get("mz"));
 		assertEquals("2", r.get("frac"));
 		assertEquals("3", r.get("conf"));

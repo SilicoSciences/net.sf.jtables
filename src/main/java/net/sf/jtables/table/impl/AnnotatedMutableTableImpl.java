@@ -20,16 +20,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import net.sf.jtables.table.AnnotatedMutableTable;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.io.IOUtils;
 
 /**
  * 
- * Default implementation for {@link AnnotatedMutableTable}.
+ * Default implementation for {@link TableMutableAnnotated}.
  * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
@@ -39,7 +39,7 @@ import net.sf.kerner.utils.io.IOUtils;
  *            type of elements in {@code Table}
  */
 public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
-		AnnotatedMutableTable<T> {
+		TableMutableAnnotated<T> {
 
 	/**
 	 * row mappings.

@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2011-2012 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,20 +13,30 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
+package net.sf.jtables.io;
 
-import net.sf.kerner.utils.io.lazy.LazyStringWriter;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.Writer;
 
 /**
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-03-09
+ * @version 2012-03-13
  * 
  */
-public class StringTableWriter extends LazyStringWriter {
+public class WriterTableString extends WriterTableBufferedImpl {
 
-	public StringTableWriter(StringTable table) {
-		super(table);
+	public WriterTableString(File file) throws IOException {
+		super(file);
 	}
 
+	public WriterTableString(OutputStream stream) {
+		super(stream);
+	}
+
+	public WriterTableString(Writer writer) {
+		super(writer);
+	}
 }

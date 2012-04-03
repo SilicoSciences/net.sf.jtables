@@ -37,7 +37,7 @@ package net.sf.jtables.table;
  * @param <T>
  *            type of elements in {@code Table}
  */
-public interface MutableTable<T> extends Table<T> {
+public interface TableMutable<T> extends Table<T> {
 
 	/**
 	 * 
