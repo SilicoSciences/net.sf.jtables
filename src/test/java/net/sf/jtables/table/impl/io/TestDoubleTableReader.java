@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import java.io.StringReader;
 
-import net.sf.jtables.io.ReaderTableDouble;
+import net.sf.jtables.io.reader.ReaderTableDouble;
 import net.sf.jtables.table.impl.TableDouble;
 import net.sf.kerner.utils.io.IOUtils;
 

@@ -24,7 +24,7 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
 
-import net.sf.jtables.io.ReaderTableString;
+import net.sf.jtables.io.reader.ReaderTableString;
 import net.sf.kerner.utils.io.IOUtils;
 
 import org.junit.After;

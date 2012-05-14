@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import java.io.File;
 import java.io.IOException;
 
-import net.sf.jtables.io.ReaderTableString;
+import net.sf.jtables.io.reader.ReaderTableString;
 import net.sf.jtables.table.Row;
 
 import org.junit.After;

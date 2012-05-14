@@ -24,7 +24,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.jtables.io.ReaderTableString;
+import net.sf.jtables.io.reader.ReaderTableString;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableAnnotated;
@@ -112,7 +112,7 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.io.ReaderTableString#StringTableReader(boolean, boolean, java.lang.String)}
+	 * {@link net.sf.jtables.io.reader.ReaderTableString#StringTableReader(boolean, boolean, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -123,7 +123,7 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.io.ReaderTableString#StringTableReader(boolean, boolean)}
+	 * {@link net.sf.jtables.io.reader.ReaderTableString#StringTableReader(boolean, boolean)}
 	 * .
 	 */
 	@Test
@@ -134,7 +134,7 @@ public class TestStringTableReader {
 
 	/**
 	 * Test method for
-	 * {@link net.sf.jtables.io.ReaderTableAbstract#readTableAtOnce()}
+	 * {@link net.sf.jtables.io.reader.ReaderTableAbstract#readTableAtOnce()}
 	 * .
 	 * 
 	 * @throws IOException

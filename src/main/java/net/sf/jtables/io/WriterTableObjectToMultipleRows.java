@@ -28,16 +28,14 @@ public abstract class WriterTableObjectToMultipleRows<T> extends WriterTableObje
 		if (getTransformer() == null) {
 			throw new IllegalStateException("set transformer first");
 		}
-		if (!firstRow) {
-			// skip
-		} else {
-			Iterator<Row<String>> it = getTransformer().transform(element).iterator();
-			while (it.hasNext()) {
-				super.write(delimiter, it.next());
-				if (it.hasNext()) {
-					super.writer.newLine();
-				}
+
+		Iterator<Row<String>> it = getTransformer().transform(element).iterator();
+		while (it.hasNext()) {
+			super.write(delimiter, it.next());
+			if (it.hasNext()) {
+				super.writer.newLine();
 			}
+
 		}
 		return this;
 	}
