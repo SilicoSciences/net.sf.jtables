@@ -24,7 +24,7 @@ import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.impl.CollectionUtils;
+import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 
 /**
@@ -88,7 +88,7 @@ public class RowImpl<T> implements Row<T> {
 	}
 
 	public String toString(String delimiter) {
-		return CollectionUtils.toString(this, delimiter);
+		return UtilCollection.toString(this, delimiter);
 	}
 
 	public String toString() {

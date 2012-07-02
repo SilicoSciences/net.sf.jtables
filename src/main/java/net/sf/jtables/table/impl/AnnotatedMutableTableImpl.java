@@ -28,195 +28,186 @@ import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.io.IOUtils;
 
 /**
- * 
  * Default implementation for {@link TableMutableAnnotated}.
- * 
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- * 
  * @param <T>
  *            type of elements in {@code Table}
  */
-public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
-		TableMutableAnnotated<T> {
+public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements TableMutableAnnotated<T> {
 
-	/**
-	 * row mappings.
-	 */
-	protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(
-			new ArrayList<Object>());
+    /**
+     * row mappings.
+     */
+    protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(new ArrayList<Object>());
 
-	/**
-	 * column mappings.
-	 */
-	protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(
-			new ArrayList<Object>());
+    /**
+     * column mappings.
+     */
+    protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(new ArrayList<Object>());
 
-	/**
-	 * 
-	 * Create an empty {@code AnnotatedMutableTableImpl}.
-	 * 
-	 */
-	public AnnotatedMutableTableImpl() {
-		super();
-	}
+    /**
+     * Create an empty {@code AnnotatedMutableTableImpl}.
+     */
+    public AnnotatedMutableTableImpl() {
+        super();
+    }
 
-	/**
-	 * 
-	 * Create an {@code AnnotatedMutableTableImpl} with given rows.
-	 * 
-	 * @param rows
-	 *            rows initially contained by this {@code Table}
-	 */
-	public AnnotatedMutableTableImpl(List<Row<T>> rows) {
-		super(rows);
-	}
+    /**
+     * Create an {@code AnnotatedMutableTableImpl} with given rows.
+     * 
+     * @param rows
+     *            rows initially contained by this {@code Table}
+     */
+    public AnnotatedMutableTableImpl(final List<Row<T>> rows) {
+        super(rows);
+    }
 
-	// Private //
+    // Private //
 
-	// Protected //
+    // Protected //
 
-	protected void checkRowIndex(Object key) {
-		if (rowMapper.containsKey(key)) {
-			// all good
-		} else
-			throw new NoSuchElementException("no element for row index [" + key + "]");
-	}
+    protected void checkRowIndex(final Object key) {
+        if (rowMapper.containsKey(key)) {
+            // all good
+        } else
+            throw new NoSuchElementException("no element for row index [" + key + "]");
+    }
 
-	protected void checkColumnIndex(Object key) {
-		if (colMapper.containsKey(key)) {
-			// all good
-		} else
-			throw new NoSuchElementException("no element for column index [" + key + "]");
-	}
+    protected void checkColumnIndex(final Object key) {
+        if (colMapper.containsKey(key)) {
+            // all good
+        } else
+            throw new NoSuchElementException("no element for column index [" + key + "]");
+    }
 
-	// Public //
+    // Public //
 
-	// Override //
+    // Override //
 
-	@Override
-	public String toString() {
-		return toString("\t");
-	}
+    @Override
+    public String toString() {
+        return toString("\t");
+    }
 
-	public String toString(String delimiter) {
+    public String toString(final String delimiter) {
 
-		// TODO maybe a little bit more complicated?!
+        // TODO maybe a little bit more complicated?!
 
-		final StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
 
-		// print column indices
-		if (getColumnIdentifier().isEmpty()) {
-			// skip
-		} else {
-			final List<?> r = new ArrayList<Object>(getColumnIdentifier());
-			final java.util.Iterator<?> it = r.iterator();
+        // print column indices
+        if (getColumnIdentifier().isEmpty()) {
+            // skip
+        } else {
+            final List<?> r = new ArrayList<Object>(getColumnIdentifier());
+            final java.util.Iterator<?> it = r.iterator();
 
-			if (getRowIdentifier().isEmpty()) {
+            if (getRowIdentifier().isEmpty()) {
 
-			} else {
-				sb.append(delimiter);
-			}
+            } else {
+                sb.append(delimiter);
+            }
 
-			while (it.hasNext()) {
-				sb.append(it.next());
-				if (it.hasNext())
-					sb.append(delimiter);
-			}
-			sb.append(IOUtils.NEW_LINE_STRING);
-		}
+            while (it.hasNext()) {
+                sb.append(it.next());
+                if (it.hasNext())
+                    sb.append(delimiter);
+            }
+            sb.append(IOUtils.NEW_LINE_STRING);
+        }
 
-		final Iterator<? extends List<T>> rowIt = getRowIterator();
-		final Iterator<?> identIt = getRowIdentifier().iterator();
+        final Iterator<? extends List<T>> rowIt = getRowIterator();
+        final Iterator<?> identIt = getRowIdentifier().iterator();
 
-		while (rowIt.hasNext() || identIt.hasNext()) {
-			if (identIt.hasNext()) {
-				sb.append(identIt.next());
-				sb.append(delimiter);
-			}
-			if (rowIt.hasNext()) {
-				final Iterator<?> ii = rowIt.next().iterator();
-				while (ii.hasNext()) {
-					sb.append(ii.next());
-					if (ii.hasNext())
-						sb.append(delimiter);
-				}
+        while (rowIt.hasNext() || identIt.hasNext()) {
+            if (identIt.hasNext()) {
+                sb.append(identIt.next());
+                sb.append(delimiter);
+            }
+            if (rowIt.hasNext()) {
+                final Iterator<?> ii = rowIt.next().iterator();
+                while (ii.hasNext()) {
+                    sb.append(ii.next());
+                    if (ii.hasNext())
+                        sb.append(delimiter);
+                }
 
-			}
-			if (rowIt.hasNext() || identIt.hasNext())
-				sb.append(IOUtils.NEW_LINE_STRING);
-		}
-		return sb.toString();
-	}
+            }
+            if (rowIt.hasNext() || identIt.hasNext())
+                sb.append(IOUtils.NEW_LINE_STRING);
+        }
+        return sb.toString();
+    }
 
-	// Implement //
+    // Implement //
 
-	/**
+    /**
 	 * 
 	 */
 
-	public List<Object> getRowIdentifier() {
-		return new ArrayList<Object>(rowMapper.keys());
-	}
+    public List<Object> getRowIdentifier() {
+        return new ArrayList<Object>(rowMapper.keys());
+    }
 
-	public List<Object> getColumnIdentifier() {
-		return new ArrayList<Object>(colMapper.keys());
-	}
+    public List<Object> getColumnIdentifier() {
+        return new ArrayList<Object>(colMapper.keys());
+    }
 
-	public Row<T> getRow(Object key) {
-		net.sf.kerner.utils.Utils.checkForNull(key);
-		checkRowIndex(key);
-		return getRow(rowMapper.get(key));
-	}
+    public Row<T> getRow(final Object key) {
+        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        checkRowIndex(key);
+        return getRow(rowMapper.get(key));
+    }
 
-	@Override
-	public Row<T> getRow(int index) {
-		final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
-		r.setIdentifier(colMapper.keys());
-		return r;
-	}
+    @Override
+    public Row<T> getRow(final int index) {
+        final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
+        r.setIdentifier(colMapper.keys());
+        return r;
+    }
 
-	public Column<T> getColumn(Object key) {
-		net.sf.kerner.utils.Utils.checkForNull(key);
-		checkColumnIndex(key);
-		return getColumn(colMapper.get(key));
-	}
+    public Column<T> getColumn(final Object key) {
+        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        checkColumnIndex(key);
+        return getColumn(colMapper.get(key));
+    }
 
-	@Override
-	public Column<T> getColumn(int index) {
-		final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
-		r.setIdentifier(rowMapper.keys());
-		return r;
-	}
+    @Override
+    public Column<T> getColumn(final int index) {
+        final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
+        r.setIdentifier(rowMapper.keys());
+        return r;
+    }
 
-	public void setColumnIdentifier(List<? extends Object> ids) {
-		this.colMapper = new ObjectToIndexMapperImpl(ids);
-	}
+    public void setColumnIdentifier(final List<? extends Object> ids) {
+        this.colMapper = new ObjectToIndexMapperImpl(ids);
+    }
 
-	public void setRowIdentifier(List<? extends Object> ids) {
-		this.rowMapper = new ObjectToIndexMapperImpl(ids);
-	}
+    public void setRowIdentifier(final List<? extends Object> ids) {
+        this.rowMapper = new ObjectToIndexMapperImpl(ids);
+    }
 
-	public void addRow(Object id, Row<T> row) {
-		this.rowMapper.addMapping(id);
-		super.addRow(row);
-	}
+    public void addRow(final Object id, final Row<T> row) {
+        this.rowMapper.addMapping(id);
+        super.addRow(row);
+    }
 
-	public void addColumn(Object id, Column<T> row) {
-		this.colMapper.addMapping(id);
-		super.addColumn(row);
-	}
+    public void addColumn(final Object id, final Column<T> row) {
+        this.colMapper.addMapping(id);
+        super.addColumn(row);
+    }
 
-	public void addRow(Object id, Row<T> row, int index) {
-		this.rowMapper.addMapping(id, index);
-		super.addRow(index, row);
-	}
+    public void addRow(final Object id, final Row<T> row, final int index) {
+        this.rowMapper.addMapping(id, index);
+        super.addRow(index, row);
+    }
 
-	public void addColumn(Object id, Column<T> row, int index) {
-		this.colMapper.addMapping(id, index);
-		super.addColumn(index, row);
+    public void addColumn(final Object id, final Column<T> row, final int index) {
+        this.colMapper.addMapping(id, index);
+        super.addColumn(index, row);
 
-	}
+    }
 
 }

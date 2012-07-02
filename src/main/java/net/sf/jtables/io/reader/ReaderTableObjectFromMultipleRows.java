@@ -8,7 +8,7 @@ import java.io.Reader;
 import java.util.List;
 
 import net.sf.jtables.table.Row;
-import net.sf.kerner.utils.collections.list.impl.ListUtils;
+import net.sf.kerner.utils.collections.list.impl.ListUtil;
 
 public abstract class ReaderTableObjectFromMultipleRows<T> extends ReaderTableObjectAbstract<T> {
 	

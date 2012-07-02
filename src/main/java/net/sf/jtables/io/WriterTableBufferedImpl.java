@@ -10,16 +10,16 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.sf.jtables.table.Row;
-import net.sf.kerner.utils.collections.impl.CollectionUtils;
+import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 public class WriterTableBufferedImpl extends AbstractBufferedWriter implements WriterTableBuffered {
 
 	public final static String DEFAULT_DELIMITER = "\t";
 
-	protected volatile List<?> rowIds = new ArrayList<Object>();
+	protected volatile List<Object> rowIds = new ArrayList<Object>();
 
-	protected volatile List<?> colIds = new ArrayList<Object>();
+	protected volatile List<Object> colIds = new ArrayList<Object>();
 
 	protected volatile boolean firstRow = true;
 
@@ -39,7 +39,7 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
 
 	public WriterTableBufferedImpl write(String delimiter, Row<?> row) throws IOException {
 		if (firstRow && colIds != null && colIds.size() > 0){
-			writer.write(CollectionUtils.toString(colIds, delimiter));
+			writer.write(UtilCollection.toString(colIds, delimiter));
 			writer.newLine();
 			firstRow = false;
 		}
@@ -76,19 +76,19 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
 		return write(delimiter, Arrays.asList(rows));
 	}
 
-	public List<?> getRowIds() {
+	public List<Object> getRowIds() {
 		return rowIds;
 	}
 
-	public void setRowIds(List<?> rowIds) {
+	public void setRowIds(List<Object> rowIds) {
 		this.rowIds = rowIds;
 	}
 
-	public List<?> getColIds() {
+	public List<Object> getColIds() {
 		return colIds;
 	}
 
-	public void setColIds(List<?> colIds) {
+	public void setColIds(List<Object> colIds) {
 		this.colIds = colIds;
 	}
 }
