@@ -14,7 +14,7 @@
 			<macro name="snippet">
 				<param name="id" value="example2" />
 				<param name="file"
-					value="src/test/java/net/sf/jtables/table/impl/TestDoubleTableReader.java" />
+					value="src/test/java/net/sf/jtables/table/impl/io/TestDoubleTableReader.java" />
 			</macro>
 		</section>
 	</body>
