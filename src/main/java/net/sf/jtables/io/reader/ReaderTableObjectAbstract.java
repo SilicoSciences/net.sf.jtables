@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.list.impl.ListUtil;
+import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
@@ -76,7 +76,7 @@ public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
 	}
 	
 	public List<T> readAll() throws IOException{
-		final List<T> result = ListUtil.newList();
+		final List<T> result = UtilList.newList();
 		
 		while(hasNext()){
 			final T next = next();

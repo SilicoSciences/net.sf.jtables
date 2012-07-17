@@ -20,7 +20,7 @@ import java.util.List;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableMutable;
-import net.sf.kerner.utils.collections.list.impl.ListUtil;
+import net.sf.kerner.utils.collections.list.impl.UtilList;
 
 /**
  * Default implementation for {@link TableMutable}.
@@ -50,14 +50,14 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        ListUtil.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
 
             // assert that row is at least index+1 long, so it can take the
             // column element
-            ListUtil.fill(row, index + 1, null);
+            UtilList.fill(row, index + 1, null);
 
             // finally set element
             row.set(index, elements.get(i));
@@ -73,14 +73,14 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        ListUtil.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
 
             // assert that row is at least index long, so it can take the column
             // element
-            ListUtil.fill(row, index, null);
+            UtilList.fill(row, index, null);
 
             // finally set element
             row.add(index, elements.get(i));
@@ -95,14 +95,14 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        ListUtil.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
 
             // since we are appending, assert that all row are maxRowSize()
             // long, so it can take the column element
-            ListUtil.fill(row, getMaxRowSize() - 1, null);
+            UtilList.fill(row, getMaxRowSize() - 1, null);
 
             // finally set element
             row.add(elements.get(i));
@@ -158,7 +158,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         for (int i = 0; i < end; i++) {
             final Row<T> rr = new RowImpl<T>(getRow(i));
-            ListUtil.fill(rr, index, element);
+            UtilList.fill(rr, index, element);
             setRow(i, rr);
         }
     }
@@ -180,7 +180,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         for (int i = 0; i < end; i++) {
             final Column<T> rr = new ColumnImpl<T>(getColumn(i));
 
-            ListUtil.fill(rr, index, element);
+            UtilList.fill(rr, index, element);
 
             setColumn(i, rr);
         }
