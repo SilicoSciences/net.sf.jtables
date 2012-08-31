@@ -269,7 +269,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
 		while (scanner.hasNext()) {
 			final String s = scanner.next();
-			// if(StringUtils.emptyString(s)){
+			// if(UtilStrings.emptyString(s)){
 			// continue;
 			// }
 			if (rowsB && first) {

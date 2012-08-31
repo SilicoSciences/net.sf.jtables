@@ -15,80 +15,80 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 public class WriterTableBufferedImpl extends AbstractBufferedWriter implements WriterTableBuffered {
 
-	public final static String DEFAULT_DELIMITER = "\t";
+    public final static String DEFAULT_DELIMITER = "\t";
 
-	protected volatile List<Object> rowIds = new ArrayList<Object>();
+    protected volatile List<? extends Object> colIds = new ArrayList<Object>();
 
-	protected volatile List<Object> colIds = new ArrayList<Object>();
+    protected volatile boolean firstColumn = true;
 
-	protected volatile boolean firstRow = true;
+    protected volatile boolean firstRow = true;
 
-	protected volatile boolean firstColumn = true;
+    protected volatile List<? extends Object> rowIds = new ArrayList<Object>();
 
-	public WriterTableBufferedImpl(File file) throws IOException {
-		super(file);
-	}
+    public WriterTableBufferedImpl(final File file) throws IOException {
+        super(file);
+    }
 
-	public WriterTableBufferedImpl(OutputStream stream) {
-		super(stream);
-	}
+    public WriterTableBufferedImpl(final OutputStream stream) {
+        super(stream);
+    }
 
-	public WriterTableBufferedImpl(Writer writer) {
-		super(writer);
-	}
+    public WriterTableBufferedImpl(final Writer writer) {
+        super(writer);
+    }
 
-	public WriterTableBufferedImpl write(String delimiter, Row<?> row) throws IOException {
-		if (firstRow && colIds != null && colIds.size() > 0){
-			writer.write(UtilCollection.toString(colIds, delimiter));
-			writer.newLine();
-			firstRow = false;
-		}
-		writer.write(row.toString(delimiter));
-		return this;
-	}
+    public List<Object> getColIds() {
+        return new ArrayList<Object>(colIds);
+    }
 
-	public WriterTableBufferedImpl write(Row<?> row) throws IOException {
-		return write(DEFAULT_DELIMITER, row);
-	}
+    public List<Object> getRowIds() {
+        return new ArrayList<Object>(rowIds);
+    }
 
-	public WriterTableBufferedImpl write(String delimiter, List<Row<?>> rows) throws IOException {
-		Iterator<Row<?>> it = rows.iterator();
-		while (it.hasNext()) {
-			Row<?> r = it.next();
-			write(delimiter, r);
-			if (it.hasNext()) {
-				writer.newLine();
-			}
-			writer.flush();
-		}
-		return this;
-	}
+    public void setColIds(final List<? extends Object> colIds) {
+        this.colIds = colIds;
+    }
 
-	public WriterTableBufferedImpl write(List<Row<?>> rows) throws IOException {
-		return write(DEFAULT_DELIMITER, rows);
-	}
+    public void setRowIds(final List<? extends Object> rowIds) {
+        this.rowIds = rowIds;
+    }
 
-	public WriterTableBufferedImpl write(Row<?>... rows) throws IOException {
-		return write(DEFAULT_DELIMITER, rows);
-	}
+    public WriterTableBufferedImpl write(final List<Row<?>> rows) throws IOException {
+        return write(DEFAULT_DELIMITER, rows);
+    }
 
-	public WriterTableBufferedImpl write(String delimiter, Row<?>... rows) throws IOException {
-		return write(delimiter, Arrays.asList(rows));
-	}
+    public WriterTableBufferedImpl write(final Row<?> row) throws IOException {
+        return write(DEFAULT_DELIMITER, row);
+    }
 
-	public List<Object> getRowIds() {
-		return rowIds;
-	}
+    public WriterTableBufferedImpl write(final Row<?>... rows) throws IOException {
+        return write(DEFAULT_DELIMITER, rows);
+    }
 
-	public void setRowIds(List<Object> rowIds) {
-		this.rowIds = rowIds;
-	}
+    public WriterTableBufferedImpl write(final String delimiter, final List<Row<?>> rows) throws IOException {
+        final Iterator<Row<?>> it = rows.iterator();
+        while (it.hasNext()) {
+            final Row<?> r = it.next();
+            write(delimiter, r);
+            if (it.hasNext()) {
+                writer.newLine();
+            }
+            writer.flush();
+        }
+        return this;
+    }
 
-	public List<Object> getColIds() {
-		return colIds;
-	}
+    public WriterTableBufferedImpl write(final String delimiter, final Row<?> row) throws IOException {
+        if (firstRow && colIds != null && colIds.size() > 0) {
+            writer.write(UtilCollection.toString(colIds, delimiter));
+            writer.newLine();
+            firstRow = false;
+        }
+        writer.write(row.toString(delimiter));
+        return this;
+    }
 
-	public void setColIds(List<Object> colIds) {
-		this.colIds = colIds;
-	}
+    public WriterTableBufferedImpl write(final String delimiter, final Row<?>... rows) throws IOException {
+        return write(delimiter, Arrays.asList(rows));
+    }
 }
