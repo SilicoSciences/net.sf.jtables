@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.3.4</version>
+			<version>0.3.5</version>
 		</dependency>
 	</dependencies>
 	<build>
