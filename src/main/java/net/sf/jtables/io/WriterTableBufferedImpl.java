@@ -49,24 +49,29 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
         this.colIds = colIds;
     }
 
+    public void setColIds(final Object... colIds) {
+        setColIds(Arrays.asList(colIds));
+    }
+
     public void setRowIds(final List<? extends Object> rowIds) {
         this.rowIds = rowIds;
     }
 
-    public WriterTableBufferedImpl write(final List<Row<?>> rows) throws IOException {
+    public WriterTableBufferedImpl write(final List<? extends Row<? extends Object>> rows) throws IOException {
         return write(DEFAULT_DELIMITER, rows);
     }
 
-    public WriterTableBufferedImpl write(final Row<?> row) throws IOException {
+    public WriterTableBufferedImpl write(final Row<? extends Object> row) throws IOException {
         return write(DEFAULT_DELIMITER, row);
     }
 
-    public WriterTableBufferedImpl write(final Row<?>... rows) throws IOException {
+    public WriterTableBufferedImpl write(final Row<? extends Object>... rows) throws IOException {
         return write(DEFAULT_DELIMITER, rows);
     }
 
-    public WriterTableBufferedImpl write(final String delimiter, final List<Row<?>> rows) throws IOException {
-        final Iterator<Row<?>> it = rows.iterator();
+    public WriterTableBufferedImpl write(final String delimiter, final List<? extends Row<? extends Object>> rows)
+            throws IOException {
+        final Iterator<? extends Row<? extends Object>> it = rows.iterator();
         while (it.hasNext()) {
             final Row<?> r = it.next();
             write(delimiter, r);
@@ -78,6 +83,11 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
         return this;
     }
 
+    public WriterTableBufferedImpl write(final String delimiter, final Row<? extends Object>... rows)
+            throws IOException {
+        return write(delimiter, Arrays.asList(rows));
+    }
+
     public WriterTableBufferedImpl write(final String delimiter, final Row<?> row) throws IOException {
         if (firstRow && colIds != null && colIds.size() > 0) {
             writer.write(UtilCollection.toString(colIds, delimiter));
@@ -86,9 +96,5 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
         }
         writer.write(row.toString(delimiter));
         return this;
-    }
-
-    public WriterTableBufferedImpl write(final String delimiter, final Row<?>... rows) throws IOException {
-        return write(delimiter, Arrays.asList(rows));
     }
 }

@@ -7,16 +7,16 @@ import net.sf.jtables.table.Row;
 
 public interface WriterTableBuffered {
 
-	WriterTableBuffered write(Row<?> row) throws IOException;
+    WriterTableBuffered write(List<? extends Row<? extends Object>> rows) throws IOException;
 
-	WriterTableBuffered write(String delimiter, Row<?> row) throws IOException;
+    WriterTableBuffered write(Row<? extends Object>... rows) throws IOException;
 
-	WriterTableBuffered write(List<Row<?>> rows) throws IOException;
+    WriterTableBuffered write(Row<?> row) throws IOException;
 
-	WriterTableBuffered write(String delimiter, List<Row<?>> rows) throws IOException;
+    WriterTableBuffered write(String delimiter, List<? extends Row<? extends Object>> rows) throws IOException;
 
-	WriterTableBuffered write(Row<?>... rows) throws IOException;
+    WriterTableBuffered write(String delimiter, Row<? extends Object> row) throws IOException;
 
-	WriterTableBuffered write(String delimiter, Row<?>... rows) throws IOException;
+    WriterTableBuffered write(String delimiter, Row<? extends Object>... rows) throws IOException;
 
 }
