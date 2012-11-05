@@ -60,6 +60,11 @@ public class RowImpl<T> implements Row<T> {
         implementation.addAll(elements);
     }
 
+    public RowImpl(final Row<T> template) {
+        implementation.addAll(template);
+        mapper = new ObjectToIndexMapperImpl<Object>(template.getIdentifier());
+    }
+
     public RowImpl(final T... elements) {
         implementation.addAll(Arrays.asList(elements));
     }
