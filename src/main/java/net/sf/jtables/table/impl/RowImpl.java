@@ -24,16 +24,13 @@ import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.collections.impl.UtilCollection;
 
 /**
- * 
  * Default implementation for {@link Row}.
- * 
  * <p>
  * <b>Example:</b><br>
- * 
  * </p>
  * <p>
  * 
@@ -45,157 +42,158 @@ import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- * 
  * @param <T>
  *            type of table elements
  */
 public class RowImpl<T> implements Row<T> {
 
-	public final static String DEFAULT_DELIMITER = "\t";
+    public final static String DEFAULT_DELIMITER = "\t";
 
-	protected final List<T> implementation = new ArrayList<T>();
+    protected final List<T> implementation = new ArrayList<T>();
 
-	protected volatile ObjectToIndexMapper mapper = new ObjectToIndexMapperImpl(
-			new ArrayList<Object>());
+    protected volatile ObjectToIndexMapper<Object> mapper = new ObjectToIndexMapperImpl<Object>(new ArrayList<Object>());
 
-	public RowImpl(List<T> elements) {
-		implementation.addAll(elements);
-	}
+    public RowImpl() {
+    }
 
-	public RowImpl(T... elements) {
-		implementation.addAll(Arrays.asList(elements));
-	}
+    public RowImpl(final List<T> elements) {
+        implementation.addAll(elements);
+    }
 
-	public RowImpl() {
-	}
+    public RowImpl(final T... elements) {
+        implementation.addAll(Arrays.asList(elements));
+    }
 
-	public void setIdentifier(List<? extends Object> ids) {
-		this.mapper = new ObjectToIndexMapperImpl(ids);
-	}
+    public void add(final int index, final T element) {
+        implementation.add(index, element);
+    }
 
-	// Implement //
+    // Implement //
 
-	public T get(Object indentifier) {
-		return get(mapper.get(indentifier));
-	}
+    public boolean add(final T e) {
+        return implementation.add(e);
+    }
 
-	public List<Object> getIdentifier() {
-		return new ArrayList<Object>(mapper.keys());
-	}
+    public boolean addAll(final Collection<? extends T> c) {
+        return implementation.addAll(c);
+    }
 
-	public ObjectToIndexMapper getObjectToIndexMapper() {
-		return new ObjectToIndexMapperImpl(mapper.keys());
-	}
+    public boolean addAll(final int index, final Collection<? extends T> c) {
+        return implementation.addAll(index, c);
+    }
 
-	public String toString(String delimiter) {
-		return UtilCollection.toString(this, delimiter);
-	}
+    public void clear() {
+        implementation.clear();
+    }
 
-	public String toString() {
-		return toString(DEFAULT_DELIMITER);
-	}
+    public boolean contains(final Object o) {
+        return implementation.contains(o);
+    }
 
-	// Delegates //
+    // Delegates //
 
-	public int size() {
-		return implementation.size();
-	}
+    public boolean containsAll(final Collection<?> c) {
+        return implementation.containsAll(c);
+    }
 
-	public boolean isEmpty() {
-		return implementation.isEmpty();
-	}
+    @Override
+    public boolean equals(final Object o) {
+        return implementation.equals(o);
+    }
 
-	public boolean contains(Object o) {
-		return implementation.contains(o);
-	}
+    public T get(final int index) {
+        return implementation.get(index);
+    }
 
-	public Iterator<T> iterator() {
-		return implementation.iterator();
-	}
+    public T get(final Object indentifier) {
+        return get(mapper.get(indentifier));
+    }
 
-	public Object[] toArray() {
-		return implementation.toArray();
-	}
+    public List<Object> getIdentifier() {
+        return new ArrayList<Object>(mapper.keys());
+    }
 
-	@SuppressWarnings("hiding")
-	public <T> T[] toArray(T[] a) {
-		return implementation.toArray(a);
-	}
+    public ObjectToIndexMapper<Object> getObjectToIndexMapper() {
+        return new ObjectToIndexMapperImpl<Object>(mapper.keys());
+    }
 
-	public boolean add(T e) {
-		return implementation.add(e);
-	}
+    @Override
+    public int hashCode() {
+        return implementation.hashCode();
+    }
 
-	public boolean remove(Object o) {
-		return implementation.remove(o);
-	}
+    public int indexOf(final Object o) {
+        return implementation.indexOf(o);
+    }
 
-	public boolean containsAll(Collection<?> c) {
-		return implementation.containsAll(c);
-	}
+    public boolean isEmpty() {
+        return implementation.isEmpty();
+    }
 
-	public boolean addAll(Collection<? extends T> c) {
-		return implementation.addAll(c);
-	}
+    public Iterator<T> iterator() {
+        return implementation.iterator();
+    }
 
-	public boolean addAll(int index, Collection<? extends T> c) {
-		return implementation.addAll(index, c);
-	}
+    public int lastIndexOf(final Object o) {
+        return implementation.lastIndexOf(o);
+    }
 
-	public boolean removeAll(Collection<?> c) {
-		return implementation.removeAll(c);
-	}
+    public ListIterator<T> listIterator() {
+        return implementation.listIterator();
+    }
 
-	public boolean retainAll(Collection<?> c) {
-		return implementation.retainAll(c);
-	}
+    public ListIterator<T> listIterator(final int index) {
+        return implementation.listIterator(index);
+    }
 
-	public void clear() {
-		implementation.clear();
-	}
+    public T remove(final int index) {
+        return implementation.remove(index);
+    }
 
-	public boolean equals(Object o) {
-		return implementation.equals(o);
-	}
+    public boolean remove(final Object o) {
+        return implementation.remove(o);
+    }
 
-	public int hashCode() {
-		return implementation.hashCode();
-	}
+    public boolean removeAll(final Collection<?> c) {
+        return implementation.removeAll(c);
+    }
 
-	public T get(int index) {
-		return implementation.get(index);
-	}
+    public boolean retainAll(final Collection<?> c) {
+        return implementation.retainAll(c);
+    }
 
-	public T set(int index, T element) {
-		return implementation.set(index, element);
-	}
+    public T set(final int index, final T element) {
+        return implementation.set(index, element);
+    }
 
-	public void add(int index, T element) {
-		implementation.add(index, element);
-	}
+    public void setIdentifier(final List<? extends Object> ids) {
+        this.mapper = new ObjectToIndexMapperImpl<Object>(ids);
+    }
 
-	public T remove(int index) {
-		return implementation.remove(index);
-	}
+    public int size() {
+        return implementation.size();
+    }
 
-	public int indexOf(Object o) {
-		return implementation.indexOf(o);
-	}
+    public List<T> subList(final int fromIndex, final int toIndex) {
+        return implementation.subList(fromIndex, toIndex);
+    }
 
-	public int lastIndexOf(Object o) {
-		return implementation.lastIndexOf(o);
-	}
+    public Object[] toArray() {
+        return implementation.toArray();
+    }
 
-	public ListIterator<T> listIterator() {
-		return implementation.listIterator();
-	}
+    @SuppressWarnings("hiding")
+    public <T> T[] toArray(final T[] a) {
+        return implementation.toArray(a);
+    }
 
-	public ListIterator<T> listIterator(int index) {
-		return implementation.listIterator(index);
-	}
+    @Override
+    public String toString() {
+        return toString(DEFAULT_DELIMITER);
+    }
 
-	public List<T> subList(int fromIndex, int toIndex) {
-		return implementation.subList(fromIndex, toIndex);
-	}
+    public String toString(final String delimiter) {
+        return UtilCollection.toString(this, delimiter);
+    }
 
 }
