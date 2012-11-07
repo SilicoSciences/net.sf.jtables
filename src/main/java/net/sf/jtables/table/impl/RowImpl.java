@@ -171,6 +171,10 @@ public class RowImpl<T> implements Row<T> {
         return implementation.set(index, element);
     }
 
+    public T set(final Object indentifier, final T newElement) {
+        return set(mapper.get(indentifier), newElement);
+    }
+
     public void setIdentifier(final List<? extends Object> ids) {
         this.mapper = new ObjectToIndexMapperImpl<Object>(ids);
     }
