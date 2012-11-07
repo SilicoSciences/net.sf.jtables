@@ -50,6 +50,11 @@
 		<developerConnection>scm:git:ssh://akerner@jtables.git.sourceforge.net/gitroot/jtables/jtables</developerConnection>
 	</scm>
 	<distributionManagement>
+	<repository>
+			<id>sourceforge-jtables</id>
+			<url>
+sftp://frs.sourceforge.net:/home/frs/project/j/jt/jtables/releases</url>
+		</repository>
 		<site>
 			<id>sourceforge-jtables</id>
 			<url>sftp://frs.sourceforge.net:/home/groups/j/jt/jtables/htdocs
