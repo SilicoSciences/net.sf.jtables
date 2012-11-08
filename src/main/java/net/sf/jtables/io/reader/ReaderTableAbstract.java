@@ -280,6 +280,10 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         return list;
     }
 
+    public List<String> getColumnHeaders() {
+        return columnHeaders;
+    }
+
     /**
 	 * 
 	 */
@@ -290,6 +294,10 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 	 */
     public IOIterator<Row<T>> getIterator() throws IOException {
         return this;
+    }
+
+    public List<String> getRowHeaders() {
+        return rowHeaders;
     }
 
     /**
