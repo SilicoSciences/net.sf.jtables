@@ -45,7 +45,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fillElement(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
@@ -68,7 +68,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fillElement(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
@@ -129,7 +129,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         for (int i = 0; i < end; i++) {
             final Column<T> rr = new ColumnImpl<T>(getColumn(i));
 
-            UtilList.fill(rr, index, element);
+            UtilList.fillElement(rr, index, element);
 
             setColumn(i, rr);
         }
@@ -152,7 +152,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         for (int i = 0; i < end; i++) {
             final Row<T> rr = new RowImpl<T>(getRow(i));
-            UtilList.fill(rr, index, element);
+            UtilList.fillElement(rr, index, element);
             setRow(i, rr);
         }
     }
@@ -200,7 +200,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
-        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
+        UtilList.fillElement(super.rows, elements.size(), new RowImpl<T>());
 
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
