@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
@@ -49,11 +50,6 @@
 		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/jtables/code</developerConnection>
 	</scm>
 	<distributionManagement>
-	<repository>
-			<id>sourceforge-jtables</id>
-			<url>
-sftp://frs.sourceforge.net:/home/frs/project/j/jt/jtables/releases</url>
-		</repository>
 		<site>
 			<id>sourceforge-jtables</id>
 			<url>sftp://frs.sourceforge.net:/home/groups/j/jt/jtables/htdocs
