@@ -11,35 +11,41 @@ import net.sf.jtables.table.Row;
 
 public abstract class WriterTableObjectToMultipleRows<T> extends WriterTableObjectToRowsAbstract<T> {
 
-	public WriterTableObjectToMultipleRows(File file) throws IOException {
-		super(file);
-	}
+    public WriterTableObjectToMultipleRows(final File file) throws IOException {
+        super(file);
+    }
 
-	public WriterTableObjectToMultipleRows(OutputStream stream) {
-		super(stream);
-	}
+    public WriterTableObjectToMultipleRows(final OutputStream stream) {
+        super(stream);
+    }
 
-	public WriterTableObjectToMultipleRows(Writer writer) {
-		super(writer);
-	}
+    public WriterTableObjectToMultipleRows(final Writer writer) {
+        super(writer);
+    }
 
-	public WriterTableObjectToMultipleRows<T> writeElement(String delimiter, T element)
-			throws IOException {
-		if (getTransformer() == null) {
-			throw new IllegalStateException("set transformer first");
-		}
+    protected abstract TransformerObjectToMultipleRowsString<T> getTransformer();
 
-		Iterator<Row<String>> it = getTransformer().transform(element).iterator();
-		while (it.hasNext()) {
-			super.write(delimiter, it.next());
-			if (it.hasNext()) {
-				super.writer.newLine();
-			}
+    @Override
+    public WriterTableObjectToMultipleRows<T> writeElement(final String delimiter, final T element) throws IOException {
+        if (getTransformer() == null) {
+            throw new IllegalStateException("set transformer first");
+        }
 
-		}
-		return this;
-	}
+        final Iterator<Row<String>> it = getTransformer().transform(element).iterator();
+        while (it.hasNext()) {
+            final Row<String> row = it.next();
 
-	protected abstract TransformerObjectToMultipleRowsString<T> getTransformer();
+            if (row.toString().contains("null-94649")) {
+                final int i = 0;
+            }
+
+            super.write(delimiter, row);
+            if (it.hasNext()) {
+                super.writer.newLine();
+            }
+
+        }
+        return this;
+    }
 
 }
