@@ -32,20 +32,15 @@ import net.sf.kerner.utils.collections.list.impl.UtilList;
  */
 public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T> {
 
-    public MutableTableImpl(final List<Row<T>> rows) {
-        super(rows);
-    }
-
     public MutableTableImpl() {
 
     }
 
-    public void setRow(final int index, final Row<T> elements) {
-        super.rows.set(index, elements);
+    public MutableTableImpl(final List<Row<T>> rows) {
+        super(rows);
     }
 
-    public void setColumn(final int index, final Column<T> elements) {
-        checkColumnIndex(index);
+    public void addColumn(final Column<T> elements) {
         net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
 
         // assert that we have enough rows to set whole column
@@ -55,12 +50,12 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         for (int i = 0; i < elements.size(); i++) {
             final Row<T> row = new RowImpl<T>(getRow(i));
 
-            // assert that row is at least index+1 long, so it can take the
-            // column element
-            UtilList.fill(row, index + 1, null);
+            // since we are appending, assert that all row are maxRowSize()
+            // long, so it can take the column element
+            UtilList.fillNull(row, getMaxRowSize() - 1);
 
             // finally set element
-            row.set(index, elements.get(i));
+            row.add(elements.get(i));
 
             // replace row with new one
             setRow(i, row);
@@ -90,77 +85,31 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         }
     }
 
-    public void addColumn(final Column<T> elements) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
-
-        // assert that we have enough rows to set whole column
-        // fill number of rows to fit number of elements in column
-        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
-
-        for (int i = 0; i < elements.size(); i++) {
-            final Row<T> row = new RowImpl<T>(getRow(i));
-
-            // since we are appending, assert that all row are maxRowSize()
-            // long, so it can take the column element
-            UtilList.fill(row, getMaxRowSize() - 1, null);
-
-            // finally set element
-            row.add(elements.get(i));
-
-            // replace row with new one
-            setRow(i, row);
-        }
-    }
-
-    public void set(final int i, final int j, final T element) {
-        // we are empty
-        if (getNumberOfRows() == 0)
-            addRow(new RowImpl<T>());
-
-        fillRows(j + 1, null);
-        fillColumns(i + 1, null);
-        checkRowIndex(i);
-        checkColumnIndex(j);
-
-        final Row<T> row2 = new RowImpl<T>(getRow(i));
-        row2.set(j, element);
-        setRow(i, row2);
-    }
-
-    public void clear() {
-        super.rows.clear();
-    }
-
-    public void addRow(final Row<T> elements) {
-        super.rows.add(elements);
-    }
-
     public void addRow(final int index, final Row<T> elements) {
         if (index < 0 || index > rows.size())
             throw new IllegalArgumentException();
         super.rows.add(index, elements);
     }
 
-    public void fillRows(final int index, final T element) {
-        if (index < 1)
-            throw new IllegalArgumentException();
+    public void addRow(final Row<T> elements) {
+        super.rows.add(elements);
+    }
 
-        // assert we have at least one row
-        if (getNumberOfRows() == 0)
-            addRow(new RowImpl<T>() {
-                private static final long serialVersionUID = 8771525210955142646L;
-                {
-                    add(element);
-                }
-            });
+    public void clear() {
+        super.rows.clear();
+    }
 
-        final int end = getNumberOfRows();
+    public void fill(final int i, final T element) {
+        fillRows(i, element);
+        fillColumns(i, element);
+    }
 
-        for (int i = 0; i < end; i++) {
-            final Row<T> rr = new RowImpl<T>(getRow(i));
-            UtilList.fill(rr, index, element);
-            setRow(i, rr);
-        }
+    public void fillAndSet(final int i, final int j, final T elementToFill, final T elementToSet) {
+        fillRows(j + 1, elementToFill); // rows have to be filled up to column
+                                        // index
+        fillColumns(i + 1, elementToFill); // columns have to be filled up to
+                                           // row index
+        set(i, j, elementToSet);
     }
 
     public void fillColumns(final int index, final T element) {
@@ -186,22 +135,31 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         }
     }
 
-    public void fill(final int i, final T element) {
-        fillRows(i, element);
-        fillColumns(i, element);
+    public void fillRows(final int index, final T element) {
+        if (index < 1)
+            throw new IllegalArgumentException();
+
+        // assert we have at least one row
+        if (getNumberOfRows() == 0)
+            addRow(new RowImpl<T>() {
+                private static final long serialVersionUID = 8771525210955142646L;
+                {
+                    add(element);
+                }
+            });
+
+        final int end = getNumberOfRows();
+
+        for (int i = 0; i < end; i++) {
+            final Row<T> rr = new RowImpl<T>(getRow(i));
+            UtilList.fill(rr, index, element);
+            setRow(i, rr);
+        }
     }
 
-    public void fillAndSet(final int i, final int j, final T elementToFill, final T elementToSet) {
-        fillRows(j + 1, elementToFill); // rows have to be filled up to column
-                                        // index
-        fillColumns(i + 1, elementToFill); // columns have to be filled up to
-                                           // row index
-        set(i, j, elementToSet);
-    }
-
-    public void removeRow(final int index) {
-        checkRowIndex(index);
-        super.rows.remove(index);
+    public void remove(final int i, final int j) {
+        checkColumnIndex(j);
+        getRow(i).remove(j);
     }
 
     public void removeColumn(final int index) {
@@ -216,8 +174,50 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
         }
     }
 
-    public void remove(final int i, final int j) {
+    public void removeRow(final int index) {
+        checkRowIndex(index);
+        super.rows.remove(index);
+    }
+
+    public void set(final int i, final int j, final T element) {
+        // we are empty
+        if (getNumberOfRows() == 0)
+            addRow(new RowImpl<T>());
+
+        fillRows(j + 1, null);
+        fillColumns(i + 1, null);
+        checkRowIndex(i);
         checkColumnIndex(j);
-        getRow(i).remove(j);
+
+        final Row<T> row2 = new RowImpl<T>(getRow(i));
+        row2.set(j, element);
+        setRow(i, row2);
+    }
+
+    public void setColumn(final int index, final Column<T> elements) {
+        checkColumnIndex(index);
+        net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
+
+        // assert that we have enough rows to set whole column
+        // fill number of rows to fit number of elements in column
+        UtilList.fill(super.rows, elements.size(), new RowImpl<T>());
+
+        for (int i = 0; i < elements.size(); i++) {
+            final Row<T> row = new RowImpl<T>(getRow(i));
+
+            // assert that row is at least index+1 long, so it can take the
+            // column element
+            UtilList.fillNull(row, index + 1);
+
+            // finally set element
+            row.set(index, elements.get(i));
+
+            // replace row with new one
+            setRow(i, row);
+        }
+    }
+
+    public void setRow(final int index, final Row<T> elements) {
+        super.rows.set(index, elements);
     }
 }
