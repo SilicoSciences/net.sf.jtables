@@ -44,10 +44,9 @@
 		</license>
 	</licenses>
 	<scm>
-		<url>git://jtables.git.sourceforge.net/gitroot/jtables/jtables 
-		</url>
-		<connection>scm:git:git://jtables.git.sourceforge.net/gitroot/jtables/jtables</connection>
-		<developerConnection>scm:git:ssh://akerner@jtables.git.sourceforge.net/gitroot/jtables/jtables</developerConnection>
+		<url>git://git.code.sf.net/p/jtables/code</url>
+		<connection>scm:git://git.code.sf.net/p/jtables/code</connection>
+		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/jtables/code</developerConnection>
 	</scm>
 	<distributionManagement>
 	<repository>
@@ -133,18 +132,18 @@ sftp://frs.sourceforge.net:/home/frs/project/j/jt/jtables/releases</url>
 		<dependency>
 			<groupId>net.sf.kerner-utils-collections</groupId>
 			<artifactId>kerner-utils-collections</artifactId>
-			<version>0.19.0</version>
+			<version>0.20.2</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.3.6</version>
+			<version>0.4.1</version>
 		</dependency>
 	</dependencies>
 </project>
