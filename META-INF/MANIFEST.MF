@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: jtables
+Bundle-SymbolicName: net.sf.jtables
+Bundle-Version: 2.1.6.SNAPSHOT
+Export-Package: net.sf.jtables.io,
+ net.sf.jtables.io.reader,
+ net.sf.jtables.io.transformer,
+ net.sf.jtables.table,
+ net.sf.jtables.table.impl,
+ net.sf.jtables.table.impl.io
