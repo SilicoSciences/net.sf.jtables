@@ -54,3 +54,4 @@ Import-Package: net.sf.jtables.io,
  net.sf.kerner.utils.time,
  org.junit;resolution:=optional,
  org.slf4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
