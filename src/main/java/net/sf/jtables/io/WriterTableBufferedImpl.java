@@ -75,10 +75,6 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
         while (it.hasNext()) {
             final Row<?> r = it.next();
             write(delimiter, r);
-            if (it.hasNext()) {
-                writer.newLine();
-            }
-            writer.flush();
         }
         return this;
     }
@@ -95,6 +91,7 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
             firstRow = false;
         }
         writer.write(row.toString(delimiter));
+        writer.newLine();
         return this;
     }
 }
