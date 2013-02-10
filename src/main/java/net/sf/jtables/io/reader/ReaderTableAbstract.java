@@ -45,7 +45,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * </p>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-11-05
+ * @version 2013-01-24
  * @param <T>
  *            type of elements in {@code Table}
  */
@@ -280,7 +280,11 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         return list;
     }
 
-    public List<String> getColumnHeaders() {
+    public synchronized List<String> getColumnHeaders() throws IOException {
+        if (colsB && firstLine) {
+            columnHeaders.addAll(getColHeaders(reader.readLine()));
+            firstLine = false;
+        }
         return columnHeaders;
     }
 
@@ -296,7 +300,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         return this;
     }
 
-    public List<String> getRowHeaders() {
+    public synchronized List<String> getRowHeaders() throws IOException {
         return rowHeaders;
     }
 
@@ -311,7 +315,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      */
     protected abstract T parse(String s) throws NumberFormatException;
 
-    public TableAnnotated<T> readTableAtOnce() throws IOException {
+    public synchronized TableAnnotated<T> readTableAtOnce() throws IOException {
         final TableMutableAnnotated<T> result = getInstance();
         final IOIterator<Row<T>> it = getIterator();
         while (it.hasNext()) {
