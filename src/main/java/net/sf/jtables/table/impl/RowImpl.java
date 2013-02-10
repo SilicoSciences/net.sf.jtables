@@ -122,6 +122,15 @@ public class RowImpl<T> implements Row<T> {
         return new ObjectToIndexMapperImpl<Object>(mapper.keys());
     }
 
+    public boolean hasColumn(final int index) {
+        return index < implementation.size();
+    }
+
+    public boolean hasColumn(final Object o) {
+        final int index = mapper.get(o);
+        return hasColumn(index);
+    }
+
     @Override
     public int hashCode() {
         return implementation.hashCode();

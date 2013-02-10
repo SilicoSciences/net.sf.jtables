@@ -41,10 +41,14 @@ import java.util.List;
  */
 public interface Row<T> extends List<T>, Cloneable {
 
-	List<Object> getIdentifier();
+    T get(Object o);
 
-	T get(Object o);
+    List<Object> getIdentifier();
 
-	String toString(String delimiter);
+    boolean hasColumn(int index);
+
+    boolean hasColumn(Object o);
+
+    String toString(String delimiter);
 
 }
