@@ -298,7 +298,11 @@ public class TestStringTableReader {
 	public final void testReadAll02() throws IOException {
 
 		/**
-		 * colA colB colC rowA a.a a.b a.c rowB b.a b.b b.c
+		 * <pre>
+		 *        colA    colB    colC
+		 * rowA   a.a     a.b     a.c
+		 * rowB   b.a     b.b     b.c
+		 * </pre>
 		 */
 
 		// A string that contains a table (tab delimited)
