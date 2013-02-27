@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -30,10 +30,27 @@ import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.IOUtils;
 
 /**
+ * 
  * Default implementation for {@link TableMutableAnnotated}.
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 2013-02-27
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-02-27
+ * 
  * @param <T>
  *            type of elements in {@code Table}
  */
@@ -42,22 +59,24 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     /**
      * row mappings.
      */
-    protected volatile ObjectToIndexMapper rowMapper = new ObjectToIndexMapperImpl(new ArrayList<Object>());
+    protected volatile ObjectToIndexMapper<Object> rowMapper = new ObjectToIndexMapperImpl<Object>(
+            new ArrayList<Object>());
 
     /**
      * column mappings.
      */
-    protected volatile ObjectToIndexMapper colMapper = new ObjectToIndexMapperImpl(new ArrayList<Object>());
+    protected volatile ObjectToIndexMapper<Object> colMapper = new ObjectToIndexMapperImpl<Object>(
+            new ArrayList<Object>());
 
     /**
-     * Create an empty {@code AnnotatedMutableTableImpl}.
+     * Creates an empty {@code AnnotatedMutableTableImpl}.
      */
     public AnnotatedMutableTableImpl() {
         super();
     }
 
     /**
-     * Create an {@code AnnotatedMutableTableImpl} with given rows.
+     * Creates an {@code AnnotatedMutableTableImpl} with given rows.
      * 
      * @param rows
      *            rows initially contained by this {@code Table}
@@ -65,10 +84,6 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     public AnnotatedMutableTableImpl(final List<Row<T>> rows) {
         super(rows);
     }
-
-    // Private //
-
-    // Protected //
 
     public void addColumn(final Object id, final Column<T> row) {
         this.colMapper.addMapping(id);
@@ -81,10 +96,6 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
     }
 
-    // Public //
-
-    // Override //
-
     public void addRow(final Object id, final Row<T> row) {
         this.rowMapper.addMapping(id);
         super.addRow(row);
@@ -94,8 +105,6 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
         this.rowMapper.addMapping(id, index);
         super.addRow(index, row);
     }
-
-    // Implement //
 
     protected void checkColumnIndex(final Object key) {
         if (colMapper.containsKey(key)) {
@@ -112,8 +121,14 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     @Override
-    public Column<T> getColumn(final int index) {
-        final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
+    public synchronized Column<T> getColumn(final int index) {
+        final ColumnImpl<T> r;
+        final Column<T> c = super.getColumn(index);
+        if (c instanceof ColumnImpl) {
+            r = (ColumnImpl<T>) c;
+        } else {
+            r = new ColumnImpl<T>(super.getColumn(index));
+        }
         r.setIdentifier(rowMapper.keys());
         return r;
     }
@@ -130,7 +145,13 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
     @Override
     public Row<T> getRow(final int index) {
-        final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
+        final RowImpl<T> r;
+        final Row<T> c = super.getRow(index);
+        if (c instanceof RowImpl) {
+            r = (RowImpl<T>) c;
+        } else {
+            r = new RowImpl<T>(super.getRow(index));
+        }
         r.setIdentifier(colMapper.keys());
         return r;
     }
@@ -150,11 +171,11 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     public void setColumnIdentifier(final List<? extends Object> ids) {
-        this.colMapper = new ObjectToIndexMapperImpl(ids);
+        this.colMapper = new ObjectToIndexMapperImpl<Object>(ids);
     }
 
     public void setRowIdentifier(final List<? extends Object> ids) {
-        this.rowMapper = new ObjectToIndexMapperImpl(ids);
+        this.rowMapper = new ObjectToIndexMapperImpl<Object>(ids);
     }
 
     public AnnotatedMutableTableImpl<T> sortByColumnIds() {
