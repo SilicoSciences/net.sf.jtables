@@ -16,10 +16,12 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
+import net.sf.kerner.utils.collections.list.impl.UtilList;
 
 /**
  * 
@@ -33,48 +35,62 @@ import net.sf.jtables.table.Row;
  */
 public class TableString extends AnnotatedMutableTableImpl<String> {
 
-	public TableString() {
-		super();
-	}
+    public TableString() {
+        super();
+    }
 
-	public TableString(List<Row<String>> rows) {
-		super(rows);
-	}
+    public TableString(final List<Row<String>> rows) {
+        super(rows);
+    }
 
-	@Override
-	public TableImpl<String> clone() throws CloneNotSupportedException {
-		final List<Row<String>> rows = new ArrayList<Row<String>>();
-		for (Row<String> row : this.rows) {
-			final Column<String> columns = new ColumnImpl<String>();
-			for (String element : row) {
-				columns.add(element);
-			}
-			rows.add(columns);
-		}
-		return new TableString(rows);
-	}
+    @Override
+    public TableImpl<String> clone() throws CloneNotSupportedException {
+        final List<Row<String>> rows = new ArrayList<Row<String>>();
+        for (final Row<String> row : this.rows) {
+            final Column<String> columns = new ColumnImpl<String>();
+            for (final String element : row) {
+                columns.add(element);
+            }
+            rows.add(columns);
+        }
+        return new TableString(rows);
+    }
 
-	public List<Column<String>> getColumns(String idPattern) {
-		final List<Column<String>> result = new ArrayList<Column<String>>();
+    public List<Column<String>> getColumns(final String idPattern) {
+        final List<Column<String>> result = new ArrayList<Column<String>>();
 
-		for (Object s : getColumnIdentifier()) {
-			if (s.toString().matches(idPattern)) {
-				result.add(getColumn(s));
-			}
-		}
+        for (final Object s : getColumnIdentifier()) {
+            if (s.toString().matches(idPattern)) {
+                result.add(getColumn(s));
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
 
-	public List<Row<String>> getRows(String idPattern) {
-		final List<Row<String>> result = new ArrayList<Row<String>>();
+    public List<Row<String>> getRows(final String idPattern) {
+        final List<Row<String>> result = new ArrayList<Row<String>>();
 
-		for (Object s : getRowIdentifier()) {
-			if (s.toString().matches(idPattern)) {
-				result.add(getRow(s));
-			}
-		}
+        for (final Object s : getRowIdentifier()) {
+            if (s.toString().matches(idPattern)) {
+                result.add(getRow(s));
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
+
+    @Override
+    public TableString sortByColumnIds() {
+        final List<String> sorted = new ArrayList<String>(UtilList.toStringList(getColumnIdentifier()));
+        Collections.sort(sorted);
+        final TableString result = new TableString();
+        result.setColumnIdentifier(sorted);
+        result.setRowIdentifier(getRowIdentifier());
+        for (final String s : sorted) {
+            result.addColumn(this.getColumn(s));
+        }
+        return result;
+    }
+
 }

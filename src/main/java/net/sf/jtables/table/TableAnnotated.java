@@ -15,7 +15,6 @@ limitations under the License.
 
 package net.sf.jtables.table;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -46,66 +45,48 @@ import java.util.NoSuchElementException;
  */
 public interface TableAnnotated<T> extends Table<T> {
 
-	/**
-	 * 
-	 * Retrieve a {@link List} that contains all row identifiers in proper
-	 * order.
-	 * 
-	 * @return all row identifiers
-	 */
-	List<Object> getRowIdentifier();
+    /**
+     * 
+     * Retrieve column that is associated to given object key.
+     * 
+     * @param key
+     *            identifier that maps to returned column
+     * @return column that is mapped by given identifier
+     * @throws NoSuchElementException
+     *             if there is no column mapped by given identifier
+     */
+    Column<T> getColumn(Object key) throws NoSuchElementException;
 
-	/**
-	 * 
-	 * Retrieve a {@link List} that contains all column identifiers in proper
-	 * order.
-	 * 
-	 * @return all column identifiers
-	 */
-	List<Object> getColumnIdentifier();
+    /**
+     * 
+     * Retrieve a {@link List} that contains all column identifiers in proper
+     * order.
+     * 
+     * @return all column identifiers
+     */
+    List<Object> getColumnIdentifier();
 
-	/**
-	 * 
-	 * Retrieve row that is associated to given object key.
-	 * 
-	 * @param key
-	 *            identifier that maps to returned row
-	 * @return row that is mapped by given identifier
-	 * @throws NoSuchElementException
-	 *             if there is no row mapped by given identifier
-	 */
-	Row<T> getRow(Object key) throws NoSuchElementException;
+    /**
+     * 
+     * Retrieve row that is associated to given object key.
+     * 
+     * @param key
+     *            identifier that maps to returned row
+     * @return row that is mapped by given identifier
+     * @throws NoSuchElementException
+     *             if there is no row mapped by given identifier
+     */
+    Row<T> getRow(Object key) throws NoSuchElementException;
 
-	/**
-	 * Retrieve row at given index.
-	 */
-	Row<T> getRow(int index) throws NoSuchElementException;
+    /**
+     * 
+     * Retrieve a {@link List} that contains all row identifiers in proper
+     * order.
+     * 
+     * @return all row identifiers
+     */
+    List<Object> getRowIdentifier();
 
-	/**
-	 * Retrieve an {@link Iterator} for rows.
-	 */
-	Iterator<Row<T>> getRowIterator();
-
-	/**
-	 * 
-	 * Retrieve column that is associated to given object key.
-	 * 
-	 * @param key
-	 *            identifier that maps to returned column
-	 * @return column that is mapped by given identifier
-	 * @throws NoSuchElementException
-	 *             if there is no column mapped by given identifier
-	 */
-	Column<T> getColumn(Object key) throws NoSuchElementException;
-
-	/**
-	 * Retrieve column at given index.
-	 */
-	Column<T> getColumn(int index) throws NoSuchElementException;
-
-	/**
-	 * Retrieve an {@link Iterator} for columns.
-	 */
-	Iterator<Column<T>> getColumnIterator();
+    TableAnnotated<T> sortByColumnIds();
 
 }

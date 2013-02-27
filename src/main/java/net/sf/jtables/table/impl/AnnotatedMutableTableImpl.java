@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.jtables.table.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -25,6 +26,7 @@ import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.IOUtils;
 
 /**
@@ -68,12 +70,32 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
     // Protected //
 
-    protected void checkRowIndex(final Object key) {
-        if (rowMapper.containsKey(key)) {
-            // all good
-        } else
-            throw new NoSuchElementException("no element for row index [" + key + "]");
+    public void addColumn(final Object id, final Column<T> row) {
+        this.colMapper.addMapping(id);
+        super.addColumn(row);
     }
+
+    public void addColumn(final Object id, final Column<T> row, final int index) {
+        this.colMapper.addMapping(id, index);
+        super.addColumn(index, row);
+
+    }
+
+    // Public //
+
+    // Override //
+
+    public void addRow(final Object id, final Row<T> row) {
+        this.rowMapper.addMapping(id);
+        super.addRow(row);
+    }
+
+    public void addRow(final Object id, final Row<T> row, final int index) {
+        this.rowMapper.addMapping(id, index);
+        super.addRow(index, row);
+    }
+
+    // Implement //
 
     protected void checkColumnIndex(final Object key) {
         if (colMapper.containsKey(key)) {
@@ -82,9 +104,70 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
             throw new NoSuchElementException("no element for column index [" + key + "]");
     }
 
-    // Public //
+    protected void checkRowIndex(final Object key) {
+        if (rowMapper.containsKey(key)) {
+            // all good
+        } else
+            throw new NoSuchElementException("no element for row index [" + key + "]");
+    }
 
-    // Override //
+    @Override
+    public Column<T> getColumn(final int index) {
+        final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
+        r.setIdentifier(rowMapper.keys());
+        return r;
+    }
+
+    public Column<T> getColumn(final Object key) {
+        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        checkColumnIndex(key);
+        return getColumn(colMapper.get(key));
+    }
+
+    public List<Object> getColumnIdentifier() {
+        return new ArrayList<Object>(colMapper.keys());
+    }
+
+    @Override
+    public Row<T> getRow(final int index) {
+        final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
+        r.setIdentifier(colMapper.keys());
+        return r;
+    }
+
+    public Row<T> getRow(final Object key) {
+        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        checkRowIndex(key);
+        return getRow(rowMapper.get(key));
+    }
+
+    /**
+	 * 
+	 */
+
+    public List<Object> getRowIdentifier() {
+        return new ArrayList<Object>(rowMapper.keys());
+    }
+
+    public void setColumnIdentifier(final List<? extends Object> ids) {
+        this.colMapper = new ObjectToIndexMapperImpl(ids);
+    }
+
+    public void setRowIdentifier(final List<? extends Object> ids) {
+        this.rowMapper = new ObjectToIndexMapperImpl(ids);
+    }
+
+    public AnnotatedMutableTableImpl<T> sortByColumnIds() {
+        final List<String> sorted = new ArrayList<String>(UtilList.toStringList(getColumnIdentifier()));
+        Collections.sort(sorted);
+        final AnnotatedMutableTableImpl<T> result = new AnnotatedMutableTableImpl<T>();
+        result.setColumnIdentifier(sorted);
+        result.setRowIdentifier(getRowIdentifier());
+        for (final String s : sorted) {
+            result.addColumn(this.getColumn(s));
+        }
+        return result;
+    }
 
     @Override
     public String toString() {
@@ -140,74 +223,4 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
         }
         return sb.toString();
     }
-
-    // Implement //
-
-    /**
-	 * 
-	 */
-
-    public List<Object> getRowIdentifier() {
-        return new ArrayList<Object>(rowMapper.keys());
-    }
-
-    public List<Object> getColumnIdentifier() {
-        return new ArrayList<Object>(colMapper.keys());
-    }
-
-    public Row<T> getRow(final Object key) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
-        checkRowIndex(key);
-        return getRow(rowMapper.get(key));
-    }
-
-    @Override
-    public Row<T> getRow(final int index) {
-        final RowImpl<T> r = new RowImpl<T>(super.getRow(index));
-        r.setIdentifier(colMapper.keys());
-        return r;
-    }
-
-    public Column<T> getColumn(final Object key) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
-        checkColumnIndex(key);
-        return getColumn(colMapper.get(key));
-    }
-
-    @Override
-    public Column<T> getColumn(final int index) {
-        final ColumnImpl<T> r = new ColumnImpl<T>(super.getColumn(index));
-        r.setIdentifier(rowMapper.keys());
-        return r;
-    }
-
-    public void setColumnIdentifier(final List<? extends Object> ids) {
-        this.colMapper = new ObjectToIndexMapperImpl(ids);
-    }
-
-    public void setRowIdentifier(final List<? extends Object> ids) {
-        this.rowMapper = new ObjectToIndexMapperImpl(ids);
-    }
-
-    public void addRow(final Object id, final Row<T> row) {
-        this.rowMapper.addMapping(id);
-        super.addRow(row);
-    }
-
-    public void addColumn(final Object id, final Column<T> row) {
-        this.colMapper.addMapping(id);
-        super.addColumn(row);
-    }
-
-    public void addRow(final Object id, final Row<T> row, final int index) {
-        this.rowMapper.addMapping(id, index);
-        super.addRow(index, row);
-    }
-
-    public void addColumn(final Object id, final Column<T> row, final int index) {
-        this.colMapper.addMapping(id, index);
-        super.addColumn(index, row);
-
-    }
-
 }
