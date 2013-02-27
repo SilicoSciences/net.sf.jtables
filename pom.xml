@@ -24,7 +24,7 @@
 	<url>http://jtables.sourceforge.net/</url>
 	<issueManagement>
 		<system>JIRA</system>
-		<url>http://akerner.de:8090/</url>
+		<url>http://akerner.de:8090/browse/JTABLES/</url>
 	</issueManagement>
 	<developers>
 		<developer>
@@ -83,7 +83,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
-				<version>2.4</version>
+					<version>2.4</version>
 				<executions>
 					<execution>
 						<goals>
@@ -97,7 +97,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9</version>
+					<version>2.9</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -109,7 +109,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
+					<version>2.2.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
