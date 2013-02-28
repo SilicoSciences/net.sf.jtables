@@ -1,3 +1,18 @@
+/**********************************************************************
+Copyright (c) 2013 Alexander Kerner. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+ ***********************************************************************/
+
 package net.sf.jtables.io;
 
 import java.io.File;
@@ -13,8 +28,34 @@ import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
+/**
+ * 
+ * Default implementation for {@link WriterTableBuffered}.
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 0000-00-00
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-02-28
+ * 
+ */
 public class WriterTableBufferedImpl extends AbstractBufferedWriter implements WriterTableBuffered {
 
+    /**
+     * Default delimiter character.
+     */
     public final static String DEFAULT_DELIMITER = "\t";
 
     protected volatile List<? extends Object> colIds = new ArrayList<Object>();
@@ -25,15 +66,42 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
 
     protected volatile List<? extends Object> rowIds = new ArrayList<Object>();
 
+    /**
+     * Creates a new {@code WriterTableBufferedImpl} that will write to given
+     * {@link File}.
+     * 
+     * @param file
+     *            {@link File} to write to
+     * @throws IOException
+     *             if file is not accessible for writing
+     */
     public WriterTableBufferedImpl(final File file) throws IOException {
         super(file);
     }
 
-    public WriterTableBufferedImpl(final OutputStream stream) {
+    /**
+     * Creates a new {@code WriterTableBufferedImpl} that will write to given
+     * {@link OutputStream}.
+     * 
+     * @param stream
+     *            {@link OutputStream} to write to
+     * @throws IOException
+     *             if stream is not accessible for writing
+     */
+    public WriterTableBufferedImpl(final OutputStream stream) throws IOException {
         super(stream);
     }
 
-    public WriterTableBufferedImpl(final Writer writer) {
+    /**
+     * Creates a new {@code WriterTableBufferedImpl} that will write to given
+     * {@link Writer}.
+     * 
+     * @param writer
+     *            {@link Writer} to write to
+     * @throws IOException
+     *             if writer is not accessible for writing
+     */
+    public WriterTableBufferedImpl(final Writer writer) throws IOException {
         super(writer);
     }
 
