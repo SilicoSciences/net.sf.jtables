@@ -25,6 +25,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.Table;
+import net.sf.jtables.table.TableAnnotated;
 import net.sf.kerner.utils.collections.impl.UtilCollection;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
@@ -51,7 +53,7 @@ import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
  * @version 2013-02-28
  * 
  */
-public class WriterTableBufferedImpl extends AbstractBufferedWriter implements WriterTableBuffered {
+public class WriterTableBufferedImpl extends AbstractBufferedWriter implements WriterTableBuffered, WriterTable {
 
     /**
      * Default delimiter character.
@@ -162,4 +164,19 @@ public class WriterTableBufferedImpl extends AbstractBufferedWriter implements W
         writer.newLine();
         return this;
     }
+
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public WriterTable write(final String delimiter, final Table<? extends Object> table) throws IOException {
+        if (table instanceof TableAnnotated) {
+            setColIds(((TableAnnotated) table).getColumnIdentifier());
+            setRowIds(((TableAnnotated) table).getRowIdentifier());
+        }
+        write(delimiter, table.getRows());
+        return this;
+    }
+
+    public WriterTable write(final Table<? extends Object> table) throws IOException {
+        return write(DEFAULT_DELIMITER, table);
+    }
+
 }
