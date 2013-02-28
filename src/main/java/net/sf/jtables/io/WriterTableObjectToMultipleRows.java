@@ -15,11 +15,11 @@ public abstract class WriterTableObjectToMultipleRows<T> extends WriterTableObje
         super(file);
     }
 
-    public WriterTableObjectToMultipleRows(final OutputStream stream) {
+    public WriterTableObjectToMultipleRows(final OutputStream stream) throws IOException {
         super(stream);
     }
 
-    public WriterTableObjectToMultipleRows(final Writer writer) {
+    public WriterTableObjectToMultipleRows(final Writer writer) throws IOException {
         super(writer);
     }
 
@@ -34,10 +34,6 @@ public abstract class WriterTableObjectToMultipleRows<T> extends WriterTableObje
         final Iterator<Row<String>> it = getTransformer().transform(element).iterator();
         while (it.hasNext()) {
             final Row<String> row = it.next();
-
-            if (row.toString().contains("null-94649")) {
-                final int i = 0;
-            }
 
             super.write(delimiter, row);
             if (it.hasNext()) {
