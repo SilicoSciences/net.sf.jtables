@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2011-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -22,21 +22,65 @@ import java.io.Writer;
 
 /**
  * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-13
+ * Convenience class. Just extends {@link WriterTableBufferedImpl}.
+ * 
+ * <p>
+ * <b>Example:</b><br>
+ * 
+ * </p>
+ * <p>
+ * 
+ * <pre>
+ * TODO example
+ * </pre>
+ * 
+ * </p>
+ * <p>
+ * last reviewed: 2013-02-28
+ * </p>
+ * 
+ * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
+ * @version 2013-02-28
  * 
  */
 public class WriterTableString extends WriterTableBufferedImpl {
 
-	public WriterTableString(File file) throws IOException {
-		super(file);
-	}
+    /**
+     * Creates a new {@code WriterTableString} that will write to given
+     * {@link File}.
+     * 
+     * @param file
+     *            {@link File} to write to
+     * @throws IOException
+     *             if file is not accessible for writing
+     */
+    public WriterTableString(final File file) throws IOException {
+        super(file);
+    }
 
-	public WriterTableString(OutputStream stream) {
-		super(stream);
-	}
+    /**
+     * Creates a new {@code WriterTableString} that will write to given
+     * {@link OutputStream}.
+     * 
+     * @param stream
+     *            {@link OutputStream} to write to
+     * @throws IOException
+     *             if stream is not accessible for writing
+     */
+    public WriterTableString(final OutputStream stream) throws IOException {
+        super(stream);
+    }
 
-	public WriterTableString(Writer writer) {
-		super(writer);
-	}
+    /**
+     * Creates a new {@code WriterTableString} that will write to given
+     * {@link Writer}.
+     * 
+     * @param writer
+     *            {@link Writer} to write to
+     * @throws IOException
+     *             if writer is not accessible for writing
+     */
+    public WriterTableString(final Writer writer) throws IOException {
+        super(writer);
+    }
 }
