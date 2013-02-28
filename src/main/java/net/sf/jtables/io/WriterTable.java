@@ -16,6 +16,7 @@ limitations under the License.
 package net.sf.jtables.io;
 
 import java.io.Closeable;
+import java.io.IOException;
 
 import net.sf.jtables.table.Table;
 
@@ -45,12 +46,25 @@ import net.sf.jtables.table.Table;
 public interface WriterTable extends Closeable {
 
     /**
-     * Write {@link Table}.
+     * Writes {@link Table} using given column delimiter.
+     * 
+     * @param delimiter
+     *            column delimiter that is used for writing
+     * @param table
+     *            {@link Table} that is written
+     * @return {@code this}
+     * @throws IOException
+     */
+    WriterTable write(String delimiter, Table<? extends Object> table) throws IOException;
+
+    /**
+     * Writes {@link Table}.
      * 
      * @param table
      *            {@link Table} that is written
      * @return {@code this}
+     * @throws IOException
      */
-    WriterTable write(Table<? extends Object> table);
+    WriterTable write(Table<? extends Object> table) throws IOException;
 
 }
