@@ -32,30 +32,30 @@ import java.util.List;
  */
 public interface TableMutableAnnotated<T> extends TableAnnotated<T>, TableMutable<T> {
 
-	/**
-	 * 
-	 * Set identifiers for columns.
-	 * 
-	 * @param ids
-	 *            a {@link List} that contains all column identifiers
-	 */
-	void setColumnIdentifier(List<? extends Object> ids);
+    /**
+     * 
+     * Set identifiers for columns.
+     * 
+     * @param ids
+     *            a {@link List} that contains all column identifiers
+     */
+    void setColumnIdentifier(List<? extends Object> ids);
 
-	/**
-	 * 
-	 * Set identifiers for rows.
-	 * 
-	 * @param ids
-	 *            a {@link List} that contains all row identifiers
-	 */
-	void setRowIdentifier(List<? extends Object> ids);
+    /**
+     * 
+     * Set identifiers for rows.
+     * 
+     * @param ids
+     *            a {@link List} that contains all row identifiers
+     */
+    void setRowIdentifier(List<? extends Object> ids);
 
-	void addRow(Object id, Row<T> row);
+    void addRow(Object id, Row<T> row);
 
-	void addColumn(Object id, Column<T> row);
+    void addColumn(Object id, Column<T> row);
 
-	void addRow(Object id, Row<T> row, int index);
+    void addRow(Object id, Row<T> row, int index);
 
-	void addColumn(Object id, Column<T> row, int index);
+    void addColumn(Object id, Column<T> row, int index);
 
 }

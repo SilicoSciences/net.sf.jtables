@@ -34,60 +34,54 @@ import net.sf.jtables.table.impl.TableString;
  */
 public class ReaderTableString extends ReaderTableAbstract<String> {
 
-	public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
-			throws IOException {
-		super(reader, columnIds, rowIds, delim);
-	}
+    public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
+        super(reader, columnIds, rowIds, delim);
+    }
 
-	public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds)
-			throws IOException {
-		super(reader, columnIds, rowIds);
-	}
+    public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds) throws IOException {
+        super(reader, columnIds, rowIds);
+    }
 
-	public ReaderTableString(File file, boolean columnIds, boolean rowIds, String delim)
-			throws IOException {
-		super(file, columnIds, rowIds, delim);
-	}
+    public ReaderTableString(File file, boolean columnIds, boolean rowIds, String delim) throws IOException {
+        super(file, columnIds, rowIds, delim);
+    }
 
-	public ReaderTableString(File file) throws IOException {
-		super(file);
-	}
+    public ReaderTableString(File file) throws IOException {
+        super(file);
+    }
 
-	public ReaderTableString(File file, boolean columnIds, boolean rowIds) throws IOException {
-		super(file, columnIds, rowIds);
-	}
+    public ReaderTableString(File file, boolean columnIds, boolean rowIds) throws IOException {
+        super(file, columnIds, rowIds);
+    }
 
-	public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds, String delim)
-			throws IOException {
-		super(stream, columnIds, rowIds, delim);
-	}
+    public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds, String delim) throws IOException {
+        super(stream, columnIds, rowIds, delim);
+    }
 
-	public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds)
-			throws IOException {
-		super(stream, columnIds, rowIds);
-	}
+    public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds) throws IOException {
+        super(stream, columnIds, rowIds);
+    }
 
-	public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds, String delim)
-			throws IOException {
-		super(reader, columnIds, rowIds, delim);
-	}
+    public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
+        super(reader, columnIds, rowIds, delim);
+    }
 
-	public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
-		super(reader, columnIds, rowIds);
-	}
+    public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
+        super(reader, columnIds, rowIds);
+    }
 
-	@Override
-	protected TableString getInstance() {
-		return new TableString();
-	}
+    @Override
+    protected TableString getInstance() {
+        return new TableString();
+    }
 
-	@Override
-	protected String parse(String s) {
-		return s;
-	}
+    @Override
+    protected String parse(String s) {
+        return s;
+    }
 
-	@Override
-	public TableString readTableAtOnce() throws IOException {
-		return (TableString) super.readTableAtOnce();
-	}
+    @Override
+    public TableString readTableAtOnce() throws IOException {
+        return (TableString) super.readTableAtOnce();
+    }
 }

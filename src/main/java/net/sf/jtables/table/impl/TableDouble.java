@@ -6,11 +6,11 @@ import net.sf.jtables.table.Row;
 
 public class TableDouble extends AnnotatedMutableTableImpl<Double> {
 
-	public TableDouble() {
-		super();
-	}
+    public TableDouble() {
+        super();
+    }
 
-	public TableDouble(List<Row<Double>> rows) {
-		super(rows);
-	}
+    public TableDouble(List<Row<Double>> rows) {
+        super(rows);
+    }
 }

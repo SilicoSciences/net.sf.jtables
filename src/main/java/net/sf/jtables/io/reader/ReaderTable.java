@@ -48,30 +48,30 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  */
 public interface ReaderTable<T> extends IOIterable<Row<T>> {
 
-	/**
-	 * Close this reader.
-	 * 
-	 * @see Reader#close()
-	 * 
-	 */
-	void close();
+    /**
+     * Close this reader.
+     * 
+     * @see Reader#close()
+     * 
+     */
+    void close();
 
-	/**
-	 * 
-	 * Read a {@link Table} at once.
-	 * 
-	 * @return new instance of {@code AnnotatedTable} that was read
-	 * @throws IOException
-	 *             if reading failed
-	 */
-	TableAnnotated<T> readTableAtOnce() throws IOException;
+    /**
+     * 
+     * Read a {@link Table} at once.
+     * 
+     * @return new instance of {@code AnnotatedTable} that was read
+     * @throws IOException
+     *             if reading failed
+     */
+    TableAnnotated<T> readTableAtOnce() throws IOException;
 
-	/**
-	 * Retrieve an {@link Iterator} to read one {@link Row} after another.
-	 * 
-	 * @throws IOException
-	 *             if reading failed
-	 */
-	IOIterator<Row<T>> getIterator() throws IOException;
+    /**
+     * Retrieve an {@link Iterator} to read one {@link Row} after another.
+     * 
+     * @throws IOException
+     *             if reading failed
+     */
+    IOIterator<Row<T>> getIterator() throws IOException;
 
 }

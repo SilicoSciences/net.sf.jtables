@@ -31,24 +31,24 @@ import net.sf.jtables.table.TableMutableAnnotated;
  */
 public class TableInteger extends AnnotatedMutableTableImpl<Integer> {
 
-	/**
-	 * 
-	 * Create a empty {@code IntegerTable}.
-	 * 
-	 */
-	public TableInteger() {
-		super();
-	}
+    /**
+     * 
+     * Create a empty {@code IntegerTable}.
+     * 
+     */
+    public TableInteger() {
+        super();
+    }
 
-	/**
-	 * 
-	 * Create a new {@code IntegerTable} that contains given rows.
-	 * 
-	 * @param rows
-	 *            rows that are initially contained by this {@code Table}
-	 */
-	public TableInteger(List<Row<Integer>> rows) {
-		super(rows);
-	}
+    /**
+     * 
+     * Create a new {@code IntegerTable} that contains given rows.
+     * 
+     * @param rows
+     *            rows that are initially contained by this {@code Table}
+     */
+    public TableInteger(List<Row<Integer>> rows) {
+        super(rows);
+    }
 
 }

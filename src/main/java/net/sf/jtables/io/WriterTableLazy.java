@@ -37,15 +37,15 @@ import net.sf.kerner.utils.io.lazy.LazyStringWriter;
  */
 public class WriterTableLazy extends LazyStringWriter {
 
-	/**
-	 * 
-	 * Construct a {@code TableWriter} that will write given
-	 * {@link net.sf.jtables.table.Table Table}.
-	 * 
-	 * @param table
-	 *            {@link net.sf.jtables.table.Table Table} to write
-	 */
-	public WriterTableLazy(Table<?> table) {
-		super(table.toString());
-	}
+    /**
+     * 
+     * Construct a {@code TableWriter} that will write given
+     * {@link net.sf.jtables.table.Table Table}.
+     * 
+     * @param table
+     *            {@link net.sf.jtables.table.Table Table} to write
+     */
+    public WriterTableLazy(Table<?> table) {
+        super(table.toString());
+    }
 }

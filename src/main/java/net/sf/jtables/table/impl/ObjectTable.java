@@ -31,12 +31,12 @@ import net.sf.jtables.table.Row;
  */
 public class ObjectTable extends AnnotatedMutableTableImpl<Object> {
 
-	public ObjectTable() {
-		super();
-	}
+    public ObjectTable() {
+        super();
+    }
 
-	public ObjectTable(List<Row<Object>> rows) {
-		super(rows);
-	}
+    public ObjectTable(List<Row<Object>> rows) {
+        super(rows);
+    }
 
 }
