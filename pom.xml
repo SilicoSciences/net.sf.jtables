@@ -143,7 +143,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-collections</groupId>
 			<artifactId>kerner-utils-collections</artifactId>
-			<version>0.22.0</version>
+			<version>0.22.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -154,7 +154,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.4.2</version>
+			<version>0.4.3-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
