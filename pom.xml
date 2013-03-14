@@ -138,12 +138,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-				<artifactId>maven-release-plugin</artifactId>
-				<goals>
-					<goal>deploy</goal>
-				</goals>
-			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
