@@ -17,6 +17,7 @@ package net.sf.jtables.io.reader;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Iterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.Table;
