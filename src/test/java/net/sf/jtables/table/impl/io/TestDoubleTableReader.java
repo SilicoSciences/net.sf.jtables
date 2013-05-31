@@ -23,7 +23,7 @@ import java.io.StringReader;
 
 import net.sf.jtables.io.reader.ReaderTableDouble;
 import net.sf.jtables.table.impl.TableDouble;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -59,8 +59,8 @@ public class TestDoubleTableReader {
          */
 
         // A string that contains a table (tab delimited)
-        String tableString = "colA\tcolB\tcolC" + IOUtils.NEW_LINE_STRING + "rowA\t0.0\t0.1\t0.2"
-                + IOUtils.NEW_LINE_STRING + "rowB\t1.0\t1.1\t1.2";
+        String tableString = "colA\tcolB\tcolC" + UtilIO.NEW_LINE_STRING + "rowA\t0.0\t0.1\t0.2"
+                + UtilIO.NEW_LINE_STRING + "rowB\t1.0\t1.1\t1.2";
 
         // A Reader to read the table
         StringReader stringReader = new StringReader(tableString);

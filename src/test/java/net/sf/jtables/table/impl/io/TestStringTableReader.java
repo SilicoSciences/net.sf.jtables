@@ -31,7 +31,7 @@ import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.impl.ColumnImpl;
 import net.sf.jtables.table.impl.RowImpl;
 import net.sf.jtables.table.impl.TableString;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -141,7 +141,7 @@ public class TestStringTableReader {
     @Test
     public final void testReadAll() throws IOException {
         // A string that contains a table
-        String tableString = "1 2 3" + IOUtils.NEW_LINE_STRING + "a b c";
+        String tableString = "1 2 3" + UtilIO.NEW_LINE_STRING + "a b c";
         // A Reader to read the table
         StringReader stringReader = new StringReader(tableString);
 
@@ -305,8 +305,8 @@ public class TestStringTableReader {
          */
 
         // A string that contains a table (tab delimited)
-        String tableString = "colA\tcolB\tcolC" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b\ta.c"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b\tb.c";
+        String tableString = "colA\tcolB\tcolC" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b\ta.c"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b\tb.c";
 
         // A Reader to read the table
         StringReader stringReader = new StringReader(tableString);
@@ -352,8 +352,8 @@ public class TestStringTableReader {
         // A string that contains a table (tab delimited)
         // note that table has empty cells
 
-        String tableString = "colA\tcolB\tcolC" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\t\ta.c"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b\t";
+        String tableString = "colA\tcolB\tcolC" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\t\ta.c"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b\t";
 
         // if empty cell is at the end of a row/ column (b.c), row/ column size
         // is less by one!

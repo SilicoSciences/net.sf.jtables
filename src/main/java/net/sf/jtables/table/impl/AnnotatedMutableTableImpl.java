@@ -27,7 +27,7 @@ import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 /**
  * 
@@ -219,7 +219,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
                 if (it.hasNext())
                     sb.append(delimiter);
             }
-            sb.append(IOUtils.NEW_LINE_STRING);
+            sb.append(UtilIO.NEW_LINE_STRING);
         }
 
         final Iterator<? extends List<T>> rowIt = getRowIterator();
@@ -240,7 +240,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
             }
             if (rowIt.hasNext() || identIt.hasNext())
-                sb.append(IOUtils.NEW_LINE_STRING);
+                sb.append(UtilIO.NEW_LINE_STRING);
         }
         return sb.toString();
     }

@@ -23,7 +23,7 @@ import java.util.NoSuchElementException;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.Table;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 /**
  * 
@@ -87,7 +87,7 @@ public class TableImpl<T> implements Table<T> {
         while (it.hasNext()) {
             sb.append(it.next());
             if (it.hasNext())
-                sb.append(IOUtils.NEW_LINE_STRING);
+                sb.append(UtilIO.NEW_LINE_STRING);
         }
         return sb.toString();
     }

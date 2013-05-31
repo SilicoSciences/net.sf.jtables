@@ -25,7 +25,7 @@ import java.io.StringReader;
 import java.util.Arrays;
 
 import net.sf.jtables.io.reader.ReaderTableString;
-import net.sf.kerner.utils.io.IOUtils;
+import net.sf.kerner.utils.io.UtilIO;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -62,7 +62,7 @@ public class TestStringTable {
         // read a table from a string
         // table has row and column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
                 true, true).readTableAtOnce();
 
         try {
@@ -77,7 +77,7 @@ public class TestStringTable {
 
     @Test
     public final void testGetColumns01() throws IOException {
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
                 true, true).readTableAtOnce();
 
         assertArrayEquals(new ColumnImpl[] { new ColumnImpl<String>(Arrays.asList("a.a")),
@@ -86,7 +86,7 @@ public class TestStringTable {
 
     @Test
     public final void testGetColumns02() throws IOException {
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         assertArrayEquals(new ColumnImpl[] { new ColumnImpl<String>(Arrays.asList("a.a")),
@@ -153,7 +153,7 @@ public class TestStringTable {
         // read a table from a string
         // table has row and column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
                 true, true).readTableAtOnce();
 
         System.out.println("col-ident: " + table1.getColumnIdentifier());
@@ -175,7 +175,7 @@ public class TestStringTable {
         // read a table from a string
         // table has row and column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"),
                 true, true).readTableAtOnce();
 
         // add another column to table
@@ -198,7 +198,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another row to table
@@ -216,7 +216,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another column to table
@@ -240,7 +240,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another row to table at index 0 (before current line)
@@ -259,7 +259,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another row to table
@@ -278,7 +278,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another row to table
@@ -293,7 +293,7 @@ public class TestStringTable {
         // read a table from a string
         // table has only column headers
 
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "a.a\ta.b"), true,
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "a.a\ta.b"), true,
                 false).readTableAtOnce();
 
         // add another row to table
@@ -360,19 +360,19 @@ public class TestStringTable {
 
     @Test
     public final void testHashCode02() throws IOException {
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
-        table2 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
+        table2 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
         assertEquals(table1.hashCode(), table2.hashCode());
     }
 
     @Test
     public final void testEqualsObject02() throws IOException {
-        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
-        table2 = new ReaderTableString(new StringReader("\tcolA\tcolB" + IOUtils.NEW_LINE_STRING + "rowA\ta.a\ta.b"
-                + IOUtils.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
+        table1 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
+        table2 = new ReaderTableString(new StringReader("\tcolA\tcolB" + UtilIO.NEW_LINE_STRING + "rowA\ta.a\ta.b"
+                + UtilIO.NEW_LINE_STRING + "rowB\tb.a\tb.b"), true, true).readTableAtOnce();
         assertEquals(table1, table2);
     }
 
