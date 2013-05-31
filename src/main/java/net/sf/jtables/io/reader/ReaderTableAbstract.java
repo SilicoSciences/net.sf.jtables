@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,6 +29,7 @@ import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.jtables.table.impl.RowImpl;
+import net.sf.kerner.utils.ObjectPair;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
@@ -85,6 +87,8 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * Does the table have row headers?
      */
     protected final boolean rowsB;
+
+    private Collection<? extends ObjectPair<String, String>> filterRegex = new ArrayList<ObjectPair<String, String>>();
 
     public ReaderTableAbstract(final File file) throws IOException {
         this(file, false, false, null);
@@ -216,8 +220,13 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     @Override
     protected Row<T> doRead() throws IOException {
         String line = reader.readLine();
-        if (line == null)
+
+        if (line == null) {
             return null;
+        }
+        for (final ObjectPair<String, String> s : filterRegex) {
+            line = line.replaceAll(s.getFirst(), s.getSecond());
+        }
         if (colsB && firstLine) {
             columnHeaders.addAll(getColHeaders(line));
             firstLine = false;
@@ -288,6 +297,10 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         return columnHeaders;
     }
 
+    public synchronized Collection<? extends ObjectPair<String, String>> getFilterRegex() {
+        return filterRegex;
+    }
+
     /**
 	 * 
 	 */
@@ -326,6 +339,12 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         result.setRowIdentifier(rowHeaders);
         result.setColumnIdentifier(columnHeaders);
         return result;
+    }
+
+    public synchronized ReaderTableAbstract<T> setFilterRegex(
+            final Collection<? extends ObjectPair<String, String>> regexFilter) {
+        this.filterRegex = regexFilter;
+        return this;
     }
 
 }

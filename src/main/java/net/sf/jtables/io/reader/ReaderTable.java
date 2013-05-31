@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -17,6 +17,7 @@ package net.sf.jtables.io.reader;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.Collection;
 import java.util.Iterator;
 
 import net.sf.jtables.table.Row;
@@ -24,6 +25,7 @@ import net.sf.jtables.table.Table;
 import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.impl.TableInteger;
 import net.sf.jtables.table.impl.TableString;
+import net.sf.kerner.utils.ObjectPair;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
@@ -42,7 +44,7 @@ import net.sf.kerner.utils.io.buffered.IOIterator;
  * @see Row
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-03-14
+ * @version 2013-05-13
  * 
  * @param <T>
  *            type of elements in {@code Table}
@@ -57,6 +59,16 @@ public interface ReaderTable<T> extends IOIterable<Row<T>> {
      */
     void close();
 
+    Collection<? extends ObjectPair<String, String>> getFilterRegex();
+
+    /**
+     * Retrieve an {@link Iterator} to read one {@link Row} after another.
+     * 
+     * @throws IOException
+     *             if reading failed
+     */
+    IOIterator<Row<T>> getIterator() throws IOException;
+
     /**
      * 
      * Read a {@link Table} at once.
@@ -67,12 +79,6 @@ public interface ReaderTable<T> extends IOIterable<Row<T>> {
      */
     TableAnnotated<T> readTableAtOnce() throws IOException;
 
-    /**
-     * Retrieve an {@link Iterator} to read one {@link Row} after another.
-     * 
-     * @throws IOException
-     *             if reading failed
-     */
-    IOIterator<Row<T>> getIterator() throws IOException;
+    ReaderTable<T> setFilterRegex(Collection<? extends ObjectPair<String, String>> regexFilters);
 
 }
