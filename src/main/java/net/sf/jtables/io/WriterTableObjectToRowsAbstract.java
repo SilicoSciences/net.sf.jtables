@@ -38,9 +38,6 @@ public abstract class WriterTableObjectToRowsAbstract<T> extends WriterTableStri
         final Iterator<? extends T> it = elements.iterator();
         while (it.hasNext()) {
             writeElement(delimiter, it.next());
-            if (it.hasNext()) {
-                super.writer.newLine();
-            }
         }
         return this;
     }
