@@ -2,13 +2,13 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: jtables
 Bundle-SymbolicName: net.sf.jtables
-Bundle-Version: 2.1.11
-Export-Package: net.sf.jtables.io;version="2.1.11",
- net.sf.jtables.io.reader;version="2.1.11",
- net.sf.jtables.io.transformer;version="2.1.11",
- net.sf.jtables.table;version="2.1.11",
- net.sf.jtables.table.impl;version="2.1.11",
- net.sf.jtables.table.impl.io;version="2.1.11"
+Bundle-Version: 2.1.12.qualifier
+Export-Package: net.sf.jtables.io;version="2.1.12.qualifier",
+ net.sf.jtables.io.reader;version="2.1.12.qualifier",
+ net.sf.jtables.io.transformer;version="2.1.12.qualifier",
+ net.sf.jtables.table;version="2.1.12.qualifier",
+ net.sf.jtables.table.impl;version="2.1.12.qualifier",
+ net.sf.jtables.table.impl.io;version="2.1.12.qualifier"
 Import-Package: net.sf.kerner.utils,
  net.sf.kerner.utils.async,
  net.sf.kerner.utils.collections,
