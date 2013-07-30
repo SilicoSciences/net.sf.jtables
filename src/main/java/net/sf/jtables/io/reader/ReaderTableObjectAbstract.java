@@ -10,54 +10,64 @@ import java.util.List;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
 
     protected final ReaderTableString reader;
 
-    public ReaderTableObjectAbstract(BufferedReader reader, boolean columnIds, boolean rowIds, String delim)
+    private final static Logger log = LoggerFactory.getLogger(ReaderTableObjectAbstract.class);
+
+    public ReaderTableObjectAbstract(final BufferedReader reader, final boolean columnIds, final boolean rowIds)
             throws IOException {
-        this.reader = new ReaderTableString(reader, columnIds, rowIds, delim);
-
-    }
-
-    public ReaderTableObjectAbstract(BufferedReader reader, boolean columnIds, boolean rowIds) throws IOException {
         this.reader = new ReaderTableString(reader, columnIds, rowIds);
 
     }
 
-    public ReaderTableObjectAbstract(File file, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        this.reader = new ReaderTableString(file, columnIds, rowIds, delim);
+    public ReaderTableObjectAbstract(final BufferedReader reader, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
+        this.reader = new ReaderTableString(reader, columnIds, rowIds, delim);
 
     }
 
-    public ReaderTableObjectAbstract(File file) throws IOException {
+    public ReaderTableObjectAbstract(final File file) throws IOException {
         this.reader = new ReaderTableString(file, true, false);
 
     }
 
-    public ReaderTableObjectAbstract(File file, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableObjectAbstract(final File file, final boolean columnIds, final boolean rowIds) throws IOException {
         this.reader = new ReaderTableString(file, columnIds, rowIds);
 
     }
 
-    public ReaderTableObjectAbstract(InputStream stream, boolean columnIds, boolean rowIds, String delim)
+    public ReaderTableObjectAbstract(final File file, final boolean columnIds, final boolean rowIds, final String delim)
             throws IOException {
-        this.reader = new ReaderTableString(stream, columnIds, rowIds, delim);
+        this.reader = new ReaderTableString(file, columnIds, rowIds, delim);
 
     }
 
-    public ReaderTableObjectAbstract(InputStream stream, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableObjectAbstract(final InputStream stream, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         this.reader = new ReaderTableString(stream, columnIds, rowIds);
 
     }
 
-    public ReaderTableObjectAbstract(Reader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        this.reader = new ReaderTableString(reader, columnIds, rowIds, delim);
+    public ReaderTableObjectAbstract(final InputStream stream, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
+        this.reader = new ReaderTableString(stream, columnIds, rowIds, delim);
 
     }
 
-    public ReaderTableObjectAbstract(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableObjectAbstract(final Reader reader, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         this.reader = new ReaderTableString(reader, columnIds, rowIds);
+
+    }
+
+    public ReaderTableObjectAbstract(final Reader reader, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
+        this.reader = new ReaderTableString(reader, columnIds, rowIds, delim);
 
     }
 
@@ -75,9 +85,12 @@ public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
         while (hasNext()) {
             final T next = next();
             if (next == null) {
-                throw new NullPointerException();
+                if (log.isWarnEnabled()) {
+                    log.warn("omit null element");
+                }
+            } else {
+                result.add(next);
             }
-            result.add(next);
         }
 
         return result;
