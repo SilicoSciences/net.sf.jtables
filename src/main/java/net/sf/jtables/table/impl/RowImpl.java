@@ -127,8 +127,11 @@ public class RowImpl<T> implements Row<T> {
     }
 
     public boolean hasColumn(final Object o) {
-        final int index = mapper.get(o);
-        return hasColumn(index);
+        if (mapper.containsKey(o)) {
+            final int index = mapper.get(o);
+            return hasColumn(index);
+        }
+        return false;
     }
 
     @Override
