@@ -85,8 +85,8 @@ public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
         while (hasNext()) {
             final T next = next();
             if (next == null) {
-                if (log.isWarnEnabled()) {
-                    log.warn("omit null element");
+                if (log.isDebugEnabled()) {
+                    log.debug("omit null element");
                 }
             } else {
                 result.add(next);
