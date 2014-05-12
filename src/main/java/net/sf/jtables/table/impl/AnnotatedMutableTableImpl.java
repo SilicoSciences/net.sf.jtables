@@ -25,7 +25,7 @@ import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.UtilIO;
 
@@ -134,7 +134,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     public Column<T> getColumn(final Object key) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        net.sf.kerner.utils.Util.checkForNull(key);
         checkColumnIndex(key);
         return getColumn(colMapper.get(key));
     }
@@ -157,7 +157,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     public Row<T> getRow(final Object key) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(key);
+        net.sf.kerner.utils.Util.checkForNull(key);
         checkRowIndex(key);
         return getRow(rowMapper.get(key));
     }

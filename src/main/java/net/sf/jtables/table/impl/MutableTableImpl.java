@@ -41,7 +41,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
     }
 
     public void addColumn(final Column<T> elements) {
-        net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
+        net.sf.kerner.utils.Util.checkForNull(elements);
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
@@ -64,7 +64,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
     public void addColumn(final int index, final Column<T> elements) {
         checkColumnIndex(index);
-        net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
+        net.sf.kerner.utils.Util.checkForNull(elements);
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column
@@ -196,7 +196,7 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
     public void setColumn(final int index, final Column<T> elements) {
         checkColumnIndex(index);
-        net.sf.kerner.utils.impl.util.Util.checkForNull(elements);
+        net.sf.kerner.utils.Util.checkForNull(elements);
 
         // assert that we have enough rows to set whole column
         // fill number of rows to fit number of elements in column

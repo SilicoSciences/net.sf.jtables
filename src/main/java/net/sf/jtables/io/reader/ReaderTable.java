@@ -25,9 +25,9 @@ import net.sf.jtables.table.Table;
 import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.impl.TableInteger;
 import net.sf.jtables.table.impl.TableString;
-import net.sf.kerner.utils.ObjectPair;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
+import net.sf.kerner.utils.pair.ObjectPair;
 
 /**
  * 

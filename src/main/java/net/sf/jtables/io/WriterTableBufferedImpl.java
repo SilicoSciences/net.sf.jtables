@@ -27,7 +27,7 @@ import java.util.List;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.Table;
 import net.sf.jtables.table.TableAnnotated;
-import net.sf.kerner.utils.collections.impl.UtilCollection;
+import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.io.buffered.AbstractBufferedWriter;
 
 /**

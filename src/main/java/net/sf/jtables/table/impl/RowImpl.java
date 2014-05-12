@@ -24,8 +24,8 @@ import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
-import net.sf.kerner.utils.collections.impl.ObjectToIndexMapperImpl;
-import net.sf.kerner.utils.collections.impl.UtilCollection;
+import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.collections.UtilCollection;
 
 /**
  * Default implementation for {@link Row}.
@@ -33,13 +33,13 @@ import net.sf.kerner.utils.collections.impl.UtilCollection;
  * <b>Example:</b><br>
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
+ *
  * </p>
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
  * @param <T>
@@ -51,7 +51,8 @@ public class RowImpl<T> implements Row<T> {
 
     protected final List<T> implementation = new ArrayList<T>();
 
-    protected volatile ObjectToIndexMapper<Object> mapper = new ObjectToIndexMapperImpl<Object>(new ArrayList<Object>());
+    protected volatile ObjectToIndexMapper<Object> mapper = new ObjectToIndexMapperImpl<Object>(
+            new ArrayList<Object>());
 
     public RowImpl() {
     }
@@ -123,7 +124,7 @@ public class RowImpl<T> implements Row<T> {
     }
 
     public boolean hasColumn(final int index) {
-        return index < implementation.size();
+        return index < implementation.size() && index >= 0;
     }
 
     public boolean hasColumn(final Object o) {

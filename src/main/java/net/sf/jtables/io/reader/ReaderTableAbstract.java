@@ -29,9 +29,9 @@ import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.jtables.table.impl.RowImpl;
-import net.sf.kerner.utils.ObjectPair;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
+import net.sf.kerner.utils.pair.ObjectPair;
 
 /**
  * Prototype implementation for {@link ReaderTable}.

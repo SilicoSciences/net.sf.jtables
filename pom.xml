@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.sonatype.oss</groupId>
 		<artifactId>oss-parent</artifactId>
-		<version>7</version>
+		<version>9</version>
 	</parent>
 	<groupId>net.sf.jtables</groupId>
 	<artifactId>jtables</artifactId>
@@ -13,7 +14,7 @@
 	<properties>
 		<jdk.version>1.5</jdk.version>
 		<m2st-gatc-id>UA-21674458-1</m2st-gatc-id>
-		<m2st-gatc-config>_setDetectFlash(true),_setDetectTitle(false)
+		<m2st-gatc-config>_setDetectFlash(true),_setDetectTitle(false) 
 		</m2st-gatc-config>
 		<m2st-syntaxHighlighter-urlBase>syntaxhighlighter</m2st-syntaxHighlighter-urlBase>
 		<m2st-syntaxHighlighter-brushFiles>shBrushPlain.js,shBrushXml.js,shBrushJava.js</m2st-syntaxHighlighter-brushFiles>
@@ -56,26 +57,22 @@
 		</site>
 	</distributionManagement>
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-site-plugin</artifactId>
-					<version>3.2</version>
-					<dependencies>
-						<dependency><!-- add support for ssh/scp -->
-							<groupId>org.apache.maven.wagon</groupId>
-							<artifactId>wagon-ssh</artifactId>
-							<version>1.0</version>
-						</dependency>
-					</dependencies>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.2</version>
+				<dependencies>
+					<dependency><!-- add support for ssh/scp -->
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>1.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
+				<version>3.1</version>
 				<configuration>
 					<source>${jdk.version}</source>
 					<target>${jdk.version}</target>
@@ -83,7 +80,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
-				<version>2.4</version>
+				<version>2.5.1</version>
 				<executions>
 					<execution>
 						<goals>
@@ -97,7 +94,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9</version>
+				<version>2.9.1</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -121,7 +118,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.3</version>
+				<version>2.4</version>
 				<configuration>
 					<descriptorRefs>
 						<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -140,6 +137,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
 				<configuration>
 					<archive>
 						<manifestEntries>
@@ -157,7 +155,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-collections</groupId>
 			<artifactId>kerner-utils-collections</artifactId>
-			<version>0.24.2-SNAPSHOT</version>
+			<version>0.25.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -168,7 +166,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-io</groupId>
 			<artifactId>kerner-utils-io</artifactId>
-			<version>0.5.1-SNAPSHOT</version>
+			<version>0.5.2</version>
 		</dependency>
 	</dependencies>
 </project>
