@@ -31,7 +31,7 @@ import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.jtables.table.impl.RowImpl;
 import net.sf.kerner.utils.io.buffered.AbstractIOIterator;
 import net.sf.kerner.utils.io.buffered.IOIterator;
-import net.sf.kerner.utils.pair.ObjectPair;
+import net.sf.kerner.utils.pair.Pair;
 
 /**
  * Prototype implementation for {@link ReaderTable}.
@@ -88,7 +88,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      */
     protected final boolean rowsB;
 
-    private Collection<? extends ObjectPair<String, String>> filterRegex = new ArrayList<ObjectPair<String, String>>();
+    private Collection<? extends Pair<String, String>> filterRegex = new ArrayList<Pair<String, String>>();
 
     public ReaderTableAbstract(final File file) throws IOException {
         this(file, false, false, null);
@@ -224,7 +224,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         if (line == null) {
             return null;
         }
-        for (final ObjectPair<String, String> s : filterRegex) {
+        for (final Pair<String, String> s : filterRegex) {
             line = line.replaceAll(s.getFirst(), s.getSecond());
         }
         if (colsB && firstLine) {
@@ -297,7 +297,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         return columnHeaders;
     }
 
-    public synchronized Collection<? extends ObjectPair<String, String>> getFilterRegex() {
+    public synchronized Collection<? extends Pair<String, String>> getFilterRegex() {
         return filterRegex;
     }
 
@@ -342,7 +342,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     }
 
     public synchronized ReaderTableAbstract<T> setFilterRegex(
-            final Collection<? extends ObjectPair<String, String>> regexFilter) {
+            final Collection<? extends Pair<String, String>> regexFilter) {
         this.filterRegex = regexFilter;
         return this;
     }

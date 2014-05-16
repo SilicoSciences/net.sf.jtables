@@ -27,7 +27,7 @@ import net.sf.jtables.table.impl.TableInteger;
 import net.sf.jtables.table.impl.TableString;
 import net.sf.kerner.utils.io.buffered.IOIterable;
 import net.sf.kerner.utils.io.buffered.IOIterator;
-import net.sf.kerner.utils.pair.ObjectPair;
+import net.sf.kerner.utils.pair.Pair;
 
 /**
  * 
@@ -59,7 +59,7 @@ public interface ReaderTable<T> extends IOIterable<Row<T>> {
      */
     void close();
 
-    Collection<? extends ObjectPair<String, String>> getFilterRegex();
+    Collection<? extends Pair<String, String>> getFilterRegex();
 
     /**
      * Retrieve an {@link Iterator} to read one {@link Row} after another.
@@ -79,6 +79,6 @@ public interface ReaderTable<T> extends IOIterable<Row<T>> {
      */
     TableAnnotated<T> readTableAtOnce() throws IOException;
 
-    ReaderTable<T> setFilterRegex(Collection<? extends ObjectPair<String, String>> regexFilters);
+    ReaderTable<T> setFilterRegex(Collection<? extends Pair<String, String>> regexFilters);
 
 }
