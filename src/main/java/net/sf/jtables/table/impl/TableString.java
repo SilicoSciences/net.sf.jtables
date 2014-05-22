@@ -24,14 +24,14 @@ import net.sf.jtables.table.Row;
 import net.sf.kerner.utils.collections.list.impl.UtilList;
 
 /**
- * 
+ *
  * An {@link net.sf.jtables.table.TableMutableAnnotated AnnotatedMutableTable}
  * with {@link java.lang.String String} elements.
- * 
- * 
+ *
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2010-12-25
- * 
+ *
  */
 public class TableString extends AnnotatedMutableTableImpl<String> {
 
@@ -56,24 +56,24 @@ public class TableString extends AnnotatedMutableTableImpl<String> {
         return new TableString(rows);
     }
 
-    public List<Column<String>> getColumns(final String idPattern) {
-        final List<Column<String>> result = new ArrayList<Column<String>>();
+    public List<ColumnString> getColumns(final String idPattern) {
+        final List<ColumnString> result = new ArrayList<ColumnString>();
 
         for (final Object s : getColumnIdentifier()) {
             if (s.toString().matches(idPattern)) {
-                result.add(getColumn(s));
+                result.add((ColumnString) getColumn(s));
             }
         }
 
         return result;
     }
 
-    public List<Row<String>> getRows(final String idPattern) {
-        final List<Row<String>> result = new ArrayList<Row<String>>();
+    public List<RowString> getRows(final String idPattern) {
+        final List<RowString> result = new ArrayList<RowString>();
 
         for (final Object s : getRowIdentifier()) {
             if (s.toString().matches(idPattern)) {
-                result.add(getRow(s));
+                result.add((RowString) getRow(s));
             }
         }
 
@@ -82,7 +82,8 @@ public class TableString extends AnnotatedMutableTableImpl<String> {
 
     @Override
     public TableString sortByColumnIds() {
-        final List<String> sorted = new ArrayList<String>(UtilList.toStringList(getColumnIdentifier()));
+        final List<String> sorted = new ArrayList<String>(
+                UtilList.toStringList(getColumnIdentifier()));
         Collections.sort(sorted);
         final TableString result = new TableString();
         result.setColumnIdentifier(sorted);

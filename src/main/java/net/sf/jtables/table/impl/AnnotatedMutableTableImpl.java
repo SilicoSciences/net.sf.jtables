@@ -30,31 +30,32 @@ import net.sf.kerner.utils.collections.list.impl.UtilList;
 import net.sf.kerner.utils.io.UtilIO;
 
 /**
- * 
+ *
  * Default implementation for {@link TableMutableAnnotated}.
- * 
+ *
  * <p>
  * <b>Example:</b><br>
- * 
+ *
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
+ *
  * </p>
  * <p>
  * last reviewed: 2013-02-27
  * </p>
- * 
+ *
  * @author <a href="mailto:alexanderkerner24@gmail.com">Alexander Kerner</a>
  * @version 2013-02-27
- * 
+ *
  * @param <T>
  *            type of elements in {@code Table}
  */
-public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements TableMutableAnnotated<T> {
+public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
+        TableMutableAnnotated<T> {
 
     /**
      * row mappings.
@@ -77,7 +78,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
     /**
      * Creates an {@code AnnotatedMutableTableImpl} with given rows.
-     * 
+     *
      * @param rows
      *            rows initially contained by this {@code Table}
      */
@@ -163,7 +164,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     /**
-	 * 
+	 *
 	 */
 
     public List<Object> getRowIdentifier() {
@@ -179,7 +180,8 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     public AnnotatedMutableTableImpl<T> sortByColumnIds() {
-        final List<String> sorted = new ArrayList<String>(UtilList.toStringList(getColumnIdentifier()));
+        final List<String> sorted = new ArrayList<String>(
+                UtilList.toStringList(getColumnIdentifier()));
         Collections.sort(sorted);
         final AnnotatedMutableTableImpl<T> result = new AnnotatedMutableTableImpl<T>();
         result.setColumnIdentifier(sorted);

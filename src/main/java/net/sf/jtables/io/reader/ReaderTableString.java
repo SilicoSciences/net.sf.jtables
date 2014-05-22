@@ -21,53 +21,63 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 
+import net.sf.jtables.table.impl.RowImpl;
+import net.sf.jtables.table.impl.RowString;
 import net.sf.jtables.table.impl.TableString;
 
 /**
- * 
+ *
  * {@link ReaderTable} to read a table that contains {@link String} values.
- * 
- * 
+ *
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-03-13
- * 
+ *
  */
 public class ReaderTableString extends ReaderTableAbstract<String> {
 
-    public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        super(reader, columnIds, rowIds, delim);
-    }
-
-    public ReaderTableString(BufferedReader reader, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableString(final BufferedReader reader, final boolean columnIds,
+            final boolean rowIds) throws IOException {
         super(reader, columnIds, rowIds);
     }
 
-    public ReaderTableString(File file, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        super(file, columnIds, rowIds, delim);
+    public ReaderTableString(final BufferedReader reader, final boolean columnIds,
+            final boolean rowIds, final String delim) throws IOException {
+        super(reader, columnIds, rowIds, delim);
     }
 
-    public ReaderTableString(File file) throws IOException {
+    public ReaderTableString(final File file) throws IOException {
         super(file);
     }
 
-    public ReaderTableString(File file, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableString(final File file, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         super(file, columnIds, rowIds);
     }
 
-    public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        super(stream, columnIds, rowIds, delim);
+    public ReaderTableString(final File file, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
+        super(file, columnIds, rowIds, delim);
     }
 
-    public ReaderTableString(InputStream stream, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableString(final InputStream stream, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         super(stream, columnIds, rowIds);
     }
 
-    public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds, String delim) throws IOException {
-        super(reader, columnIds, rowIds, delim);
+    public ReaderTableString(final InputStream stream, final boolean columnIds,
+            final boolean rowIds, final String delim) throws IOException {
+        super(stream, columnIds, rowIds, delim);
     }
 
-    public ReaderTableString(Reader reader, boolean columnIds, boolean rowIds) throws IOException {
+    public ReaderTableString(final Reader reader, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         super(reader, columnIds, rowIds);
+    }
+
+    public ReaderTableString(final Reader reader, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
+        super(reader, columnIds, rowIds, delim);
     }
 
     @Override
@@ -76,7 +86,12 @@ public class ReaderTableString extends ReaderTableAbstract<String> {
     }
 
     @Override
-    protected String parse(String s) {
+    protected RowImpl<String> getNewRowInstance() {
+        return new RowString();
+    }
+
+    @Override
+    protected String parse(final String s) {
         return s;
     }
 
