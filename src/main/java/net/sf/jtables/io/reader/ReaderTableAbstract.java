@@ -39,19 +39,20 @@ import net.sf.kerner.utils.pair.Pair;
  * <b>Example:</b><br>
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
+ *
  * </p>
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2013-01-24
  * @param <T>
  *            type of elements in {@code Table}
  */
-public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> implements ReaderTable<T> {
+public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> implements
+        ReaderTable<T> {
 
     /**
      * Default column delimiter (tab).
@@ -96,7 +97,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param file
      *            {@link File} from which table is read
      * @param columnIds
@@ -106,13 +107,14 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final File file, final boolean columnIds, final boolean rowIds) throws IOException {
+    public ReaderTableAbstract(final File file, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         this(file, columnIds, rowIds, null);
     }
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param file
      *            {@link File} from which table is read
      * @param columnIds
@@ -124,14 +126,14 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final File file, final boolean columnIds, final boolean rowIds, final String delim)
-            throws IOException {
+    public ReaderTableAbstract(final File file, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
         this(new FileInputStream(file), columnIds, rowIds, delim);
     }
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param stream
      *            {@link InputStream} from which table is read
      * @param columnIds
@@ -141,14 +143,14 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final InputStream stream, final boolean columnIds, final boolean rowIds)
-            throws IOException {
+    public ReaderTableAbstract(final InputStream stream, final boolean columnIds,
+            final boolean rowIds) throws IOException {
         this(stream, columnIds, rowIds, null);
     }
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param stream
      *            {@link InputStream} from which table is read
      * @param columnIds
@@ -160,8 +162,8 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final InputStream stream, final boolean columnIds, final boolean rowIds,
-            final String delim) throws IOException {
+    public ReaderTableAbstract(final InputStream stream, final boolean columnIds,
+            final boolean rowIds, final String delim) throws IOException {
         super(stream);
         this.colsB = columnIds;
         this.rowsB = rowIds;
@@ -173,7 +175,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param reader
      *            {@link Reader} from which table is read
      * @param columnIds
@@ -183,13 +185,14 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final Reader reader, final boolean columnIds, final boolean rowIds) throws IOException {
+    public ReaderTableAbstract(final Reader reader, final boolean columnIds, final boolean rowIds)
+            throws IOException {
         this(reader, columnIds, rowIds, null);
     }
 
     /**
      * Create a new {@code AbstractTableReader}.
-     * 
+     *
      * @param reader
      *            {@link Reader} from which table is read
      * @param columnIds
@@ -201,8 +204,8 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
      * @throws IOException
      *             if anything goes wrong
      */
-    public ReaderTableAbstract(final Reader reader, final boolean columnIds, final boolean rowIds, final String delim)
-            throws IOException {
+    public ReaderTableAbstract(final Reader reader, final boolean columnIds, final boolean rowIds,
+            final String delim) throws IOException {
         super(reader);
         this.colsB = columnIds;
         this.rowsB = rowIds;
@@ -214,7 +217,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
     /**
      * Read the next {@link Row} from input source.
-     * 
+     *
      * @return next {@link Row} or {@code null} if nothing left to read
      */
     @Override
@@ -239,7 +242,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         try {
             scanner = new Scanner(line);
             scanner.useDelimiter(delim);
-            final RowImpl<T> result = new RowImpl<T>();
+            final RowImpl<T> result = getNewRowInstance();
 
             // first column (row headers)?
             boolean first = true;
@@ -272,7 +275,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
     /**
      * Extract column headers from first line.
-     * 
+     *
      * @param line
      *            {@code String} that contains column headers
      * @return {@link List} of column headers
@@ -302,15 +305,19 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     }
 
     /**
-	 * 
+	 *
 	 */
     protected abstract TableMutableAnnotated<T> getInstance();
 
     /**
-	 * 
+	 *
 	 */
     public IOIterator<Row<T>> getIterator() throws IOException {
         return this;
+    }
+
+    protected RowImpl<T> getNewRowInstance() {
+        return new RowImpl<T>();
     }
 
     public synchronized List<String> getRowHeaders() throws IOException {
@@ -319,7 +326,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
 
     /**
      * Parse an object of type {@code T} from given string.
-     * 
+     *
      * @param s
      *            {@link String} to parse from
      * @return object of type {@code T} that was parsed
