@@ -18,24 +18,24 @@ package net.sf.jtables.table;
 import java.util.List;
 
 /**
- * 
+ *
  * A table row.
- * 
+ *
  * <p>
  * <b>Example:</b><br>
- * 
+ *
  * </p>
  * <p>
- * 
+ *
  * <pre>
  * TODO example
  * </pre>
- * 
+ *
  * </p>
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- * 
+ *
  * @param <T>
  *            type of table element
  */
@@ -48,6 +48,8 @@ public interface Row<T> extends List<T>, Cloneable {
     boolean hasColumn(int index);
 
     boolean hasColumn(Object o);
+
+    boolean isEmpty();
 
     String toString(String delimiter);
 
