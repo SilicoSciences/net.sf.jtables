@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.io.Reader;
 import java.util.List;
 
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.io.buffered.IOIterator;
 
 import org.slf4j.Logger;

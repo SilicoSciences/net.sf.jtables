@@ -20,7 +20,7 @@ import java.util.List;
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableMutable;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 
 /**
  * Default implementation for {@link TableMutable}.

@@ -26,7 +26,7 @@ import net.sf.jtables.table.Row;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
-import net.sf.kerner.utils.collections.list.impl.UtilList;
+import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.io.UtilIO;
 
 /**
