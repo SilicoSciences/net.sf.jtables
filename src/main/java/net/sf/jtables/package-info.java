@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2011 Alexander Kerner. All rights reserved.
+Copyright (c) 2010 - 2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,20 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
-
-import net.sf.kerner.utils.io.lazy.LazyStringWriter;
-
 /**
- * 
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2011-03-09
- * 
+ * This package is the parent package for this component and contains all types which are shared across all subpackages.
  */
-public class StringTableWriter extends LazyStringWriter {
-
-	public StringTableWriter(StringTable table) {
-		super(table);
-	}
-
-}
+package net.sf.jtables;

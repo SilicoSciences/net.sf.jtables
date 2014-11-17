@@ -27,35 +27,35 @@ import java.util.List;
  * @param <T>
  *            type of elements in {@Table}
  * 
- * @see MutableTable
- * @see AnnotatedTable
+ * @see TableMutable
+ * @see TableAnnotated
  */
-public interface AnnotatedMutableTable<T> extends AnnotatedTable<T>, MutableTable<T> {
+public interface TableMutableAnnotated<T> extends TableAnnotated<T>, TableMutable<T> {
 
-	/**
-	 * 
-	 * Set identifiers for columns.
-	 * 
-	 * @param ids
-	 *            a {@link List} that contains all column identifiers
-	 */
-	void setColumnIdentifier(List<? extends Object> ids);
+    /**
+     * 
+     * Set identifiers for columns.
+     * 
+     * @param ids
+     *            a {@link List} that contains all column identifiers
+     */
+    void setColumnIdentifier(List<? extends Object> ids);
 
-	/**
-	 * 
-	 * Set identifiers for rows.
-	 * 
-	 * @param ids
-	 *            a {@link List} that contains all row identifiers
-	 */
-	void setRowIdentifier(List<? extends Object> ids);
-	
-	void addRow(Object id, Row<T> row);
-	
-	void addColumn(Object id, Column<T> row);
-	
-	void addRow(Object id, Row<T> row, int index);
-	
-	void addColumn(Object id, Column<T> row, int index);
+    /**
+     * 
+     * Set identifiers for rows.
+     * 
+     * @param ids
+     *            a {@link List} that contains all row identifiers
+     */
+    void setRowIdentifier(List<? extends Object> ids);
+
+    void addRow(Object id, Row<T> row);
+
+    void addColumn(Object id, Column<T> row);
+
+    void addRow(Object id, Row<T> row, int index);
+
+    void addColumn(Object id, Column<T> row, int index);
 
 }

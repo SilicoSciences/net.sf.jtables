@@ -21,18 +21,21 @@ package net.sf.jtables.table;
  * 
  * <p>
  * <b>Example:</b><br>
- *
+ * 
  * </p>
  * <p>
+ * 
  * <pre>
  * TODO example
  * </pre>
+ * 
  * </p>
- *
+ * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
- *
- * @param <T> type of table element
+ * 
+ * @param <T>
+ *            type of table element
  */
 public interface Column<T> extends Row<T> {
 

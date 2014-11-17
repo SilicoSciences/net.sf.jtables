@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2011-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2010 - 2013 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -13,44 +13,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table;
-
-import java.util.List;
-
 /**
- *
- * A table row.
- *
- * <p>
- * <b>Example:</b><br>
- *
- * </p>
- * <p>
- *
- * <pre>
- * TODO example
- * </pre>
- *
- * </p>
- *
- * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
- *
- * @param <T>
- *            type of table element
+ * This package contains all types which are used for reading tables from a
+ * <ul>
+ * <li>{@link java.io.File}</li>
+ * <li>{@link java.io.InputStream}</li>
+ * <li>{@link java.io.Reader}</li>
+ * </ul>
  */
-public interface Row<T> extends List<T>, Cloneable {
-
-    T get(Object o);
-
-    List<Object> getIdentifier();
-
-    boolean hasColumn(int index);
-
-    boolean hasColumn(Object o);
-
-    boolean isEmpty();
-
-    String toString(String delimiter);
-
-}
+package net.sf.jtables.io.reader;

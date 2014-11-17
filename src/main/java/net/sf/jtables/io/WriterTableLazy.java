@@ -13,30 +13,39 @@ See the License for the specific language governing permissions and
 limitations under the License.
  ***********************************************************************/
 
-package net.sf.jtables.table.impl;
+package net.sf.jtables.io;
 
-import java.util.List;
-
-import net.sf.jtables.table.Row;
+import net.sf.jtables.table.Table;
+import net.sf.kerner.utils.io.lazy.LazyStringWriter;
 
 /**
  * 
- * An {@link net.sf.jtables.table.TableMutableAnnotated AnnotatedMutableTable}
- * with {@link java.lang.Object Object} elements.
  * 
+ * A {@code TableWriter} will write a {@link net.sf.jtables.table.Table Table}
+ * to
+ * <ul>
+ * <li>
+ * a {@link java.io.File}</li>
+ * <li>
+ * a {@link java.io.Writer}</li>
+ * <li>
+ * an {@link java.io.OutputStream}</li>
+ * </ul>
  * 
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2010-12-25
- * 
+ * @version 2012-03-12
  */
-public class ObjectTable extends AnnotatedMutableTableImpl<Object> {
+public class WriterTableLazy extends LazyStringWriter {
 
-    public ObjectTable() {
-        super();
+    /**
+     * 
+     * Construct a {@code TableWriter} that will write given
+     * {@link net.sf.jtables.table.Table Table}.
+     * 
+     * @param table
+     *            {@link net.sf.jtables.table.Table Table} to write
+     */
+    public WriterTableLazy(Table<?> table) {
+        super(table.toString());
     }
-
-    public ObjectTable(List<Row<Object>> rows) {
-        super(rows);
-    }
-
 }
