@@ -283,12 +283,16 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     protected List<String> getColHeaders(final String line) {
         final Scanner scanner = new Scanner(line);
         scanner.useDelimiter(delim);
-        final List<String> list = new ArrayList<String>();
+        List<String> list = new ArrayList<String>();
         while (scanner.hasNext()) {
             final String s = scanner.next();
             list.add(s);
         }
         scanner.close();
+        if (rowsB) {
+            // ignore first value
+            list = list.subList(1, list.size() - 1);
+        }
         return list;
     }
 
