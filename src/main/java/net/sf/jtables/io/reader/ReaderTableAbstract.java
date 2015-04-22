@@ -291,7 +291,7 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
         scanner.close();
         if (rowsB) {
             // ignore first value
-            list = list.subList(1, list.size() - 1);
+            list = list.subList(1, list.size());
         }
         return list;
     }

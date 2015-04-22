@@ -59,21 +59,21 @@ public class TestDoubleTableReader {
          */
 
         // A string that contains a table (tab delimited)
-        String tableString = "colA\tcolB\tcolC" + UtilIO.NEW_LINE_STRING + "rowA\t0.0\t0.1\t0.2"
-                + UtilIO.NEW_LINE_STRING + "rowB\t1.0\t1.1\t1.2";
+        final String tableString = "rowIDs\tcolA\tcolB\tcolC" + UtilIO.NEW_LINE_STRING
+                + "rowA\t0.0\t0.1\t0.2" + UtilIO.NEW_LINE_STRING + "rowB\t1.0\t1.1\t1.2";
 
         // A Reader to read the table
-        StringReader stringReader = new StringReader(tableString);
+        final StringReader stringReader = new StringReader(tableString);
 
         // A TableReader to parse the file
         // First argument is the Reader (File or Stream would also work)
         // Second argument is if column headers are present
         // Third argument is if row headers are present
         // Forth argument is column-delimiter (in this case tab)
-        ReaderTableDouble tableReader = new ReaderTableDouble(stringReader, true, true, "\t");
+        final ReaderTableDouble tableReader = new ReaderTableDouble(stringReader, true, true, "\t");
 
         // Read the table at once
-        TableDouble table = tableReader.readTableAtOnce();
+        final TableDouble table = tableReader.readTableAtOnce();
 
         // Close the reader
         tableReader.close();
