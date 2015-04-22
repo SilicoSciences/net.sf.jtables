@@ -19,12 +19,13 @@ import java.util.List;
 
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.Table;
 import net.sf.jtables.table.TableMutable;
 import net.sf.kerner.utils.collections.list.UtilList;
 
 /**
  * Default implementation for {@link TableMutable}.
- * 
+ *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
  * @version 2012-01-25
  * @param <T>
@@ -38,6 +39,10 @@ public class MutableTableImpl<T> extends TableImpl<T> implements TableMutable<T>
 
     public MutableTableImpl(final List<Row<T>> rows) {
         super(rows);
+    }
+
+    public MutableTableImpl(final Table<T> template) {
+        super(template);
     }
 
     public void addColumn(final Column<T> elements) {

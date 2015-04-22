@@ -23,6 +23,8 @@ import java.util.NoSuchElementException;
 
 import net.sf.jtables.table.Column;
 import net.sf.jtables.table.Row;
+import net.sf.jtables.table.Table;
+import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
@@ -86,6 +88,14 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
         super(rows);
     }
 
+    public AnnotatedMutableTableImpl(final Table<T> template) {
+        super(template);
+        if (template instanceof TableAnnotated) {
+            setColumnIdentifier(((TableAnnotated) template).getColumnIdentifier());
+            setRowIdentifier(((TableAnnotated) template).getRowIdentifier());
+        }
+    }
+
     public void addColumn(final Object id, final Column<T> row) {
         this.colMapper.addMapping(id);
         super.addColumn(row);
@@ -146,13 +156,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
 
     @Override
     public Row<T> getRow(final int index) {
-        final RowImpl<T> r;
-        final Row<T> c = super.getRow(index);
-        if (c instanceof RowImpl) {
-            r = (RowImpl<T>) c;
-        } else {
-            r = new RowImpl<T>(super.getRow(index));
-        }
+        final Row<T> r = super.getRow(index);
         r.setIdentifier(colMapper.keys());
         return r;
     }

@@ -34,7 +34,7 @@ import java.util.List;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2012-01-25
+ * @version 2014-12-03
  *
  * @param <T>
  *            type of table element
@@ -50,6 +50,8 @@ public interface Row<T> extends List<T>, Cloneable {
     boolean hasColumn(Object o);
 
     boolean isEmpty();
+
+    void setIdentifier(List<? extends Object> identifier);
 
     String toString(String delimiter);
 
