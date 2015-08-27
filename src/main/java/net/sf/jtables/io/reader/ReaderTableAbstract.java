@@ -1,5 +1,5 @@
 /**********************************************************************
-Copyright (c) 2009-2012 Alexander Kerner. All rights reserved.
+Copyright (c) 2009-2015 Alexander Kerner. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -47,12 +47,12 @@ import net.sf.kerner.utils.pair.Pair;
  * </p>
  *
  * @author <a href="mailto:alex.kerner.24@googlemail.com">Alexander Kerner</a>
- * @version 2013-01-24
+ * @version 2015-08-22
  * @param <T>
  *            type of elements in {@code Table}
  */
 public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> implements
-        ReaderTable<T> {
+ReaderTable<T> {
 
     /**
      * Default column delimiter (tab).
@@ -90,6 +90,8 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     protected final boolean rowsB;
 
     private Collection<? extends Pair<String, String>> filterRegex = new ArrayList<Pair<String, String>>();
+
+    private List<VisitorFirstLine> visitors = new ArrayList<VisitorFirstLine>();
 
     public ReaderTableAbstract(final File file) throws IOException {
         this(file, false, false, null);
@@ -215,6 +217,14 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
             this.delim = delim;
     }
 
+    public synchronized void addVisitorFirstLine(VisitorFirstLine visitorFirstLine) {
+        this.visitors.add(visitorFirstLine);
+    }
+
+    public synchronized void clearVisitorsFirstLine() {
+        this.visitors.clear();
+    }
+
     /**
      * Read the next {@link Row} from input source.
      *
@@ -223,9 +233,16 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     @Override
     protected Row<T> doRead() throws IOException {
         String line = reader.readLine();
-
         if (line == null) {
             return null;
+        }
+        for (VisitorFirstLine v : visitors) {
+            while (firstLine && !v.filter(line)) {
+                line = reader.readLine();
+                if (line == null) {
+                    return null;
+                }
+            }
         }
         for (final Pair<String, String> s : filterRegex) {
             line = line.replaceAll(s.getFirst(), s.getSecond());
@@ -263,7 +280,8 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
             if (result.isEmpty())
                 return null;
 
-            result.setIdentifier(columnHeaders);
+            if (colsB)
+                result.setIdentifier(columnHeaders);
 
             return result;
         } finally {
@@ -309,13 +327,13 @@ public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> 
     }
 
     /**
-	 *
-	 */
+     *
+     */
     protected abstract TableMutableAnnotated<T> getInstance();
 
     /**
-	 *
-	 */
+     *
+     */
     public IOIterator<Row<T>> getIterator() throws IOException {
         return this;
     }
