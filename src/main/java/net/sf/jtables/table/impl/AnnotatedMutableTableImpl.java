@@ -28,6 +28,7 @@ import net.sf.jtables.table.TableAnnotated;
 import net.sf.jtables.table.TableMutableAnnotated;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
+import net.sf.kerner.utils.collections.UtilCollection;
 import net.sf.kerner.utils.collections.list.UtilList;
 import net.sf.kerner.utils.io.UtilIO;
 
@@ -56,8 +57,7 @@ import net.sf.kerner.utils.io.UtilIO;
  * @param <T>
  *            type of elements in {@code Table}
  */
-public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
-        TableMutableAnnotated<T> {
+public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements TableMutableAnnotated<T> {
 
     /**
      * row mappings.
@@ -140,7 +140,8 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
         } else {
             r = new ColumnImpl<T>(super.getColumn(index));
         }
-        r.setIdentifier(rowMapper.keys());
+        if (UtilCollection.notNullNotEmpty(rowMapper.keys()))
+            r.setIdentifier(rowMapper.keys());
         return r;
     }
 
@@ -157,7 +158,8 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     @Override
     public Row<T> getRow(final int index) {
         final Row<T> r = super.getRow(index);
-        r.setIdentifier(colMapper.keys());
+        if (UtilCollection.notNullNotEmpty(colMapper.keys()))
+            r.setIdentifier(colMapper.keys());
         return r;
     }
 
@@ -168,8 +170,8 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     /**
-	 *
-	 */
+     *
+     */
 
     public List<Object> getRowIdentifier() {
         return new ArrayList<Object>(rowMapper.keys());
@@ -184,8 +186,7 @@ public class AnnotatedMutableTableImpl<T> extends MutableTableImpl<T> implements
     }
 
     public AnnotatedMutableTableImpl<T> sortByColumnIds() {
-        final List<String> sorted = new ArrayList<String>(
-                UtilList.toStringList(getColumnIdentifier()));
+        final List<String> sorted = new ArrayList<String>(UtilList.toStringList(getColumnIdentifier()));
         Collections.sort(sorted);
         final AnnotatedMutableTableImpl<T> result = new AnnotatedMutableTableImpl<T>();
         result.setColumnIdentifier(sorted);

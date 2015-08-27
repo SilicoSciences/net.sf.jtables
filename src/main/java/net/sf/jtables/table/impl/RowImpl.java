@@ -23,9 +23,11 @@ import java.util.List;
 import java.util.ListIterator;
 
 import net.sf.jtables.table.Row;
+import net.sf.kerner.utils.UtilString;
 import net.sf.kerner.utils.collections.ObjectToIndexMapper;
 import net.sf.kerner.utils.collections.ObjectToIndexMapperImpl;
 import net.sf.kerner.utils.collections.UtilCollection;
+import net.sf.kerner.utils.collections.list.UtilList;
 
 /**
  * Default implementation for {@link Row}.
@@ -51,8 +53,7 @@ public class RowImpl<T> implements Row<T> {
 
     protected final List<T> implementation = new ArrayList<T>();
 
-    protected volatile ObjectToIndexMapper<Object> mapper = new ObjectToIndexMapperImpl<Object>(
-            new ArrayList<Object>());
+    protected volatile ObjectToIndexMapper<Object> mapper = new ObjectToIndexMapperImpl<Object>(new ArrayList<Object>());
 
     public RowImpl() {
     }
@@ -108,6 +109,9 @@ public class RowImpl<T> implements Row<T> {
     }
 
     public T get(final int index) {
+        if (implementation.size() <= index) {
+            throw new IllegalArgumentException("No index " + index + " in row " + implementation);
+        }
         return implementation.get(index);
     }
 
@@ -189,6 +193,9 @@ public class RowImpl<T> implements Row<T> {
     }
 
     public void setIdentifier(final List<? extends Object> ids) {
+        if (UtilString.allEmpty(UtilList.toStringList(ids))) {
+            throw new IllegalArgumentException("Invalid identifier: " + ids);
+        }
         this.mapper = new ObjectToIndexMapperImpl<Object>(ids);
     }
 
