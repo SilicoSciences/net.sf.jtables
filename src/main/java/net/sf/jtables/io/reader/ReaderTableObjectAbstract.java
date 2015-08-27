@@ -96,5 +96,4 @@ public abstract class ReaderTableObjectAbstract<T> implements IOIterator<T> {
 
         return result;
     }
-
 }
