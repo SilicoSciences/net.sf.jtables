@@ -52,12 +52,24 @@ import net.sf.kerner.utils.pair.Pair;
  *            type of elements in {@code Table}
  */
 public abstract class ReaderTableAbstract<T> extends AbstractIOIterator<Row<T>> implements
-ReaderTable<T> {
+        ReaderTable<T> {
 
     /**
      * Default column delimiter (tab).
      */
     public final static String DEFAULT_DELIM = "\t";
+
+    public final static String DEFAULT_IN_TEXT_DELIM = ";";
+
+    public final static boolean DEFAULT_ENABLE_TEXT_WRAPPING = true;
+
+    public final static String DEFAULT_TEXT_WRAPPER = "\"";
+
+    private String inTextDelim = DEFAULT_IN_TEXT_DELIM;
+
+    private boolean enableTextWrapping = DEFAULT_ENABLE_TEXT_WRAPPING;
+
+    private String textWrapper = DEFAULT_TEXT_WRAPPER;
 
     /**
      * Does the table have column headers?
@@ -255,6 +267,17 @@ ReaderTable<T> {
             if (line == null)
                 return null;
         }
+        if (isEnableTextWrapping() && line.contains(getTextWrapper())
+                && !line.endsWith(getTextWrapper())) {
+            String more = reader.readLine();
+            while (!more.endsWith(getTextWrapper())) {
+                line = line.concat(getInTextDelim()).concat(more);
+                more = reader.readLine();
+            }
+        }
+        if (isEnableTextWrapping()) {
+            line = line.replaceAll("\"", "");
+        }
         Scanner scanner = null;
         try {
             scanner = new Scanner(line);
@@ -322,6 +345,10 @@ ReaderTable<T> {
         return columnHeaders;
     }
 
+    public synchronized String getDelim() {
+        return delim;
+    }
+
     public synchronized Collection<? extends Pair<String, String>> getFilterRegex() {
         return filterRegex;
     }
@@ -330,6 +357,10 @@ ReaderTable<T> {
      *
      */
     protected abstract TableMutableAnnotated<T> getInstance();
+
+    public synchronized String getInTextDelim() {
+        return inTextDelim;
+    }
 
     /**
      *
@@ -344,6 +375,14 @@ ReaderTable<T> {
 
     public synchronized List<String> getRowHeaders() throws IOException {
         return rowHeaders;
+    }
+
+    public synchronized String getTextWrapper() {
+        return textWrapper;
+    }
+
+    public synchronized boolean isEnableTextWrapping() {
+        return enableTextWrapping;
     }
 
     /**
@@ -370,10 +409,22 @@ ReaderTable<T> {
         return result;
     }
 
+    public synchronized void setEnableTextWrapping(boolean enableTextWrapping) {
+        this.enableTextWrapping = enableTextWrapping;
+    }
+
     public synchronized ReaderTableAbstract<T> setFilterRegex(
             final Collection<? extends Pair<String, String>> regexFilter) {
         this.filterRegex = regexFilter;
         return this;
+    }
+
+    public synchronized void setInTextDelim(String inTextDelim) {
+        this.inTextDelim = inTextDelim;
+    }
+
+    public synchronized void setTextWrapper(String textWrapper) {
+        this.textWrapper = textWrapper;
     }
 
 }
