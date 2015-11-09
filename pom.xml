@@ -11,15 +11,7 @@
 	<name>JTables</name>
 	<description>Simple and lightweight framework to work with tables and table based files such as CSV and other (tab)-delimited files.</description>
 	<properties>
-		<jdk.version>1.5</jdk.version>
-		<m2st-gatc-id>UA-21674458-1</m2st-gatc-id>
-		<m2st-gatc-config>_setDetectFlash(true),_setDetectTitle(false) 
-		</m2st-gatc-config>
-		<m2st-syntaxHighlighter-urlBase>syntaxhighlighter</m2st-syntaxHighlighter-urlBase>
-		<m2st-syntaxHighlighter-brushFiles>shBrushPlain.js,shBrushXml.js,shBrushJava.js</m2st-syntaxHighlighter-brushFiles>
-		<m2st-syntaxHighlighter-themeCssFile>shThemeDefault.css</m2st-syntaxHighlighter-themeCssFile>
-		<m2st-syntaxHighlighter-config>config.clipboardSwf='%ROOT%/scripts/clipboard.swf',defaults['gutter']=false</m2st-syntaxHighlighter-config>
-		<m2st-renderDefaultPoweredByLogoIfNotSpecified>false</m2st-renderDefaultPoweredByLogoIfNotSpecified>
+		<java.version>1.5</java.version>
 	</properties>
 	<url>http://jtables.sourceforge.net/</url>
 	<issueManagement>
@@ -73,13 +65,13 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-install-plugin</artifactId>
-				<version>2.5.1</version>
+				<version>2.5.2</version>
 				<executions>
 					<execution>
 						<goals>
@@ -93,22 +85,10 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
+				<version>2.10.3</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
 						<goals>
 							<goal>jar</goal>
 						</goals>
@@ -137,16 +117,20 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.3.2</version>
-				<configuration>
-					<archive>
-						<manifestEntries>
-							<Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
-							<Bundle-Description>${project.description}</Bundle-Description>
-							<Implementation-Version>${project.version}</Implementation-Version>
-						</manifestEntries>
-						<manifestFile>META-INF/MANIFEST.MF</manifestFile>
-					</archive>
-				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
@@ -154,7 +138,7 @@
 		<dependency>
 			<groupId>net.sf.kerner-utils-collections</groupId>
 			<artifactId>kerner-utils-collections</artifactId>
-			<version>0.27.0</version>
+			<version>1.1.1</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
