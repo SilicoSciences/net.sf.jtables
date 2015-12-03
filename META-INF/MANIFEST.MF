@@ -10,19 +10,9 @@ Export-Package: net.sf.jtables;version="2.2.5.qualifier",
  net.sf.jtables.table;version="2.2.5.qualifier",
  net.sf.jtables.table.impl;version="2.2.5.qualifier",
  net.sf.jtables.table.impl.io;version="2.2.5.qualifier"
-Import-Package: net.sf.kerner.utils,
- net.sf.kerner.utils.collections,
- net.sf.kerner.utils.collections.filter,
- net.sf.kerner.utils.collections.impl,
- net.sf.kerner.utils.collections.list,
- net.sf.kerner.utils.collections.list.impl,
- net.sf.kerner.utils.collections.map,
- net.sf.kerner.utils.exception,
- net.sf.kerner.utils.io,
- net.sf.kerner.utils.io.buffered,
- net.sf.kerner.utils.io.lazy,
- net.sf.kerner.utils.pair,
- net.sf.kerner.utils.transformer,
- org.junit;resolution:=optional,
+Import-Package: org.junit;resolution:=optional,
  org.slf4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: net.sf.kerner-utils;bundle-version="1.2.3",
+ net.sf.kerner-utils-collections;bundle-version="1.1.2",
+ net.sf.kerner-utils-io;bundle-version="0.5.4"
