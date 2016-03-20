@@ -1,152 +1,16 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>9</version>
+		<groupId>com.silicosciences</groupId>
+		<artifactId>com.silicosciences.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../eclipse.rcp/build/com.silicosciences.parent/</relativePath>
 	</parent>
+	
 	<groupId>net.sf.jtables</groupId>
-	<artifactId>jtables</artifactId>
+	<artifactId>net.sf.jtables</artifactId>
 	<version>2.2.5-SNAPSHOT</version>
-	<name>JTables</name>
-	<description>Simple and lightweight framework to work with tables and table based files such as CSV and other (tab)-delimited files.</description>
-	<properties>
-		<java.version>1.5</java.version>
-	</properties>
-	<url>http://jtables.sourceforge.net/</url>
-	<issueManagement>
-		<system>JIRA</system>
-		<url>http://akerner.de:8090/browse/JTABLES/</url>
-	</issueManagement>
-	<developers>
-		<developer>
-			<id>kerner</id>
-			<name>Alexander Kerner</name>
-			<email>alexanderkerner24@gmail.com</email>
-			<roles>
-				<role>Project Manager</role>
-				<role>Architect</role>
-			</roles>
-		</developer>
-	</developers>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
-	<scm>
-		<url>git://git.code.sf.net/p/jtables/code</url>
-		<connection>scm:git://git.code.sf.net/p/jtables/code</connection>
-		<developerConnection>scm:git:ssh://akerner@git.code.sf.net/p/jtables/code</developerConnection>
-	</scm>
-	<distributionManagement>
-		<site>
-			<id>sourceforge-jtables</id>
-			<url>scp://shell.sourceforge.net/home/project-web/jtables/htdocs
-			</url>
-		</site>
-	</distributionManagement>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.3</version>
-				<dependencies>
-					<dependency><!-- add support for ssh/scp -->
-						<groupId>org.apache.maven.wagon</groupId>
-						<artifactId>wagon-ssh</artifactId>
-						<version>1.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<artifactId>maven-install-plugin</artifactId>
-				<version>2.5.2</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>install</goal>
-						</goals>
-						<configuration>
-							<createChecksum>true</createChecksum>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
-				<executions>
-					<execution>
-						<id>dist-assembly</id>
-						<phase>package</phase>
-						<goals>
-							<goal>single</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<archive>
-						<manifestFile>META-INF/MANIFEST.MF</manifestFile>
-						<manifestEntries>
-							<Bundle-Description>${project.description}</Bundle-Description>
-							<Implementation-Version>${project.version}</Implementation-Version>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-	<dependencies>
-		<dependency>
-			<groupId>net.sf.kerner-utils-collections</groupId>
-			<artifactId>kerner-utils-collections</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.11</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sf.kerner-utils-io</groupId>
-			<artifactId>kerner-utils-io</artifactId>
-			<version>0.5.3</version>
-		</dependency>
-	</dependencies>
+	<packaging>eclipse-plugin</packaging>
 </project>

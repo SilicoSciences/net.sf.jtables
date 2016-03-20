@@ -13,6 +13,6 @@ Export-Package: net.sf.jtables;version="2.2.5.qualifier",
 Import-Package: org.junit;resolution:=optional,
  org.slf4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: net.sf.kerner-utils;bundle-version="1.2.3",
- net.sf.kerner-utils-collections;bundle-version="1.1.2",
- net.sf.kerner-utils-io;bundle-version="0.5.4"
+Require-Bundle: net.sf.kerner.utils;bundle-version="1.2.4",
+ net.sf.kerner.utils.collections;bundle-version="1.2.1",
+ net.sf.kerner.utils.io;bundle-version="0.5.4"
